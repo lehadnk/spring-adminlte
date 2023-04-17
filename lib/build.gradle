@@ -15,7 +15,6 @@ plugins {
 
 version = '1.0.0'
 group = 'com.github.lehadnk'
-name = 'spring-adminlte'
 
 repositories {
     mavenCentral()
@@ -54,7 +53,7 @@ jar {
 publishing {
     publications {
         mavenJava(MavenPublication){
-            // bootJar is the default build task configured by Spring Boot
+            artifactId = 'adminlte'
             artifact jar
         }
     }
