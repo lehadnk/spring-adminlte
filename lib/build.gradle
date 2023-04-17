@@ -7,30 +7,20 @@
  */
 
 plugins {
-    // Apply the java-library plugin for API and implementation separation.
     id 'java-library'
-    id 'org.springframework.boot' version '3.0.5'
     id 'maven-publish'
 }
 
-version = '1.0.0'
+version = '1.0.2'
 group = 'com.github.lehadnk'
 
 repositories {
     mavenCentral()
 }
 
-apply plugin: 'io.spring.dependency-management'
-
-dependencyManagement {
-    imports {
-        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
-    }
-}
-
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-web:3.0.5'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf:3.0.5'
 
     testImplementation 'junit:junit:4.13.2'
 }
@@ -40,10 +30,7 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(19)
     }
-}
-
-bootJar {
-    enabled = false
+    withSourcesJar()
 }
 
 jar {
@@ -54,7 +41,7 @@ publishing {
     publications {
         mavenJava(MavenPublication){
             artifactId = 'adminlte'
-            artifact jar
+            from components.java
         }
     }
     repositories {

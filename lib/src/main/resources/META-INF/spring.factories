@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    adminlte.entity_list_table.EntityListTableBeanConfiguration,\
+    adminlte.html_controller.HtmlControllerBeanConfiguration,\
+    adminlte.html_template_renderer.HtmlTemplateRendererBeanConfiguration,\
+    adminlte.navigation_menu.NavigationMenuBeanConfiguration,\
+    adminlte.web_form.WebFormBeanConfiguration
