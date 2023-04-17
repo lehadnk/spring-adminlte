@@ -1,0 +1,35 @@
+package adminlte.web_form.communication;
+
+import adminlte.html_template_renderer.business.template.AbstractHtmlLayout;
+import adminlte.html_template_renderer.business.template.AbstractHtmlTemplate;
+
+import java.util.ArrayList;
+
+public class FormElementTemplate extends AbstractHtmlTemplate {
+    private String templatePath;
+
+    public FormElementTemplate(
+            String name,
+            String label,
+            String value,
+            ArrayList<String> validationErrors,
+            String templatePath
+    )
+    {
+        this.context.setVariable("name", name);
+        this.context.setVariable("label", label);
+        this.context.setVariable("value", value);
+        this.context.setVariable("validationErrors", validationErrors);
+        this.templatePath = templatePath;
+    }
+
+    @Override
+    public String getTemplatePath() {
+        return this.templatePath;
+    }
+
+    @Override
+    public AbstractHtmlLayout getLayoutTemplate() {
+        return null;
+    }
+}

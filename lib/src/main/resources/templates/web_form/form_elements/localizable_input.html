@@ -1,0 +1,19 @@
+<div>
+    <label th:if="${label != null}" th:for="${name}" th:text="${label}"></label>
+
+    <th:block th:each="entry : ${textMapByLanguage}">
+        <p>
+            <th:block th:if="${#lists.contains(languages, entry.key)}" th:text="${entry.key}">:</th:block>
+            <input th:if="${#lists.contains(languages, entry.key)}" class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}"
+                   th:id="${name + '.localization.' + entry.key}" th:name="${name + '.localization.' + entry.key}" th:value="${entry.value}"/>
+            <input th:if="${!#lists.contains(languages, entry.key)}" type="hidden" class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}"
+                   th:id="${name + '.localization.' + entry.key}" th:name="${name + '.localization.' + entry.key}" th:value="${entry.value}"/>
+        </p>
+    </th:block>
+
+    <input type="hidden" class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}" th:id="${name}" th:name="${name + '.key'}" th:value="${glossaryKey}"/>
+
+    <th:block th:each="validationError : ${validationErrors}">
+        <span class="block error invalid-feedback" th:text="${validationError}"></span>
+    </th:block>
+</div>

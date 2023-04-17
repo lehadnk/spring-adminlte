@@ -1,0 +1,3 @@
+<th:block th:each="button : ${buttons}">
+    <a class="btn" th:href="${button.url}" th:text="${button.name}" th:classappend="${button.cssClass}"></a>
+</th:block>

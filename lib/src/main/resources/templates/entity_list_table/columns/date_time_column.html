@@ -1,0 +1,20 @@
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    let utcDateString = [[${content.toString()}]];
+    let localDate = new Date(utcDateString);
+    let options = {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+        hour12: false,
+        timeZoneName: "short"
+    };
+    let localDateString = new Intl.DateTimeFormat("default", options).format(localDate)
+    /*]]>*/
+</script>
+
+<th:block th:if="${content == null || !useLocalTime}" th:text="${formattedUtcDateTimeString}"></th:block>
+<th:block th:if="${content != null && useLocalTime}"><script>document.write(localDateString)</script></th:block>

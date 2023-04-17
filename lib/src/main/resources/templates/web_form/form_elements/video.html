@@ -1,0 +1,25 @@
+<div>
+    <p><label th:if="${label != null}" th:for="${name}" th:text="${label}"></label></p>
+    <p>
+    <div th:if="${value != null && value != ''}">
+        <video width="640" height="480" th:src="${value}" controls>
+            Your browser does not support the video tag.
+            Video url: <a th:href="${value}" th:text="${value}"></a>
+        </video>
+    </div>
+    </p>
+    <p>
+        Update as text:
+        <input class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}" th:id="${name}" th:name="${name} + '.fileUrl'" th:value="${value}" />
+    </p>
+    <p>
+        Upload as file:
+        <input type="file" th:name="${name} + '.file'" accept="video/*" th:id="${name} + '_file'" />
+    </p>
+    <p>
+        <button th:if="${value != null && value != ''}" type="submit" th:id="${name} + '_file_delete'" th:name="${name} + '.fileDelete'" th:value="${name} + '_file_delete'">Delete video</button>
+    </p>
+    <th:block th:each="validationError : ${validationErrors}">
+        <span class="block error invalid-feedback" th:text="${validationError}"></span>
+    </th:block>
+</div>

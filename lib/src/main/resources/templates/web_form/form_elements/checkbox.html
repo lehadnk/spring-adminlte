@@ -1,0 +1,8 @@
+<div>
+    <label th:if="${label != null}" th:for="${name}" th:text="${label}"></label>
+    <input type="checkbox" class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}" th:id=${name} th:name="${name}" th:checked="${value}" value="true"/>
+    <input type="hidden" class="form-control" th:id="${name + '_default'}" th:name="${'!' + name}" value="false" />
+    <th:block th:each="validationError : ${validationErrors}">
+        <span class="block error invalid-feedback" th:text="${validationError}"></span>
+    </th:block>
+</div>

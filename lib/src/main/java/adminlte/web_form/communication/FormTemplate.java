@@ -1,0 +1,25 @@
+package adminlte.web_form.communication;
+
+import adminlte.html_template_renderer.business.template.AbstractHtmlLayout;
+import adminlte.html_template_renderer.business.template.AbstractHtmlTemplate;
+
+public class FormTemplate extends AbstractHtmlTemplate {
+    private String templatePath = "web_form/form.html";
+
+    public FormTemplate(String action, String enctype, String contents)
+    {
+        this.context.setVariable("action", action);
+        this.context.setVariable("enctype", enctype);
+        this.context.setVariable("contents", contents);
+    }
+
+    @Override
+    public String getTemplatePath() {
+        return this.templatePath;
+    }
+
+    @Override
+    public AbstractHtmlLayout getLayoutTemplate() {
+        return null;
+    }
+}

@@ -1,0 +1,35 @@
+<div>
+    <p><label th:if="${label != null}" th:for="${name}" th:text="${label}"></label></p>
+    <p>
+        <div id="editor" class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}" th:text="${value}"></div>
+
+        Update as text:
+        <textarea th:id="${name}" class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}" rows="10" th:name="${name}" th:text="${value}"></textarea>
+<!--/*        <input type="hidden" th:id="${name}" th:name="${name}" th:value="${value}" /> */-->
+
+        <th:block th:each="validationError : ${validationErrors}">
+            <span class="block error invalid-feedback" th:text="${validationError}"></span>
+        </th:block>
+    </p>
+</div>
+
+<!--/* https://www.npmjs.com/package/@jdinabox/ckeditor5-build-markdown */-->
+<script src="/js/ckeditor/ckeditor.js"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    MarkdownEditor
+        .create( document.querySelector( '#editor' ) )
+        .then( editor => {
+            window.editor = editor;
+
+            editor.model.document.on('change:data', (evt, data) => {
+                var name = /*[[${name}]]*/ 'default';
+                var inputElem = document.querySelector('#' + name);
+                inputElem.value = editor.getData();
+            });
+        } )
+        .catch( error => {
+            console.error( 'There was a problem initializing the editor.', error );
+        } );
+    /*]]>*/
+</script>

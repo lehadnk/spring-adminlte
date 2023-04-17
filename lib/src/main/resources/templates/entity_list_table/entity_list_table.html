@@ -1,0 +1,83 @@
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title" th:text="${title}"></h3>
+    <div class="card-tools">
+      <div class="input-group input-group-sm" style="width: 150px">
+        <input type="text" id="table_search" name="table_search" class="form-control float-right" placeholder="Search">
+        <div class="input-group-append">
+          <button id="table_search_button" onclick="tableSearch()" type="submit" class="btn btn-default">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-body">
+    <table class="table table-bordered entity-list-table">
+      <thead>
+        <tr>
+          <th th:each="headerTitle : ${headerTitles}" th:text="${headerTitle}"></th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr th:each="row : ${dataset}">
+        <td th:each="column : ${row}" th:utext="${column}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card-footer clearfix">
+    <div class="float-left" th:text="${'Page ' + currentPage + ' of ' + pagesTotal}"></div>
+    <ul class="pagination pagination-sm m-0 float-right">
+      <li class="page-item" th:if="${currentPage > 1}"><a class="page-link" th:href="${'?page=' + (currentPage - 1)}" th:onclick="|switchPage('${(currentPage - 1)}'); return false|" href="#">«</a></li>
+      <li class="page-item" th:if="${currentPage > (1 + visiblePagesCount)}"><a class="page-link" th:href="${'?page=1'}" th:onclick="|switchPage('1'); return false|" href="#">1</a></li>
+      <li class="page-item" th:each="pageNumber : ${#numbers.sequence(startPage, endPage)}" th:classappend="${currentPage == pageNumber ? 'active' : ''}" th:onclick="|switchPage('${pageNumber}'); return false|"><a class="page-link" th:href="${'?page=' + pageNumber}" th:text="${pageNumber}"></a></li>
+      <li class="page-item" th:if="${currentPage < (pagesTotal - visiblePagesCount)}"><a class="page-link" th:href="${'?page=' + pagesTotal}" th:text="${pagesTotal}" th:onclick="|switchPage('${totalPages}'); return false|"></a></li>
+      <li class="page-item" th:if="${currentPage < pagesTotal}"><a class="page-link" th:href="${'?page=' + (currentPage + 1)}" th:onclick="|switchPage('${(pagination.currentPage + 1)}'); return false|">»</a></li>
+    </ul>
+  </div>
+</div>
+
+<script>
+    function setSearchString() {
+        var elem = document.getElementById('table_search');
+
+        var urlObject = new URL(window.location.href);
+        var searchString = urlObject.searchParams.get('search');
+        if (searchString) {
+            elem.value = searchString;
+        }
+    }
+
+    function tableSearch() {
+        var searchString = document.getElementById('table_search').value;
+
+        var urlObject = new URL(window.location.href);
+        if (searchString) {
+            urlObject.searchParams.set('search', searchString);
+        } else {
+            urlObject.searchParams.delete('search');
+        }
+        window.location.href = urlObject.href;
+    }
+
+    function switchPage(page) {
+        var urlObject = new URL(window.location.href);
+        urlObject.searchParams.set('page', page);
+        window.location.href = urlObject.href;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        setSearchString();
+    }, false);
+
+    var searchInputElem = document.getElementById('table_search');
+    searchInputElem.addEventListener("keypress", function(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("table_search_button").click();
+        }
+    });
+</script>
