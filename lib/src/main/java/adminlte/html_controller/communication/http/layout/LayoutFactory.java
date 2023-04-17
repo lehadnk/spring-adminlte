@@ -9,11 +9,9 @@ import org.springframework.stereotype.Component;
 /**
  * This class hides the rest of HtmlControllerFactory methods, so only layout creation is available on controller level
  */
-@Component
 public class LayoutFactory {
     private final NavigationMenuService navigationMenuService;
 
-    @Autowired
     public LayoutFactory(
             NavigationMenuService navigationMenuService
     ) {

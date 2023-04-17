@@ -8,13 +8,11 @@ import adminlte.web_form.dto.ValidationResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
 public class WebFormService {
     private FormRenderer formRenderer;
     private ValidationResultBuilder validationResultBuilder;
     private FormValidator formValidator;
 
-    @Autowired
     public WebFormService(
             FormRenderer formRenderer,
             ValidationResultBuilder validationResultBuilder,

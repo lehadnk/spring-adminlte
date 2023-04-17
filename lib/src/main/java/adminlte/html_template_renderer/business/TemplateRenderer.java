@@ -9,12 +9,10 @@ import org.thymeleaf.TemplateEngine;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-@Component
 public class TemplateRenderer {
     private final TemplateEngine templateEngine;
     private final SessionServiceInterface sessionService;
 
-    @Autowired
     public TemplateRenderer(
         TemplateEngine templateEngine,
         SessionServiceInterface sessionService

@@ -7,12 +7,10 @@ import adminlte.navigation_menu.communication.navigation_menu.NavigationMenu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
 public class NavigationMenuService {
     private MenuRenderer menuRenderer;
     private NavigationMenuBuilder navigationMenuBuilder;
 
-    @Autowired
     public NavigationMenuService(
             MenuRenderer menuRenderer,
             NavigationMenuBuilder navigationMenuBuilder

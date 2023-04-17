@@ -7,11 +7,9 @@ import adminlte.html_template_renderer.HtmlTemplateRendererService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
 public class EntityListTableService {
     private final HtmlTemplateRendererService htmlTemplateRendererService;
 
-    @Autowired
     public EntityListTableService(
             HtmlTemplateRendererService htmlTemplateRendererService
     ) {

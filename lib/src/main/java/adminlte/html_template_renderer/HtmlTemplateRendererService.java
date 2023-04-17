@@ -4,7 +4,6 @@ import adminlte.html_template_renderer.business.TemplateRenderer;
 import adminlte.html_template_renderer.business.template.AbstractHtmlTemplate;
 import org.springframework.stereotype.Service;
 
-@Service
 public class HtmlTemplateRendererService {
     private TemplateRenderer templateRenderer;
 

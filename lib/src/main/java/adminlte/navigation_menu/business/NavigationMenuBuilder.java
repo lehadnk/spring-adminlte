@@ -5,11 +5,9 @@ import adminlte.navigation_menu.communication.navigation_menu.NavigationMenu;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
 public class NavigationMenuBuilder {
     final private NavigationMenuDependencyProviderInterface navigationMenuDependencyProvider;
 
-    @Autowired
     public NavigationMenuBuilder(NavigationMenuDependencyProviderInterface navigationMenuDependencyProvider) {
         this.navigationMenuDependencyProvider = navigationMenuDependencyProvider;
     }

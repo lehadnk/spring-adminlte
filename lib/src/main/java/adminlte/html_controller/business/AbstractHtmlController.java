@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.InitBinder;
 
 import java.time.LocalDateTime;
 
-@Component
 public class AbstractHtmlController {
     protected LayoutFactory layoutFactory;
     protected HtmlTemplateRendererService htmlTemplateRendererService;
@@ -28,7 +27,6 @@ public class AbstractHtmlController {
     protected EntityListTableService entityListTableService;
     protected SessionServiceInterface sessionService;
 
-    @Autowired
     public AbstractHtmlController(
             LayoutFactory layoutFactory,
             HtmlTemplateRendererService htmlTemplateRendererService,
