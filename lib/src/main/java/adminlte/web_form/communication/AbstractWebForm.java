@@ -120,6 +120,8 @@ abstract public class AbstractWebForm<TRequest> {
             return localizedFieldValue;
         } else if (valueObject instanceof FileData fileData) {
             value = fileData.getFileUrl();
+        } else if (valueObject instanceof Integer || valueObject instanceof Long || valueObject instanceof Double || valueObject instanceof Float || valueObject instanceof Boolean || valueObject instanceof Character || valueObject instanceof String) {
+            value = valueObject.toString();
         } else {
             try {
                 value = this.objectMapper.writeValueAsString(valueObject);
