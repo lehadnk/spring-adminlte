@@ -5,11 +5,11 @@ import org.thymeleaf.context.Context;
 
 import java.util.ArrayList;
 
-public class ActionsColumnInterface extends AbstractColumnInterface {
+public class ActionsColumn extends AbstractColumn {
     private String templatePath = "entity_list_table/columns/actions_column.html";
     private ArrayList<ActionButton> actionButtons;
 
-    public ActionsColumnInterface(ArrayList<ActionButton> actionButtons) {
+    public ActionsColumn(ArrayList<ActionButton> actionButtons) {
         super("actions");
         this.actionButtons = actionButtons;
     }

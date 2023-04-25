@@ -3,11 +3,11 @@ package adminlte.entity_list_table.communication.http.tables.columns;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
-abstract public class AbstractColumnInterface implements ColumnDefinitionInterface {
+abstract public class AbstractColumn implements ColumnDefinitionInterface {
     private String title;
     protected String fieldName;
 
-    public AbstractColumnInterface(String fieldName) {
+    public AbstractColumn(String fieldName) {
         this.fieldName = fieldName;
     }
 

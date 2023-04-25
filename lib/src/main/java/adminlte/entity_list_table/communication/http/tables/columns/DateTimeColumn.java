@@ -8,26 +8,26 @@ import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
-public class DateInterfaceTimeColumn extends AbstractColumnInterface {
+public class DateTimeColumn extends AbstractColumn {
     private boolean useLocalTime = false;
     private String templatePath = "entity_list_table/columns/date_time_column.html";
     private String format = null;
-    public DateInterfaceTimeColumn(String fieldName) {
+    public DateTimeColumn(String fieldName) {
         super(fieldName);
     }
 
-    public DateInterfaceTimeColumn(String fieldName, String format) {
+    public DateTimeColumn(String fieldName, String format) {
         super(fieldName);
         this.format = format;
     }
 
-    public DateInterfaceTimeColumn(String fieldName, String format, boolean useLocalTime) {
+    public DateTimeColumn(String fieldName, String format, boolean useLocalTime) {
         super(fieldName);
         this.format = format;
         this.useLocalTime = useLocalTime;
     }
 
-    public DateInterfaceTimeColumn(String fieldName, boolean useLocalTime) {
+    public DateTimeColumn(String fieldName, boolean useLocalTime) {
         super(fieldName);
         this.useLocalTime = useLocalTime;
     }
