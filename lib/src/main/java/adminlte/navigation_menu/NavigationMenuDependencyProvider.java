@@ -1,20 +1,20 @@
 package adminlte.navigation_menu;
 
-import adminlte.navigation_menu.communication.AbstractMenuItemsProviderInterface;
+import adminlte.navigation_menu.communication.MenuItemsProviderInterface;
 
 import java.util.List;
 
 public class NavigationMenuDependencyProvider implements NavigationMenuDependencyProviderInterface {
-    private final List<AbstractMenuItemsProviderInterface> menuItemsProviders;
+    private final List<MenuItemsProviderInterface> menuItemsProviders;
 
     public NavigationMenuDependencyProvider(
-            List<AbstractMenuItemsProviderInterface> menuItemsProviders
+            List<MenuItemsProviderInterface> menuItemsProviders
     ) {
         this.menuItemsProviders = menuItemsProviders;
     }
 
     @Override
-    public List<AbstractMenuItemsProviderInterface> getMenuItemProviders() {
+    public List<MenuItemsProviderInterface> getMenuItemProviders() {
         return this.menuItemsProviders;
     }
 }

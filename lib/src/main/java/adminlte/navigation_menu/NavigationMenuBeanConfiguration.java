@@ -3,7 +3,7 @@ package adminlte.navigation_menu;
 import adminlte.html_template_renderer.HtmlTemplateRendererService;
 import adminlte.navigation_menu.business.MenuRenderer;
 import adminlte.navigation_menu.business.NavigationMenuBuilder;
-import adminlte.navigation_menu.communication.AbstractMenuItemsProviderInterface;
+import adminlte.navigation_menu.communication.MenuItemsProviderInterface;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -25,7 +25,7 @@ public class NavigationMenuBeanConfiguration {
 
     @Bean
     public NavigationMenuDependencyProviderInterface createNavigationMenuDependencyProvider(
-            List<AbstractMenuItemsProviderInterface> menuItemsProviders
+            List<MenuItemsProviderInterface> menuItemsProviders
     )
     {
         return new NavigationMenuDependencyProvider(menuItemsProviders);

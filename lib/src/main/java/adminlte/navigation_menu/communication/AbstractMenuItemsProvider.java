@@ -5,9 +5,9 @@ import adminlte.navigation_menu.communication.menu_item.MenuItemInterface;
 import java.util.ArrayList;
 
 /**
- * @deprecated Use {@link adminlte.navigation_menu.communication.AbstractMenuItemsProviderInterface} implementations instead.
+ * @deprecated Use {@link MenuItemsProviderInterface} implementations instead.
  */
 @Deprecated
-abstract public class AbstractMenuItemsProvider implements AbstractMenuItemsProviderInterface {
+abstract public class AbstractMenuItemsProvider implements MenuItemsProviderInterface {
     abstract public ArrayList<MenuItemInterface> getMenuItems();
 }
