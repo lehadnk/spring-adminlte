@@ -1,13 +1,13 @@
 package adminlte.navigation_menu.communication.menu_item;
 
-public interface IMenuItem {
+public interface MenuItemInterface {
     String getTemplatePath();
 
     String getTitle();
 
-    IMenuItem setTitle(String title);
+    MenuItemInterface setTitle(String title);
 
     String getUrl();
 
-    IMenuItem setUrl(String url);
+    MenuItemInterface setUrl(String url);
 }

@@ -19,12 +19,10 @@ public class HtmlTemplateRendererBeanConfiguration {
 
     @Bean
     public TemplateRenderer createTemplateRenderer(
-            TemplateEngine templateEngine,
-            SessionServiceInterface sessionService
+            TemplateEngine templateEngine
     ) {
         return new TemplateRenderer(
-                templateEngine,
-                sessionService
+                templateEngine
         );
     }
 }

@@ -1,7 +1,7 @@
 package adminlte.entity_list_table.business;
 
 import adminlte.entity_list_table.communication.http.tables.AbstractTable;
-import adminlte.entity_list_table.communication.http.tables.columns.IColumnDefinition;
+import adminlte.entity_list_table.communication.http.tables.columns.ColumnDefinitionInterface;
 import adminlte.entity_list_table.communication.http.templates.EntityListTableHtmlTemplate;
 import adminlte.entity_list_table.communication.http.templates.TableColumnCellHtmlTemplate;
 import adminlte.html_template_renderer.HtmlTemplateRendererService;
@@ -12,7 +12,7 @@ import java.util.HashMap;
 public class TableRenderer {
     private final HtmlTemplateRendererService htmlTemplateRendererService;
     private final ArrayList<String> requiredDtoFields = new ArrayList<>();
-    private final HashMap<String, IColumnDefinition> requiredColumnDefinitions = new HashMap<>();
+    private final HashMap<String, ColumnDefinitionInterface> requiredColumnDefinitions = new HashMap<>();
 
     public TableRenderer(HtmlTemplateRendererService htmlTemplateRendererService) {
         this.htmlTemplateRendererService = htmlTemplateRendererService;

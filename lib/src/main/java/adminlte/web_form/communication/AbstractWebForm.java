@@ -3,6 +3,7 @@ package adminlte.web_form.communication;
 import adminlte.web_form.communication.form_elements.*;
 import adminlte.web_form.dto.FileData;
 import adminlte.web_form.dto.LocalizedField;
+import adminlte.web_form.dto.ValidationResult;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -18,6 +19,7 @@ abstract public class AbstractWebForm<TRequest> {
     public Submit submitButton;
     public String actionUrl;
     public String enctype = "application/x-www-form-urlencoded";
+    public List<String> validationErrorMessages = new ArrayList<>();
 
     final private ObjectMapper objectMapper;
 
@@ -146,5 +148,10 @@ abstract public class AbstractWebForm<TRequest> {
                 this.hydrateElement(recordComponent.getName(), valueObject);
             }
         }
+    }
+
+    public void addValidationErrorMessage(String message)
+    {
+        this.validationErrorMessages.add(message);
     }
 }

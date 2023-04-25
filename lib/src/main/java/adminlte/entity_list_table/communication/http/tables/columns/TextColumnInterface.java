@@ -2,10 +2,10 @@ package adminlte.entity_list_table.communication.http.tables.columns;
 
 import org.thymeleaf.context.Context;
 
-public class ImagePreviewColumn extends AbstractColumn {
-    private String templatePath = "entity_list_table/columns/image_preview_column.html";
+public class TextColumnInterface extends AbstractColumnInterface {
+    private String templatePath = "entity_list_table/columns/text_column.html";
 
-    public ImagePreviewColumn(String fieldName) {
+    public TextColumnInterface(String fieldName) {
         super(fieldName);
     }
 

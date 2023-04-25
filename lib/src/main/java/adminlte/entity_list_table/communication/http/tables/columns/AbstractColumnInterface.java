@@ -3,15 +3,15 @@ package adminlte.entity_list_table.communication.http.tables.columns;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
-abstract public class AbstractColumn implements IColumnDefinition {
+abstract public class AbstractColumnInterface implements ColumnDefinitionInterface {
     private String title;
     protected String fieldName;
 
-    public AbstractColumn(String fieldName) {
+    public AbstractColumnInterface(String fieldName) {
         this.fieldName = fieldName;
     }
 
-    public IColumnDefinition setTitle(String title) {
+    public ColumnDefinitionInterface setTitle(String title) {
         this.title = title;
         return this;
     }

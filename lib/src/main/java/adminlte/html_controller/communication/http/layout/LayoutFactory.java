@@ -1,5 +1,6 @@
 package adminlte.html_controller.communication.http.layout;
 
+import adminlte.flash_message.FlashMessageService;
 import adminlte.html_controller.communication.http.layout.authorized_admin.AuthorizedAdminLayout;
 import adminlte.html_controller.communication.http.layout.general.GeneralLayout;
 import adminlte.navigation_menu.NavigationMenuService;
@@ -11,11 +12,14 @@ import org.springframework.stereotype.Component;
  */
 public class LayoutFactory {
     private final NavigationMenuService navigationMenuService;
+    private final FlashMessageService flashMessageService;
 
     public LayoutFactory(
-            NavigationMenuService navigationMenuService
+            NavigationMenuService navigationMenuService,
+            FlashMessageService flashMessageService
     ) {
         this.navigationMenuService = navigationMenuService;
+        this.flashMessageService = flashMessageService;
     }
 
     public GeneralLayout createGeneralLayout()
@@ -25,6 +29,10 @@ public class LayoutFactory {
 
     public AuthorizedAdminLayout createAuthorizedAdminLayout(String pageTitle)
     {
-        return new AuthorizedAdminLayout(pageTitle, this.navigationMenuService.renderNavigationMenu());
+        return new AuthorizedAdminLayout(
+                pageTitle,
+                this.navigationMenuService.renderNavigationMenu(),
+                this.flashMessageService.getFlashMessageData()
+        );
     }
 }

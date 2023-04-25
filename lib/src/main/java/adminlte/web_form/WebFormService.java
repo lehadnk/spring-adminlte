@@ -2,24 +2,19 @@ package adminlte.web_form;
 
 import adminlte.web_form.business.FormRenderer;
 import adminlte.web_form.business.FormValidator;
-import adminlte.web_form.business.builder.ValidationResultBuilder;
+import adminlte.web_form.business.builder.ValidationResultFactory;
 import adminlte.web_form.communication.AbstractWebForm;
 import adminlte.web_form.dto.ValidationResult;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 public class WebFormService {
     private FormRenderer formRenderer;
-    private ValidationResultBuilder validationResultBuilder;
     private FormValidator formValidator;
 
     public WebFormService(
             FormRenderer formRenderer,
-            ValidationResultBuilder validationResultBuilder,
             FormValidator formValidator
     ) {
         this.formRenderer = formRenderer;
-        this.validationResultBuilder = validationResultBuilder;
         this.formValidator = formValidator;
     }
 
@@ -33,6 +28,6 @@ public class WebFormService {
     }
 
     public ValidationResult buildValidationError(String errorMessage) {
-        return this.validationResultBuilder.buildValidationError(errorMessage);
+        return ValidationResultFactory.error(errorMessage);
     }
 }

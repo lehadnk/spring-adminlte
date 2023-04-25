@@ -7,6 +7,10 @@ public class FormValidator {
 
     public Boolean isValid(AbstractWebForm<?> form)
     {
+        if (!form.validationErrorMessages.isEmpty()) {
+            return false;
+        }
+
         var isValid = true;
         for (WebFormElementInterface formElement: form.elements.values()) {
             if (!formElement.isValid()) {

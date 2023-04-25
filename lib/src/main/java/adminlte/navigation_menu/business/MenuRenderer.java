@@ -3,9 +3,8 @@ package adminlte.navigation_menu.business;
 import adminlte.html_template_renderer.HtmlTemplateRendererService;
 import adminlte.navigation_menu.communication.AbstractMenu;
 import adminlte.navigation_menu.communication.MenuTemplate;
-import adminlte.navigation_menu.communication.menu_item.IMenuItem;
+import adminlte.navigation_menu.communication.menu_item.MenuItemInterface;
 import adminlte.navigation_menu.communication.menu_item.MenuItemTemplate;
-import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 
@@ -21,7 +20,7 @@ public class MenuRenderer {
     {
         var menuItems = new ArrayList<String>();
 
-        for(IMenuItem menuItem: menu.menuItems) {
+        for(MenuItemInterface menuItem: menu.menuItems) {
             menuItems.add(this.renderMenuItem(menuItem));
         }
 
@@ -29,7 +28,7 @@ public class MenuRenderer {
         return this.htmlTemplateRendererService.renderTemplate(menuTemplate);
     }
 
-    private String renderMenuItem(IMenuItem menuItem) {
+    private String renderMenuItem(MenuItemInterface menuItem) {
         var menuItemTemplate = new MenuItemTemplate(menuItem.getTitle(), menuItem.getUrl(), menuItem.getTemplatePath());
         return this.htmlTemplateRendererService.renderTemplate(menuItemTemplate);
     }

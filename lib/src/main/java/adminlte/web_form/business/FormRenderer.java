@@ -34,7 +34,7 @@ public class FormRenderer {
             contents.append(submitButton);
         }
 
-        var formTemplate = new FormTemplate(form.getActionUrl(), form.getEnctype(), contents.toString());
+        var formTemplate = new FormTemplate(form.getActionUrl(), form.getEnctype(), contents.toString(), form.validationErrorMessages);
         return this.htmlTemplateRendererFacade.renderTemplate(formTemplate);
     }
 

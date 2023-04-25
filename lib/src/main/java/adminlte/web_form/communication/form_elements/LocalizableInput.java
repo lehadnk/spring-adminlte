@@ -2,7 +2,7 @@ package adminlte.web_form.communication.form_elements;
 
 
 import adminlte.web_form.WebFormDependencyProviderInterface;
-import adminlte.web_form.business.glossary.IGlossaryFacade;
+import adminlte.web_form.business.glossary.GlossaryFacadeInterface;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,7 +14,7 @@ public class LocalizableInput extends AbstractFormElement implements Localizable
     private final Map<String, String> textMapByLanguage;
     private WebFormDependencyProviderInterface dependencyProvider;
 
-    public LocalizableInput(String glossaryKey, IGlossaryFacade glossaryFacade) {
+    public LocalizableInput(String glossaryKey, GlossaryFacadeInterface glossaryFacade) {
         this.glossaryKey = glossaryKey;
         this.languages = this.dependencyProvider.getAvailableLanguages();
         this.textMapByLanguage = glossaryFacade.getGlossaryTextMapByLanguage(this.glossaryKey);

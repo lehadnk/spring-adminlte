@@ -1,6 +1,6 @@
 package adminlte.navigation_menu.communication.menu_item;
 
-abstract public class AbstractMenuItem implements IMenuItem {
+abstract public class AbstractMenuItemInterface implements MenuItemInterface {
     private String templatePath = "navigation_menu/menu_item/menu_item.html";
     public String title;
     public String url;
@@ -13,7 +13,7 @@ abstract public class AbstractMenuItem implements IMenuItem {
         return this.title;
     }
 
-    public IMenuItem setTitle(String title) {
+    public MenuItemInterface setTitle(String title) {
         this.title = title;
         return this;
     }
@@ -22,7 +22,7 @@ abstract public class AbstractMenuItem implements IMenuItem {
         return this.url;
     }
 
-    public IMenuItem setUrl(String url) {
+    public MenuItemInterface setUrl(String url) {
         this.url = url;
         return this;
     }

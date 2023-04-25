@@ -1,11 +1,11 @@
 package adminlte.navigation_menu.communication;
 
-import adminlte.navigation_menu.communication.menu_item.IMenuItem;
+import adminlte.navigation_menu.communication.menu_item.MenuItemInterface;
 
 import java.util.ArrayList;
 
 abstract public class AbstractMenu {
-    public ArrayList<IMenuItem> menuItems = new ArrayList<>();
+    public ArrayList<MenuItemInterface> menuItems = new ArrayList<>();
 
     public AbstractMenu() {
         this.buildMenu();
@@ -15,7 +15,7 @@ abstract public class AbstractMenu {
 
     }
 
-    public void addMenuItem(IMenuItem menuItem) {
+    public void addMenuItem(MenuItemInterface menuItem) {
         this.menuItems.add(menuItem);
     }
 }

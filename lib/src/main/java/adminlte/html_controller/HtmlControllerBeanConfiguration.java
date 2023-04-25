@@ -1,5 +1,6 @@
 package adminlte.html_controller;
 
+import adminlte.flash_message.FlashMessageService;
 import adminlte.html_controller.communication.http.layout.LayoutFactory;
 import adminlte.navigation_menu.NavigationMenuService;
 import org.springframework.context.annotation.Bean;
@@ -9,8 +10,12 @@ import org.springframework.context.annotation.Configuration;
 public class HtmlControllerBeanConfiguration {
     @Bean
     public LayoutFactory createLayoutFactory(
-            NavigationMenuService navigationMenuService
+            NavigationMenuService navigationMenuService,
+            FlashMessageService flashMessageService
     ) {
-        return new LayoutFactory(navigationMenuService);
+        return new LayoutFactory(
+                navigationMenuService,
+                flashMessageService
+        );
     }
 }
