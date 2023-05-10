@@ -1,6 +1,5 @@
 package adminlte.web_form.communication.form_elements;
 
-import adminlte.web_form.WebFormDependencyProviderInterface;
 import adminlte.web_form.business.glossary.GlossaryFacadeInterface;
 
 import java.util.HashMap;
@@ -13,11 +12,10 @@ public class LocalizableTextarea extends AbstractFormElement implements Localiza
     private final Map<String, String> textMapByLanguage;
     private String textTransform = "";
     private int rows = 10;
-    private WebFormDependencyProviderInterface dependencyProvider;
 
     public LocalizableTextarea(String glossaryKey, GlossaryFacadeInterface glossaryFacade) {
         this.glossaryKey = glossaryKey;
-        this.languages = this.dependencyProvider.getAvailableLanguages();
+        this.languages = glossaryFacade.getAvailableLanguages();
         this.textMapByLanguage = glossaryFacade.getGlossaryTextMapByLanguage(this.glossaryKey);
 
         for (var language : languages) {
@@ -27,8 +25,8 @@ public class LocalizableTextarea extends AbstractFormElement implements Localiza
         }
     }
 
-    public LocalizableTextarea(int rows) {
-        this.languages = this.dependencyProvider.getAvailableLanguages();
+    public LocalizableTextarea(int rows, GlossaryFacadeInterface glossaryFacade) {
+        this.languages = glossaryFacade.getAvailableLanguages();
         this.textMapByLanguage = new HashMap<String, String>();
         for (var language : languages) {
             this.textMapByLanguage.put(language, "");

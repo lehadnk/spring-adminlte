@@ -1,6 +1,5 @@
 package adminlte.web_form.communication.form_elements;
 
-import adminlte.web_form.WebFormDependencyProviderInterface;
 import adminlte.web_form.business.glossary.GlossaryFacadeInterface;
 
 import java.util.List;
@@ -10,11 +9,10 @@ public class LocalizableWYSIWYGMarkdownInput extends AbstractFormElement impleme
     private final String glossaryKey;
     private final List<String> languages;
     private final Map<String, String> textMapByLanguage;
-    private WebFormDependencyProviderInterface dependencyProvider;
 
     public LocalizableWYSIWYGMarkdownInput(String glossaryKey, GlossaryFacadeInterface glossaryFacade) {
         this.glossaryKey = glossaryKey;
-        this.languages = this.dependencyProvider.getAvailableLanguages();
+        this.languages = glossaryFacade.getAvailableLanguages();
         this.textMapByLanguage = glossaryFacade.getGlossaryTextMapByLanguage(this.glossaryKey);
 
         for (var language : languages) {
