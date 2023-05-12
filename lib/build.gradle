@@ -11,7 +11,7 @@ plugins {
     id 'maven-publish'
 }
 
-version = '1.0.8-dev'
+version = '1.0.9'
 group = 'com.github.lehadnk'
 
 repositories {
