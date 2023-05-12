@@ -15,11 +15,6 @@ public class FileData {
         return !this.isDelete() && this.file != null && !this.file.isEmpty();
     }
 
-    private void setFileUrl(String fileUrl)
-    {
-        this.fileUrl = fileUrl;
-    }
-
     public String getFileUrl() {
         if (this.fileUrl == null) {
             return null;
@@ -38,4 +33,10 @@ public class FileData {
         fd.setFileUrl(fileUrl);
         return fd;
     }
+
+    public void setFile(MultipartFile file) {this.file = file;}
+    public MultipartFile getFile() { return this.file; }
+    public void setFileUrl(String fileUrl) {this.fileUrl = fileUrl;}
+    public void setFileDelete(String fileDelete) {this.fileDelete = fileDelete;}
+    public String getFileDelete() {return this.fileDelete;}
 }
