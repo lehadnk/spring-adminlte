@@ -3,12 +3,13 @@ package adminlte.web_form.communication;
 import adminlte.web_form.communication.form_elements.*;
 import adminlte.web_form.dto.FileData;
 import adminlte.web_form.dto.LocalizedField;
-import adminlte.web_form.dto.ValidationResult;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -26,6 +27,7 @@ abstract public class AbstractWebForm<TRequest> {
     public AbstractWebForm() {
         this.objectMapper = new ObjectMapper();
         this.objectMapper.findAndRegisterModules();
+        this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
     public String getActionUrl() {
@@ -123,6 +125,10 @@ abstract public class AbstractWebForm<TRequest> {
         } else if (valueObject instanceof FileData fileData) {
             value = fileData.getFileUrl();
         } else if (valueObject instanceof Integer || valueObject instanceof Long || valueObject instanceof Double || valueObject instanceof Float || valueObject instanceof Boolean || valueObject instanceof Character || valueObject instanceof String) {
+            value = valueObject.toString();
+        } else if (valueObject instanceof LocalDateTime localDateTime) {
+            value = localDateTime.toString();
+        } else if (valueObject.getClass().isEnum()) {
             value = valueObject.toString();
         } else {
             try {
