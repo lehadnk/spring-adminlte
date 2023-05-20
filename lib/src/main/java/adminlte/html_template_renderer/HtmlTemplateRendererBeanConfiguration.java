@@ -1,7 +1,6 @@
 package adminlte.html_template_renderer;
 
 import adminlte.html_template_renderer.business.TemplateRenderer;
-import adminlte.session.SessionServiceInterface;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.thymeleaf.TemplateEngine;
@@ -18,11 +17,19 @@ public class HtmlTemplateRendererBeanConfiguration {
     }
 
     @Bean
+    public HtmlTemplateRendererConfig createHtmlTemplateRendererConfig()
+    {
+        return new HtmlTemplateRendererConfig();
+    }
+
+    @Bean
     public TemplateRenderer createTemplateRenderer(
-            TemplateEngine templateEngine
+            TemplateEngine templateEngine,
+            HtmlTemplateRendererConfig htmlTemplateRendererConfig
     ) {
         return new TemplateRenderer(
-                templateEngine
+                templateEngine,
+                htmlTemplateRendererConfig
         );
     }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <title>GoodDeeds Backoffice</title>
+    <title th:text="${pageTitle}"></title>
     <link rel="stylesheet" href="/css/adminlte.min.css">
     <link rel="stylesheet" href="/css/adminlte.min.css">
     <link rel="stylesheet" href="/css/select2.min.css">
@@ -53,7 +53,7 @@
 </nav>
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="/" class="brand-link">GoodDeeds</a>
+    <a href="/" class="brand-link" th:text="${projectName}"></a>
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="info">
             <span class="d-block text-muted">Admin Panel</span>

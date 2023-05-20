@@ -6,6 +6,16 @@ abstract public class AbstractHtmlLayout extends AbstractHtmlTemplate {
         this.context.setVariable("content", content);
     }
 
+    public void setProjectName(String projectName)
+    {
+        this.context.setVariable("projectName", projectName);
+    }
+
+    public void setPageTitle(String pageTitle)
+    {
+        this.context.setVariable("pageTitle", pageTitle);
+    }
+
     public AbstractHtmlLayout getLayoutTemplate() {
         return null;
     }
