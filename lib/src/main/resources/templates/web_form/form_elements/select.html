@@ -11,8 +11,8 @@
                 <option th:text="${entry.value}" th:value="${entry.key}" th:selected="${value == entry.key}"></option>
             </th:block>
         </select>
+        <th:block th:each="validationError : ${validationErrors}">
+            <span class="block error invalid-feedback" style="display: inline" th:text="${validationError}"></span>
+        </th:block>
     </p>
-    <th:block th:each="validationError : ${validationErrors}">
-        <span class="block error invalid-feedback" th:text="${validationError}"></span>
-    </th:block>
 </div>

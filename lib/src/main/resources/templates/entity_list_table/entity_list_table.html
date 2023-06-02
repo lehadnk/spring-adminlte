@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-header">
     <h3 class="card-title" th:text="${title}"></h3>
-    <div class="card-tools">
+    <div class="card-tools" th:if="${hasSearchButton}">
       <div class="input-group input-group-sm" style="width: 150px">
         <input type="text" id="table_search" name="table_search" class="form-control float-right" placeholder="Search">
         <div class="input-group-append">

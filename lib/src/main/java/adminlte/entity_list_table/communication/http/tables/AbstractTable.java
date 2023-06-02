@@ -9,6 +9,7 @@ abstract public class AbstractTable<TDto> {
     public final PaginatedEntityListInterface<TDto> entityPaginatedList;
     public ArrayList<ColumnDefinitionInterface> columns = new ArrayList<>();
     public String search;
+    protected boolean hasSearchButton = false;
 
     public AbstractTable(PaginatedEntityListInterface<TDto> entityPaginatedList)
     {
@@ -23,5 +24,9 @@ abstract public class AbstractTable<TDto> {
     protected void addColumn(ColumnDefinitionInterface column)
     {
         this.columns.add(column);
+    }
+
+    public Boolean getHasSearchButton() {
+        return this.hasSearchButton;
     }
 }

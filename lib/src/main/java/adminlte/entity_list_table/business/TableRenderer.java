@@ -42,7 +42,17 @@ public class TableRenderer {
             endPage = table.entityPaginatedList.getTotalPages();
         }
 
-        var entityListTableHtmlTemplate = new EntityListTableHtmlTemplate(table.getTitle(), headerTitles, dataset, table.entityPaginatedList.getCurrentPage(), table.entityPaginatedList.getTotalPages(), startPage, endPage, visiblePagesCount);
+        var entityListTableHtmlTemplate = new EntityListTableHtmlTemplate(
+                table.getTitle(),
+                headerTitles,
+                dataset,
+                table.entityPaginatedList.getCurrentPage(),
+                table.entityPaginatedList.getTotalPages(),
+                startPage,
+                endPage,
+                visiblePagesCount,
+                table.getHasSearchButton()
+        );
         return this.htmlTemplateRendererService.renderTemplate(entityListTableHtmlTemplate);
     }
 
