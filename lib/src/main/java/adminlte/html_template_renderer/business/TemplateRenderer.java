@@ -30,7 +30,6 @@ public class TemplateRenderer {
         }
 
         layoutTemplate.setContent(templateHtml);
-        layoutTemplate.setPageTitle(this.templateRendererConfig.pageTitle);
         layoutTemplate.setProjectName(this.templateRendererConfig.projectName);
 
         return this.templateEngine.process(layoutTemplate.getTemplatePath(), layoutTemplate.getContext());
