@@ -1,3 +1,13 @@
 <th:block th:each="button : ${buttons}">
-    <a class="btn" th:href="${button.url}" th:text="${button.name}" th:classappend="${button.cssClass}"></a>
+    <th:block th:if="${button.method == 'get'}">
+        <a class="btn" th:href="${button.url}" th:text="${button.name}" th:classappend="${button.cssClass}"></a>
+    </th:block>
+
+    <th:block th:if="${button.method == 'post'}">
+        <form th:action="${button.url}" method="post">
+            <button type="submit" class="btn" th:classappend="${button.cssClass}">
+                <span th:text="${button.name}"></span>
+            </button>
+        </form>
+    </th:block>
 </th:block>

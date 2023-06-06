@@ -7,19 +7,25 @@ public class ActionButton {
     public final String url;
     public final List<String> identifierFields;
     public final String cssClass;
+    public final String method;
 
     public ActionButton(String text, String url, String identifierField, String cssClass) {
-        this(text, url, List.of(identifierField), cssClass);
+        this(text, url, List.of(identifierField), cssClass, "get");
+    }
+
+    public ActionButton(String text, String url, String identifierField, String cssClass, String method) {
+        this(text, url, List.of(identifierField), cssClass, method);
     }
 
     public ActionButton(String text, String url, String identifierField) {
-        this(text, url, List.of(identifierField), "btn-default");
+        this(text, url, List.of(identifierField), "btn-default", "get");
     }
 
-    public ActionButton(String text, String url, List<String> identifierFields, String cssClass) {
+    public ActionButton(String text, String url, List<String> identifierFields, String cssClass, String method) {
         this.text = text;
         this.url = url;
         this.identifierFields = identifierFields;
         this.cssClass = cssClass;
+        this.method = method;
     }
 }
