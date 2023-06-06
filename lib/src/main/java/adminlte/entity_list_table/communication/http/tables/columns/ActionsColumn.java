@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class ActionsColumn extends AbstractColumn {
     private String templatePath = "entity_list_table/columns/actions_column.html";
     private ArrayList<ActionButton> actionButtons;
+    private ArrayList<PostActionButton> postActionButtons;
 
     public ActionsColumn(ArrayList<ActionButton> actionButtons) {
         super("actions");
@@ -21,13 +22,16 @@ public class ActionsColumn extends AbstractColumn {
 
     public Context prepareContext(Object object) {
         var ctx = new Context();
-        ctx.setVariable("buttons", this.getCellActionButtons(object));
+        ctx.setVariable("buttons", this.getCellActionButtons(object, ActionButton.class));
+        ctx.setVariable("postButtons", this.getCellActionButtons(object, PostActionButton.class));
         return ctx;
     }
 
-    private ArrayList<CellActionButton> getCellActionButtons(Object object) {
+
+    private <T> ArrayList<CellActionButton> getCellActionButtons(Object object, Class<T> buttonClass) {
         var result = new ArrayList<CellActionButton>();
         for (var actionButton : this.actionButtons) {
+            if (actionButton.getClass() != buttonClass) { continue; }
             var url = actionButton.url;
             for (var idField : actionButton.identifierFields) {
                 var identifier = this.getObjectValue(object, idField).toString();

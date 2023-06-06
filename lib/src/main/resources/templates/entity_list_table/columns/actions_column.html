@@ -1,3 +1,11 @@
 <th:block th:each="button : ${buttons}">
     <a class="btn" th:href="${button.url}" th:text="${button.name}" th:classappend="${button.cssClass}"></a>
 </th:block>
+
+<th:block th:each="postButton : ${postButtons}">
+    <form th:action="${postButton.url}" method="post">
+        <button type="submit" class="btn" th:classappend="${postButton.cssClass}">
+            <span th:text="${postButton.name}"></span>
+        </button>
+    </form>
+</th:block>
