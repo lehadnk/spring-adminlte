@@ -3,12 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title th:text="${pageTitle}"></title>
-    <script type="text/javascript" src="/js/adminlte.min.js"></script>
     <link rel="stylesheet" href="/css/adminlte.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/select2.min.css">
     <script src="https://kit.fontawesome.com/a7ef72f142.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .select2-selection__rendered {
+            line-height: 26px !important;
+        }
+        .select2-container .select2-selection--single {
+            height: 35px !important;
+        }
+        .select2-selection__arrow {
+            height: 34px !important;
+        }
+    </style>
 </head>
 <body>
     <div th:utext="${content}"></div>
+    <script type="text/javascript" src="/js/adminlte.min.js"></script>
+    <script type="text/javascript" src="/js/select2.full.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
 </body>
 </html>

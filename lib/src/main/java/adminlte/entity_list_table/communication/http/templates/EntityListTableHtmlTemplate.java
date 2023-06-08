@@ -17,7 +17,8 @@ public class EntityListTableHtmlTemplate extends AbstractHtmlTemplate {
         Integer startPage,
         Integer endPage,
         Integer visiblePagesCount,
-        Boolean hasSearchButton
+        Boolean hasSearchButton,
+        String footerPaginationLabel
     )
     {
         this.context.setVariable("title", title);
@@ -29,6 +30,7 @@ public class EntityListTableHtmlTemplate extends AbstractHtmlTemplate {
         this.context.setVariable("endPage", endPage);
         this.context.setVariable("visiblePagesCount", visiblePagesCount);
         this.context.setVariable("hasSearchButton", hasSearchButton);
+        this.context.setVariable("footerPaginationLabel", footerPaginationLabel);
     }
 
     @Override

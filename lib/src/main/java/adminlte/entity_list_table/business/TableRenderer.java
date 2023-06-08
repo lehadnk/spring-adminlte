@@ -5,17 +5,23 @@ import adminlte.entity_list_table.communication.http.tables.columns.ColumnDefini
 import adminlte.entity_list_table.communication.http.templates.EntityListTableHtmlTemplate;
 import adminlte.entity_list_table.communication.http.templates.TableColumnCellHtmlTemplate;
 import adminlte.html_template_renderer.HtmlTemplateRendererService;
+import adminlte.i18n.I18nService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TableRenderer {
     private final HtmlTemplateRendererService htmlTemplateRendererService;
+    private final I18nService i18nService;
     private final ArrayList<String> requiredDtoFields = new ArrayList<>();
     private final HashMap<String, ColumnDefinitionInterface> requiredColumnDefinitions = new HashMap<>();
 
-    public TableRenderer(HtmlTemplateRendererService htmlTemplateRendererService) {
+    public TableRenderer(
+            HtmlTemplateRendererService htmlTemplateRendererService,
+            I18nService i18nService
+    ) {
         this.htmlTemplateRendererService = htmlTemplateRendererService;
+        this.i18nService = i18nService;
     }
 
     public String render(AbstractTable<?> table) {
@@ -42,6 +48,9 @@ public class TableRenderer {
             endPage = table.entityPaginatedList.getTotalPages();
         }
 
+        Object[] footerLabelArgs = {table.entityPaginatedList.getCurrentPage(), endPage};
+        var footerPaginationLabel = this.i18nService.formatString("pagination-footer-label", footerLabelArgs);
+
         var entityListTableHtmlTemplate = new EntityListTableHtmlTemplate(
                 table.getTitle(),
                 headerTitles,
@@ -51,7 +60,8 @@ public class TableRenderer {
                 startPage,
                 endPage,
                 visiblePagesCount,
-                table.getHasSearchButton()
+                table.getHasSearchButton(),
+                footerPaginationLabel
         );
         return this.htmlTemplateRendererService.renderTemplate(entityListTableHtmlTemplate);
     }

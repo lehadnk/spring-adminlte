@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <title th:text="${pageTitle}"></title>
     <link rel="stylesheet" href="/css/adminlte.min.css">
-    <link rel="stylesheet" href="/css/adminlte.min.css">
     <link rel="stylesheet" href="/css/select2.min.css">
-    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://kit.fontawesome.com/a7ef72f142.js" crossorigin="anonymous"></script>
     <style>
         .select2-selection__rendered {
             line-height: 26px !important;
@@ -25,13 +24,13 @@
 
 <div id="toastsContainerTopRight" class="toasts-top-right fixed" th:if="${successFlashMessage} != null or ${errorFlashMessage} != null">
     <div class="toast bg-success fade show" role="alert" aria-live="assertive" aria-atomic="true" th:if="${successFlashMessage} != null">
-        <div class="toast-header"><strong class="mr-auto">Success</strong>
+        <div class="toast-header"><strong class="mr-auto" th:text="${successNotificationTitle}"></strong>
             <button data-dismiss="toast" type="button" class="ml-2 mb-1 close" aria-label="Close"><span aria-hidden="true">×</span></button>
         </div>
         <div class="toast-body" th:text="${successFlashMessage}"></div>
     </div>
     <div class="toast bg-danger fade show" role="alert" aria-live="assertive" aria-atomic="true" th:if="${errorFlashMessage} != null">
-        <div class="toast-header"><strong class="mr-auto">Error</strong>
+        <div class="toast-header"><strong class="mr-auto" th:text="${errorNotificationTitle}"></strong>
             <button data-dismiss="toast" type="button" class="ml-2 mb-1 close" aria-label="Close"><span aria-hidden="true">×</span></button>
         </div>
         <div class="toast-body" th:text="${errorFlashMessage}"></div>
@@ -54,13 +53,13 @@
 
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="/" class="brand-link" th:text="${projectName}"></a>
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+    <div class="user-panel mt-3 pb-3 mb-3 d-flex" th:if="${navigationMenuTitle != null}">
         <div class="info">
-            <span class="d-block text-muted">Admin Panel</span>
+            <span class="d-block text-muted" th:text="${navigationMenuTitle}"></span>
         </div>
     </div>
 
-    <div th:utext="${navigationMenu}"></div>
+    <div th:utext="${navigationMenuContents}"></div>
 
 </aside>
 <div class="content-wrapper">
@@ -87,7 +86,6 @@
 
 <script type="text/javascript" src="/js/jquery.min.js"></script>
 <script type="text/javascript" src="/js/adminlte.min.js"></script>
-<script src="https://kit.fontawesome.com/a7ef72f142.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="/js/select2.full.min.js"></script>
 
 <script>
