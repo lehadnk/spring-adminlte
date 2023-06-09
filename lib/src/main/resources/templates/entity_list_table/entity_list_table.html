@@ -30,7 +30,7 @@
 
   <div class="card-footer clearfix">
     <div class="float-left" th:text="${footerPaginationLabel}"></div>
-    <ul class="pagination pagination-sm m-0 float-right">
+    <ul class="pagination pagination-sm m-0 float-right" th:if="${pagesTotal > 0}">
       <li class="page-item" th:if="${currentPage > 1}"><a class="page-link" th:href="${'?page=' + (currentPage - 1)}" th:onclick="|switchPage('${(currentPage - 1)}'); return false|" href="#">«</a></li>
       <li class="page-item" th:if="${currentPage > (1 + visiblePagesCount)}"><a class="page-link" th:href="${'?page=1'}" th:onclick="|switchPage('1'); return false|" href="#">1</a></li>
       <li class="page-item" th:each="pageNumber : ${#numbers.sequence(startPage, endPage)}" th:classappend="${currentPage == pageNumber ? 'active' : ''}" th:onclick="|switchPage('${pageNumber}'); return false|"><a class="page-link" th:href="${'?page=' + pageNumber}" th:text="${pageNumber}"></a></li>
