@@ -1,4 +1,4 @@
-<script th:inline="javascript">
+<script th:inline="javascript" th:if="${content != null}">
     /*<![CDATA[*/
     let utcDateString = [[${content.toString()}]];
     let localDate = new Date(utcDateString);

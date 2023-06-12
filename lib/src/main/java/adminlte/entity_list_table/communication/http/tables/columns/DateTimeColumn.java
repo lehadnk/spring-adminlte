@@ -2,6 +2,7 @@ package adminlte.entity_list_table.communication.http.tables.columns;
 
 import org.thymeleaf.context.Context;
 
+import java.sql.Date;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -47,8 +48,13 @@ public class DateTimeColumn extends AbstractColumn {
 
     private String getFormattedUtcDateTimeString(Object object) {
         var instantObject = this.getInstant(object);
-        if (instantObject == null) {return null;}
-        if (this.format == null) {return instantObject.toString();}
+        if (instantObject == null) {
+            return "";
+        }
+
+        if (this.format == null) {
+            return instantObject.toString();
+        }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(this.format).withZone(ZoneId.of("UTC"));
         return formatter.format(instantObject);
@@ -65,9 +71,13 @@ public class DateTimeColumn extends AbstractColumn {
             return (Instant) content;
         }
 
+        if (content instanceof Date) {
+            return ((Date) content).toLocalDate().atStartOfDay().toInstant(ZoneOffset.UTC);
+        }
+
         // assuming that LocalDateTime stores UTC value
         if (content instanceof LocalDateTime) {
-            return ((LocalDateTime) object).toInstant(ZoneOffset.UTC);
+            return ((LocalDateTime) content).toInstant(ZoneOffset.UTC);
         }
 
         return (Instant) content;
