@@ -21,6 +21,10 @@ public class ActionButton {
         this(text, url, List.of(identifierField), "btn-default", "get");
     }
 
+    public ActionButton(String text, String url, List<String> identifierFields, String cssClass) {
+        this(text, url, identifierFields, cssClass, "get");
+    }
+
     public ActionButton(String text, String url, List<String> identifierFields, String cssClass, String method) {
         this.text = text;
         this.url = url;
