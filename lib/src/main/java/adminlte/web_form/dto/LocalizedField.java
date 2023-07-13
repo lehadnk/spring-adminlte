@@ -1,7 +1,5 @@
 package adminlte.web_form.dto;
 
-import java.util.Map;
-
 public class LocalizedField {
     private String key;
     private LocalizationData localization;

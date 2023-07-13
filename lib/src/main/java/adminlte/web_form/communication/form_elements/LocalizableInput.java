@@ -2,6 +2,8 @@ package adminlte.web_form.communication.form_elements;
 
 
 import adminlte.web_form.business.glossary.GlossaryFacadeInterface;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.HashMap;
 import java.util.List;
@@ -62,6 +64,14 @@ public class LocalizableInput extends AbstractFormElement implements Localizable
         if (value == null) {
             return this;
         }
+        var objectMapper = new ObjectMapper();
+
+        try {
+            this.value = objectMapper.writeValueAsString(value);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
         this.textMapByLanguage.putAll(value);
         return this;
     }
