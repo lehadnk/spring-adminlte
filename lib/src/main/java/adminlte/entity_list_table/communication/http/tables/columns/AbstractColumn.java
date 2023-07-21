@@ -25,21 +25,27 @@ abstract public class AbstractColumn implements ColumnDefinitionInterface {
     }
 
     protected Object getObjectValue(Object object, String fieldName) {
+        var fieldParts = fieldName.split("\\.", 2);
+        var topLevelFieldName = fieldParts[0];
+        var lowLevelFieldName = fieldParts.length == 2 ? fieldParts[1] : null;
+
         if (object instanceof Record record) {
             return this.getRecordValue(record, fieldName);
         }
-        Field[] dtoFields = object.getClass().getFields();
-        for (Field field : dtoFields) {
-            if (field.getName().equals(fieldName)) {
-                try {
-                    return field.get(object);
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
 
-        return null;
+        // gets all class public fields. there is no simple way to get all inherited private fields
+        try {
+            Field dtoField = object.getClass().getField(topLevelFieldName);
+            if (lowLevelFieldName != null) {
+                var topLevelFieldObject = dtoField.get(object);
+
+                return getObjectValue(topLevelFieldObject, lowLevelFieldName);
+            } else {
+                return dtoField.get(object);
+            }
+        } catch (NoSuchFieldException|IllegalAccessException e) {
+            return null;
+        }
     }
 
     private Object getRecordValue(Record record, String fieldName) {
