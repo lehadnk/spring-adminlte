@@ -6,6 +6,7 @@ import adminlte.html_template_renderer.business.template.AbstractHtmlTemplate;
 import java.util.ArrayList;
 
 public class EntityListTableHtmlTemplate extends AbstractHtmlTemplate {
+
     private String templatePath = "entity_list_table/entity_list_table.html";
 
     public EntityListTableHtmlTemplate(
@@ -18,9 +19,10 @@ public class EntityListTableHtmlTemplate extends AbstractHtmlTemplate {
         Integer endPage,
         Integer visiblePagesCount,
         Boolean hasSearchButton,
-        String footerPaginationLabel
-    )
-    {
+        String footerPaginationLabel,
+        String pageParameter,
+        String tableClass
+    ) {
         this.context.setVariable("title", title);
         this.context.setVariable("headerTitles", headerTitles);
         this.context.setVariable("dataset", dataset);
@@ -31,15 +33,13 @@ public class EntityListTableHtmlTemplate extends AbstractHtmlTemplate {
         this.context.setVariable("visiblePagesCount", visiblePagesCount);
         this.context.setVariable("hasSearchButton", hasSearchButton);
         this.context.setVariable("footerPaginationLabel", footerPaginationLabel);
+        this.context.setVariable("pageParameter", pageParameter);
+        this.context.setVariable("tableClass", tableClass);
     }
 
     @Override
-    public String getTemplatePath() {
-        return this.templatePath;
-    }
+    public String getTemplatePath() { return this.templatePath; }
 
     @Override
-    public AbstractHtmlLayout getLayoutTemplate() {
-        return null;
-    }
+    public AbstractHtmlLayout getLayoutTemplate() { return null; }
 }

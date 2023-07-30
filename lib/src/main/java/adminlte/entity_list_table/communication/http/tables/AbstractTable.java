@@ -6,13 +6,14 @@ import adminlte.entity_list_table.communication.http.tables.columns.ColumnDefini
 import java.util.ArrayList;
 
 abstract public class AbstractTable<TDto> {
+
     public final PaginatedEntityListInterface<TDto> entityPaginatedList;
     public ArrayList<ColumnDefinitionInterface> columns = new ArrayList<>();
     public String search;
     protected boolean hasSearchButton = false;
+    public String paginationParameter = "page";
 
-    public AbstractTable(PaginatedEntityListInterface<TDto> entityPaginatedList)
-    {
+    public AbstractTable(PaginatedEntityListInterface<TDto> entityPaginatedList) {
         this.entityPaginatedList = entityPaginatedList;
         this.defineColumns();
     }
@@ -21,12 +22,11 @@ abstract public class AbstractTable<TDto> {
 
     abstract public void defineColumns();
 
-    protected void addColumn(ColumnDefinitionInterface column)
-    {
+    public void setPaginationParameter(String paginationParameter) { this.paginationParameter = paginationParameter; }
+
+    protected void addColumn(ColumnDefinitionInterface column) {
         this.columns.add(column);
     }
 
-    public Boolean getHasSearchButton() {
-        return this.hasSearchButton;
-    }
+    public Boolean getHasSearchButton() { return this.hasSearchButton; }
 }
