@@ -2,7 +2,7 @@
     <p><label th:if="${label != null}" th:text="${label}"></label></p>
     <p>
         Upload file:
-        <input type="file" th:name="${name}" th:accept="${accept}" />
+        <input type="file" th:name="${name}" th:accept="${accept}" th:multiple="${multiple}" />
     </p>
     <th:block th:each="validationError : ${validationErrors}">
         <span class="block error invalid-feedback" th:text="${validationError}"></span>
