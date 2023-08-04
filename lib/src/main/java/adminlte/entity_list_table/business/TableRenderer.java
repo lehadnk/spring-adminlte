@@ -48,7 +48,12 @@ public class TableRenderer {
         Object[] footerLabelArgs = { table.entityPaginatedList.getCurrentPage(), endPage };
         var footerPaginationLabel = this.i18nService.formatString("pagination-footer-label", footerLabelArgs);
 
-        String tableClass = "paginationTarget_" + table.paginationParameter;
+        // String tableId = "pagination_" + table.getPaginationParameter() + "__search_" + table.getSearchParameter();
+        // Maybe use a better approach. This ^ looks garbage, the one below this comment is at least reasonable.
+        // We need unique table ID that's generated deterministically. If this is too much overhead, we can 
+        // always just switch the one above. But it's not going to be unique if the page has more than one fully
+        // unconfigured table - e.g. both use same pagination and search. Although at that point it's mistake on them
+        String tableId = "table_" + Math.abs((table.getPaginationParameter() + table.getSearchParameter()).hashCode()) % 100;
 
         var entityListTableHtmlTemplate = new EntityListTableHtmlTemplate(
             table.getTitle(),
@@ -61,8 +66,10 @@ public class TableRenderer {
             visiblePagesCount,
             table.getHasSearchButton(),
             footerPaginationLabel,
-            table.paginationParameter,
-            tableClass);
+            table.getPaginationParameter(),
+            table.getSearchParameter(),
+            tableId,
+            table.getJumpToTable());
         return this.htmlTemplateRendererService.renderTemplate(entityListTableHtmlTemplate);
     }
 

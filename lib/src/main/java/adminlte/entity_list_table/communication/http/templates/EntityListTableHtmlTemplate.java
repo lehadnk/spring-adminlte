@@ -21,7 +21,9 @@ public class EntityListTableHtmlTemplate extends AbstractHtmlTemplate {
         Boolean hasSearchButton,
         String footerPaginationLabel,
         String pageParameter,
-        String tableClass
+        String searchParameter,
+        String tableId,
+        Boolean jumpToTable
     ) {
         this.context.setVariable("title", title);
         this.context.setVariable("headerTitles", headerTitles);
@@ -34,7 +36,9 @@ public class EntityListTableHtmlTemplate extends AbstractHtmlTemplate {
         this.context.setVariable("hasSearchButton", hasSearchButton);
         this.context.setVariable("footerPaginationLabel", footerPaginationLabel);
         this.context.setVariable("pageParameter", pageParameter);
-        this.context.setVariable("tableClass", tableClass);
+        this.context.setVariable("searchParameter", searchParameter);
+        this.context.setVariable("tableId", tableId);
+        this.context.setVariable("jumpToTable", jumpToTable);
     }
 
     @Override
