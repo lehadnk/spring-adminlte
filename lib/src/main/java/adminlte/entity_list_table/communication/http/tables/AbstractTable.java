@@ -30,6 +30,11 @@ abstract public class AbstractTable<TDto> {
 
     public void setJumpToTable(Boolean jumpToTable) { this.jumpToTable = jumpToTable; }
 
+    public void setHasSearchButton(Boolean hasSearchButton)
+    {
+        this.hasSearchButton = hasSearchButton;
+    }
+
     protected void addColumn(ColumnDefinitionInterface column) {
         this.columns.add(column);
     }
