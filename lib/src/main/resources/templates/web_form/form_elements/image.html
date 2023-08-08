@@ -1,9 +1,9 @@
 <div>
     <p><label th:if="${label != null}" th:for="${name}" th:text="${label}"></label></p>
     <p>
-        <div th:if="${value != null && value != ''}">
-            <img th:src="${value}" th:width="${maxWidth}" th:height="${maxHeight}" />
-        </div>
+    <div th:if="${value != null && value != ''}">
+        <img th:src="${value}" th:width="${maxWidth}" th:height="${maxHeight}" />
+    </div>
     </p>
     <p>
         Update as text:
@@ -13,7 +13,7 @@
         Upload as file:
         <input type="file" th:name="${name} + '.file'" accept="image/*" th:id="${name} + '_file'" />
     </p>
-    <p>
+    <p th:if="${hasDeleteButton}">
         <button th:if="${value != null && value != ''}" type="submit" th:id="${name} + '_file_delete'" th:name="${name} + '.fileDelete'" th:value="${name} + '_file_delete'">Delete image</button>
     </p>
     <th:block th:each="validationError : ${validationErrors}">
