@@ -2,9 +2,8 @@ package adminlte.web_form.communication.form_elements;
 
 import java.util.HashMap;
 
-public class Image extends AbstractFormElement {
-
-    private String templatePath = "web_form/form_elements/image.html";
+public class Image extends AbstractFormElement<Image> {
+    private final String templatePath = "web_form/form_elements/image.html";
     private Integer maxWidth = 50;
     private Integer maxHeight = 50;
     private Boolean hasDeleteButton = true;

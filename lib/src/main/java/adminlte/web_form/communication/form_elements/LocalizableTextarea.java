@@ -6,7 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LocalizableTextarea extends AbstractFormElement implements Localizable {
+public class LocalizableTextarea extends AbstractFormElement<LocalizableTextarea> implements Localizable {
+    private final String templatePath = "web_form/form_elements/localizable_textarea.html";
+
     private final String glossaryKey;
     private final List<String> languages;
     private final Map<String, String> textMapByLanguage;
@@ -41,7 +43,7 @@ public class LocalizableTextarea extends AbstractFormElement implements Localiza
 
     @Override
     public String getTemplatePath() {
-        return "web_form/form_elements/localizable_textarea.html";
+        return this.templatePath;
     }
 
     public LocalizableTextarea setTextTransform(String textTransform) {

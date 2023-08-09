@@ -1,7 +1,7 @@
 package adminlte.web_form.communication.form_elements;
 
-public class Audio extends AbstractFormElement {
-    private String templatePath = "web_form/form_elements/audio.html";
+public class Audio extends AbstractFormElement<Audio> {
+    private final String templatePath = "web_form/form_elements/audio.html";
 
     public Audio() {
     }

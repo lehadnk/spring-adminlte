@@ -6,8 +6,9 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-public class Select extends AbstractFormElement {
+public class Select extends AbstractFormElement<Select> {
     private String templatePath = "web_form/form_elements/select.html";
+
     final private Map<Object, String> options;
     private Boolean nullable = true;
     private Boolean searchable = false;

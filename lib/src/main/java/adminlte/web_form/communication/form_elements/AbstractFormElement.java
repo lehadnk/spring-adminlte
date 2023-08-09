@@ -8,32 +8,21 @@ import adminlte.web_form.dto.ValidationResult;
 import java.util.ArrayList;
 import java.util.Map;
 
-abstract public class AbstractFormElement implements WebFormElementInterface {
+public abstract class AbstractFormElement<T extends AbstractFormElement<T>> implements WebFormElementInterface {
     public String label;
     public String value;
 
     protected ArrayList<WebFormValidatorInterface> validators = new ArrayList<>();
     private ArrayList<ValidationResult> validationResults = new ArrayList<>();
-    private boolean isValid = false;
     private boolean wasValidated = false;
-    private boolean required = false;
+    protected boolean required = false;
+    protected boolean nullable = false;
 
     abstract public String getTemplatePath();
-
-    public AbstractFormElement setValue(String value) {
-        this.value = value;
-        return this;
-    }
 
     public String getValue()
     {
         return this.value;
-    }
-
-    @Override
-    public WebFormElementInterface addValidator(WebFormValidatorInterface validator) {
-        this.validators.add(validator);
-        return this;
     }
 
     public ArrayList<ValidationResult> validate()
@@ -45,11 +34,6 @@ abstract public class AbstractFormElement implements WebFormElementInterface {
 
         this.wasValidated = true;
         return this.validationResults;
-    }
-
-    public WebFormElementInterface addValidationResult(ValidationResult validationResult) {
-        this.validationResults.add(validationResult);
-        return this;
     }
 
     public ArrayList<ValidationResult> getValidationResults()
@@ -77,19 +61,45 @@ abstract public class AbstractFormElement implements WebFormElementInterface {
         return this.label;
     }
 
-    public WebFormElementInterface setLabel(String label)
-    {
-        this.label = label;
-        return this;
-    }
-
     public Map<String, Object> getContextVariables() {
         return null;
     }
 
-    public WebFormElementInterface setRequired() {
+    @SuppressWarnings("unchecked")
+    protected T casted()
+    {
+        return (T) this;
+    }
+
+    public T addValidator(WebFormValidatorInterface validator) {
+        this.validators.add(validator);
+        return this.casted();
+    }
+
+    public T setValue(String value) {
+        this.value = value;
+        return this.casted();
+    }
+
+    public T addValidationResult(ValidationResult validationResult) {
+        this.validationResults.add(validationResult);
+        return this.casted();
+    }
+
+    public T setLabel(String label)
+    {
+        this.label = label;
+        return this.casted();
+    }
+
+    public T setRequired() {
         this.addValidator(new RequiredFieldValidator());
         this.required = true;
-        return this;
+        return this.casted();
+    }
+
+    public T setNullable(boolean value) {
+        this.nullable = value;
+        return this.casted();
     }
 }

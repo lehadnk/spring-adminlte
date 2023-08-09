@@ -9,7 +9,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LocalizableInput extends AbstractFormElement implements Localizable {
+public class LocalizableInput extends AbstractFormElement<LocalizableInput> implements Localizable {
+    private final String templatePath = "web_form/form_elements/localizable_input.html";
+
     private final String glossaryKey;
     private final List<String> languages;
     private final Map<String, String> textMapByLanguage;
@@ -44,7 +46,7 @@ public class LocalizableInput extends AbstractFormElement implements Localizable
 
     @Override
     public String getTemplatePath() {
-        return "web_form/form_elements/localizable_input.html";
+        return this.templatePath;
     }
 
     public WebFormElementInterface addLanguage(String language) {

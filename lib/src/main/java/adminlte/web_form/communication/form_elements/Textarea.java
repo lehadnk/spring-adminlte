@@ -2,8 +2,8 @@ package adminlte.web_form.communication.form_elements;
 
 import java.util.Map;
 
-public class Textarea extends AbstractFormElement {
-    private String templatePath = "web_form/form_elements/textarea.html";
+public class Textarea extends AbstractFormElement<Textarea> {
+    private final String templatePath = "web_form/form_elements/textarea.html";
     private String textTransform = "";
     private Integer rowsCount = 10;
 
