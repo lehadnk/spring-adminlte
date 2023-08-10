@@ -10,7 +10,6 @@ public class Select extends AbstractFormElement<Select> {
     private String templatePath = "web_form/form_elements/select.html";
 
     final private Map<Object, String> options;
-    private Boolean nullable = true;
     private Boolean searchable = false;
     private Boolean disabled = false;
 
@@ -37,11 +36,6 @@ public class Select extends AbstractFormElement<Select> {
 
     public Select addOption(Object key, String title) {
         this.options.put(key, title);
-        return this;
-    }
-
-    public Select setNullable(Boolean value) {
-        this.nullable = value;
         return this;
     }
 
