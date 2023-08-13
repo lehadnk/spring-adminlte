@@ -5,12 +5,12 @@
         <img th:src="${value}" th:width="${maxWidth}" th:height="${maxHeight}" />
     </div>
     </p>
-    <p>
-        Update as text:
+    <p th:if="${hasUpdateUrlInput}">
+        Update URL:
         <input class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}" th:id="${name}" th:name="${name} + '.fileUrl'" th:value="${value}" />
     </p>
     <p>
-        Upload as file:
+        Upload file:
         <input type="file" th:name="${name} + '.file'" accept="image/*" th:id="${name} + '_file'" />
     </p>
     <p th:if="${hasDeleteButton}">

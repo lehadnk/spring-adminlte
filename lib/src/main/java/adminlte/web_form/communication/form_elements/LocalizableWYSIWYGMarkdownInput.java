@@ -11,6 +11,7 @@ public class LocalizableWYSIWYGMarkdownInput extends AbstractFormElement<Localiz
     private final String glossaryKey;
     private final List<String> languages;
     private final Map<String, String> textMapByLanguage;
+    private Boolean hasUpdateWithRawTextInput = false;
 
     public LocalizableWYSIWYGMarkdownInput(String glossaryKey, GlossaryFacadeInterface glossaryFacade) {
         this.glossaryKey = glossaryKey;
@@ -42,8 +43,14 @@ public class LocalizableWYSIWYGMarkdownInput extends AbstractFormElement<Localiz
         return Map.of(
             "glossaryKey", this.glossaryKey,
             "languages", this.languages,
-            "textMapByLanguage", this.textMapByLanguage
+            "textMapByLanguage", this.textMapByLanguage,
+            "hasUpdateWithRawTextInput", this.hasUpdateWithRawTextInput
         );
+    }
+
+    private LocalizableWYSIWYGMarkdownInput setHasUpdateWithRawTextInput(Boolean hasUpdateWithRawTextInput) {
+        this.hasUpdateWithRawTextInput = hasUpdateWithRawTextInput;
+        return this;
     }
 
     public LocalizableWYSIWYGMarkdownInput setValue(Map<String, String> value) {
