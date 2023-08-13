@@ -45,8 +45,14 @@ public class TableRenderer {
 
         if (endPage > table.entityPaginatedList.getTotalPages()) { endPage = table.entityPaginatedList.getTotalPages(); }
 
-        Object[] footerLabelArgs = { table.entityPaginatedList.getCurrentPage(), endPage };
-        var footerPaginationLabel = this.i18nService.formatString("pagination-footer-label", footerLabelArgs);
+        String footerPaginationLabel;
+        if (endPage > 0) {
+            Object[] footerLabelArgs = { table.entityPaginatedList.getCurrentPage(), endPage };
+            footerPaginationLabel = this.i18nService.formatString("pagination-footer-label", footerLabelArgs);
+        } else {
+            footerPaginationLabel = this.i18nService.formatString("no-elements-found");
+        }
+
 
         // String tableId = "pagination_" + table.getPaginationParameter() + "__search_" + table.getSearchParameter();
         // Maybe use a better approach. This ^ looks garbage, the one below this comment is at least reasonable.
