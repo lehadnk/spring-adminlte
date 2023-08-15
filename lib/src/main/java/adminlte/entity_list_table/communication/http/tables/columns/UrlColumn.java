@@ -5,7 +5,7 @@ import org.thymeleaf.context.Context;
 public class UrlColumn extends TextColumn {
 
     private final String templatePath = "entity_list_table/columns/url_column.html";
-    private String urlText;
+    protected String urlText = "";
 
     public UrlColumn(String fieldName) {
         super(fieldName);
@@ -22,18 +22,24 @@ public class UrlColumn extends TextColumn {
     @Override
     public Context prepareContext(Object object) {
         var ctx = new Context();
-        var content = this.getObjectValue(object, this.fieldName);
+        var fieldData = this.getObjectValue(object, this.fieldName);
 
-        if (content != null) {
-            content = content.toString();
+        String urlText = this.urlText;
+        String cellContent = "";
 
-            if (!content.toString().isBlank()) { this.urlText = "Click"; }
-        } else {
-            this.urlText = "";
+        if (fieldData != null) {
+            cellContent = fieldData.toString();
+
+            if (cellContent.isBlank()) {
+                urlText = "";
+            } else {
+
+                if (urlText.isBlank()) { urlText = cellContent; }
+            }
         }
 
-        ctx.setVariable("content", content);
-        ctx.setVariable("urlText", this.urlText);
+        ctx.setVariable("content", cellContent);
+        ctx.setVariable("urlText", urlText);
         return ctx;
     }
 }
