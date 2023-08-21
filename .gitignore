@@ -8,3 +8,7 @@ build
 build
 .gradle
 .DS_Store
+*/bin/**
+.vscode
+.idea
+.settings

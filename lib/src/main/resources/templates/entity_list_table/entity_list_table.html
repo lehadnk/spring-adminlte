@@ -1,11 +1,11 @@
-<div class="card">
+<div class="card entityTable" th:id="${tableId}" th:data-search-parameter="${searchParameter}" th:data-pagination-parameter="${pageParameter}" th:data-jump-to-table="${jumpToTable}">
   <div class="card-header">
     <h3 class="card-title" th:text="${title}"></h3>
     <div class="card-tools" th:if="${hasSearchButton}">
       <div class="input-group input-group-sm" style="width: 150px">
         <input type="text" id="table_search" name="table_search" class="form-control float-right" placeholder="Search">
         <div class="input-group-append">
-          <button id="table_search_button" onclick="tableSearch()" type="submit" class="btn btn-default">
+          <button id="table_search_button" onclick="tableSearch(event);" type="submit" class="btn btn-default">
             <i class="fas fa-search"></i>
           </button>
         </div>
@@ -21,9 +21,9 @@
         </tr>
       </thead>
       <tbody>
-      <tr th:each="row : ${dataset}">
-        <td th:each="column : ${row}" th:utext="${column}"></td>
-      </tr>
+        <tr th:each="row : ${dataset}">
+          <td th:each="column : ${row}" th:utext="${column}"></td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -31,53 +31,109 @@
   <div class="card-footer clearfix">
     <div class="float-left" th:text="${footerPaginationLabel}"></div>
     <ul class="pagination pagination-sm m-0 float-right" th:if="${pagesTotal > 0}">
-      <li class="page-item" th:if="${currentPage > 1}"><a class="page-link" th:href="${'?page=' + (currentPage - 1)}" th:onclick="|switchPage('${(currentPage - 1)}'); return false|" href="#">«</a></li>
-      <li class="page-item" th:if="${currentPage > (1 + visiblePagesCount)}"><a class="page-link" th:href="${'?page=1'}" th:onclick="|switchPage('1'); return false|" href="#">1</a></li>
-      <li class="page-item" th:each="pageNumber : ${#numbers.sequence(startPage, endPage)}" th:classappend="${currentPage == pageNumber ? 'active' : ''}" th:onclick="|switchPage('${pageNumber}'); return false|"><a class="page-link" th:href="${'?page=' + pageNumber}" th:text="${pageNumber}"></a></li>
-      <li class="page-item" th:if="${currentPage < (pagesTotal - visiblePagesCount)}"><a class="page-link" th:href="${'?page=' + pagesTotal}" th:text="${pagesTotal}" th:onclick="|switchPage('${pagesTotal}'); return false|"></a></li>
-      <li class="page-item" th:if="${currentPage < pagesTotal}"><a class="page-link" th:href="${'?page=' + (currentPage + 1)}" th:onclick="|switchPage('${(currentPage + 1)}'); return false|">»</a></li>
+      <li class="page-item" th:if="${currentPage > 1}">
+        <a class="page-link" th:onclick="switchPage([[${currentPage - 1}]]);">«</a>
+      </li>
+      <li class="page-item" th:if="${currentPage > (1 + visiblePagesCount)}">
+        <a class="page-link" th:onclick="switchPage([[${pageParameter}]], 1);">1</a>
+      </li>
+      <li class="page-item" th:each="pageNumber : ${#numbers.sequence(startPage, endPage)}" th:classappend="${currentPage == pageNumber ? 'active' : ''}">
+        <a class="page-link" th:onclick="switchPage([[${pageNumber}]]);" th:text="${pageNumber}"></a>
+      </li>
+      <li class="page-item" th:if="${currentPage < (pagesTotal - visiblePagesCount)}">
+        <a class="page-link" th:onclick="switchPage([[${pagesTotal}]]);" th:text="${pagesTotal}"></a>
+      </li>
+      <li class="page-item" th:if="${currentPage < pagesTotal}">
+        <a class="page-link" th:onclick="switchPage([[${currentPage + 1}]]);">»</a>
+      </li>
     </ul>
   </div>
 </div>
 
+<style>
+  .page-link {
+    cursor: pointer;
+  }
+</style>
+
 <script>
-    function setSearchString() {
-        var elem = document.getElementById('table_search');
+  function setSearchString(tableId) {
+    var elem = document.querySelector('#' + tableId + ' #table_search');
+    var searchParameter = document.querySelector('#' + tableId).getAttribute('data-search-parameter');
 
-        var urlObject = new URL(window.location.href);
-        var searchString = urlObject.searchParams.get('search');
-        if (searchString) {
-            elem.value = searchString;
-        }
+    var urlObject = new URL(window.location.href);
+    var searchString = urlObject.searchParams.get(searchParameter);
+    if (searchString) {
+      elem.value = searchString;
     }
+  }
 
-    function tableSearch() {
-        var searchString = document.getElementById('table_search').value;
+  function tableSearch(event) {
+    var clickedElement = event.target; // Get the element that triggered the click event
+    var entityTable = clickedElement.closest('.entityTable');
 
-        var urlObject = new URL(window.location.href);
-        if (searchString) {
-            urlObject.searchParams.set('search', searchString);
-        } else {
-            urlObject.searchParams.delete('search');
-        }
-        window.location.href = urlObject.href;
+    if (entityTable) {
+      var searchString = entityTable.querySelector('#table_search').value;
+      var searchParameter = entityTable.getAttribute('data-search-parameter');
+      var jumpToTable = entityTable.getAttribute('data-jump-to-table') === 'true';
+      var urlObject = new URL(window.location.href);
+
+      if (searchString) {
+        urlObject.searchParams.set(searchParameter, searchString);
+      } else {
+        urlObject.searchParams.delete(searchParameter);
+      }
+
+      if (jumpToTable) {
+        urlObject.hash = entityTable.getAttribute('id');
+      } else {
+        urlObject.hash = "";
+      }
+
+      window.location.href = urlObject.href;
     }
+  }
 
-    function switchPage(page) {
-        var urlObject = new URL(window.location.href);
-        urlObject.searchParams.set('page', page);
-        window.location.href = urlObject.href;
+  function switchPage(page) {
+    var clickedElement = event.target;
+    var entityTable = clickedElement.closest('.entityTable');
+
+    if (entityTable) {
+      var paginationParameter = entityTable.getAttribute('data-pagination-parameter');
+      var jumpToTable = entityTable.getAttribute('data-jump-to-table') === 'true';
+      var urlObject = new URL(window.location.href);
+      urlObject.searchParams.set(paginationParameter, page);
+
+      if (jumpToTable) {
+        urlObject.hash = entityTable.getAttribute('id');
+      } else {
+        urlObject.hash = "";
+      }
+      window.location.href = urlObject.href;
     }
+  }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        setSearchString();
-    }, false);
+  function applyEventListenersToTables() {
+    var entityTables = document.querySelectorAll('.entityTable');
+    entityTables.forEach(function (table) {
+      var tableId = table.id;
+      setSearchString(tableId);
 
-    var searchInputElem = document.getElementById('table_search');
-    searchInputElem.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
+      var searchInputElem = table.querySelector('#table_search');
+
+      if (searchInputElem) {
+        searchInputElem.addEventListener('keypress', function (event) {
+          if (event.key === 'Enter') {
             event.preventDefault();
-            document.getElementById("table_search_button").click();
-        }
+            tableSearch(event);
+          }
+        });
+      }
     });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () {
+    applyEventListenersToTables();
+  }, false);
+
 </script>

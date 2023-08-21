@@ -13,7 +13,7 @@ public class ValidationResultFactory {
     public static ValidationResult success()
     {
         var validationResult = new ValidationResult();
-        validationResult.isValid = false;
+        validationResult.isValid = true;
         return validationResult;
     }
 }

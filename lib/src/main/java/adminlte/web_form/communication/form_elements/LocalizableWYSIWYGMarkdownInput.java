@@ -5,10 +5,13 @@ import adminlte.web_form.business.glossary.GlossaryFacadeInterface;
 import java.util.List;
 import java.util.Map;
 
-public class LocalizableWYSIWYGMarkdownInput extends AbstractFormElement implements Localizable {
+public class LocalizableWYSIWYGMarkdownInput extends AbstractFormElement<LocalizableWYSIWYGMarkdownInput> implements Localizable {
+    private final String templatePath = "web_form/form_elements/localizable_wysiwyg_markdown_input.html";
+
     private final String glossaryKey;
     private final List<String> languages;
     private final Map<String, String> textMapByLanguage;
+    private Boolean hasUpdateWithRawTextInput = false;
 
     public LocalizableWYSIWYGMarkdownInput(String glossaryKey, GlossaryFacadeInterface glossaryFacade) {
         this.glossaryKey = glossaryKey;
@@ -28,7 +31,7 @@ public class LocalizableWYSIWYGMarkdownInput extends AbstractFormElement impleme
 
     @Override
     public String getTemplatePath() {
-        return "web_form/form_elements/localizable_wysiwyg_markdown_input.html";
+        return this.templatePath;
     }
 
     public WebFormElementInterface addLanguage(String language) {
@@ -40,8 +43,14 @@ public class LocalizableWYSIWYGMarkdownInput extends AbstractFormElement impleme
         return Map.of(
             "glossaryKey", this.glossaryKey,
             "languages", this.languages,
-            "textMapByLanguage", this.textMapByLanguage
+            "textMapByLanguage", this.textMapByLanguage,
+            "hasUpdateWithRawTextInput", this.hasUpdateWithRawTextInput
         );
+    }
+
+    private LocalizableWYSIWYGMarkdownInput setHasUpdateWithRawTextInput(Boolean hasUpdateWithRawTextInput) {
+        this.hasUpdateWithRawTextInput = hasUpdateWithRawTextInput;
+        return this;
     }
 
     public LocalizableWYSIWYGMarkdownInput setValue(Map<String, String> value) {

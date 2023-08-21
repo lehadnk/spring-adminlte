@@ -2,8 +2,8 @@ package adminlte.web_form.communication.form_elements;
 
 import java.util.HashMap;
 
-public class Password extends AbstractFormElement {
-    private String templatePath = "web_form/form_elements/password.html";
+public class Password extends AbstractFormElement<Password> {
+    private final String templatePath = "web_form/form_elements/password.html";
     private Boolean autocompleteCurrentPassword = false;
     private Boolean autocompleteNewPassword = false;
 
@@ -21,12 +21,6 @@ public class Password extends AbstractFormElement {
     public Password setAutocompleteNewPassword(Boolean value)
     {
         this.autocompleteNewPassword = value;
-        return this;
-    }
-
-    public Password setLabel(String label)
-    {
-        super.setLabel(label);
         return this;
     }
 

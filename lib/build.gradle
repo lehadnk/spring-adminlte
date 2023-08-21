@@ -12,6 +12,8 @@ plugins {
 }
 
 version = 'dev'
+
+
 group = 'com.github.lehadnk'
 
 repositories {
