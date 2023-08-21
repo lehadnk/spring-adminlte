@@ -33,17 +33,24 @@ abstract public class AbstractColumn implements ColumnDefinitionInterface {
             return this.getRecordValue(record, fieldName);
         }
 
-        // gets all class public fields. there is no simple way to get all inherited private fields
+        Object fieldOutput;
         try {
-            Field dtoField = object.getClass().getField(topLevelFieldName);
-            if (lowLevelFieldName != null) {
-                var topLevelFieldObject = dtoField.get(object);
-
-                return getObjectValue(topLevelFieldObject, lowLevelFieldName);
+            var isMethod = topLevelFieldName.endsWith("()");
+            if (isMethod) {
+                var methodName = topLevelFieldName.replace("()", "");
+                var objectMethod = object.getClass().getMethod(methodName);
+                fieldOutput = objectMethod.invoke(object);
             } else {
-                return dtoField.get(object);
+                var objectField = object.getClass().getField(topLevelFieldName);
+                fieldOutput = objectField.get(object);
             }
-        } catch (NoSuchFieldException|IllegalAccessException e) {
+
+            if (lowLevelFieldName != null) {
+                return getObjectValue(fieldOutput, lowLevelFieldName);
+            } else {
+                return fieldOutput;
+            }
+        } catch (NoSuchFieldException|IllegalAccessException|NoSuchMethodException|InvocationTargetException e) {
             return null;
         }
     }
