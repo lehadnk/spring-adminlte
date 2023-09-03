@@ -5,7 +5,7 @@
         <img th:src="${value}" th:width="${maxWidth}" th:height="${maxHeight}" />
     </div>
     </p>
-    <p th:if="${hasUpdateUrlInput}">
+    <p th:style="${hasUpdateUrlInput} ? '' : 'display: none;'">
         Update URL:
         <input class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}" th:id="${name}" th:name="${name} + '.fileUrl'" th:value="${value}" />
     </p>
