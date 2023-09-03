@@ -25,21 +25,34 @@ abstract public class AbstractColumn implements ColumnDefinitionInterface {
     }
 
     protected Object getObjectValue(Object object, String fieldName) {
+        var fieldParts = fieldName.split("\\.", 2);
+        var topLevelFieldName = fieldParts[0];
+        var lowLevelFieldName = fieldParts.length == 2 ? fieldParts[1] : null;
+
         if (object instanceof Record record) {
             return this.getRecordValue(record, fieldName);
         }
-        Field[] dtoFields = object.getClass().getFields();
-        for (Field field : dtoFields) {
-            if (field.getName().equals(fieldName)) {
-                try {
-                    return field.get(object);
-                } catch (IllegalAccessException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        }
 
-        return null;
+        Object fieldOutput;
+        try {
+            var isMethod = topLevelFieldName.endsWith("()");
+            if (isMethod) {
+                var methodName = topLevelFieldName.replace("()", "");
+                var objectMethod = object.getClass().getMethod(methodName);
+                fieldOutput = objectMethod.invoke(object);
+            } else {
+                var objectField = object.getClass().getField(topLevelFieldName);
+                fieldOutput = objectField.get(object);
+            }
+
+            if (lowLevelFieldName != null) {
+                return getObjectValue(fieldOutput, lowLevelFieldName);
+            } else {
+                return fieldOutput;
+            }
+        } catch (NoSuchFieldException|IllegalAccessException|NoSuchMethodException|InvocationTargetException e) {
+            return null;
+        }
     }
 
     private Object getRecordValue(Record record, String fieldName) {
