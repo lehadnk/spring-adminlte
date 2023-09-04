@@ -35,7 +35,7 @@
         <a class="page-link" th:onclick="switchPage([[${currentPage - 1}]]);">«</a>
       </li>
       <li class="page-item" th:if="${currentPage > (1 + visiblePagesCount)}">
-        <a class="page-link" th:onclick="switchPage([[${pageParameter}]], 1);">1</a>
+        <a class="page-link" th:onclick="switchPage(1);">1</a>
       </li>
       <li class="page-item" th:each="pageNumber : ${#numbers.sequence(startPage, endPage)}" th:classappend="${currentPage == pageNumber ? 'active' : ''}">
         <a class="page-link" th:onclick="switchPage([[${pageNumber}]]);" th:text="${pageNumber}"></a>
