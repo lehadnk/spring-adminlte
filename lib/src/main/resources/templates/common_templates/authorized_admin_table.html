@@ -1,6 +1,6 @@
 <div class="row" th:if="${buttonsOverTable != null}">
     <div class="col-sm-2" th:each="button : ${buttonsOverTable}">
-        <a class="btn btn-block btn-secondary mb-2" th:href="${button.url}" th:text="${button.title}"></a>
+        <a th:class="${'btn btn-block mb-2 ' + button.cssClass}" th:href="${button.url}" th:text="${button.title}"></a>
     </div>
 </div>
 
