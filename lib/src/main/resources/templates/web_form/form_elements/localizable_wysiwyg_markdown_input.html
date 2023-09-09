@@ -24,6 +24,19 @@
                         th:oninput="${textTransform == 'lowercase'} ? 'this.value = this.value.toLowerCase()' : ''"
                     ></textarea>
                 </p>
+                <p th:if="${!hasUpdateWithRawTextInput}">
+                    <textarea
+                        style="display: none;"
+                        class="form-control"
+                        th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}"
+                        rows="10"
+                        th:id="${name + '_localization_' + entry.key}"
+                        th:name="${name + '.localization.' + entry.key}"
+                        th:text="${entry.value}"
+                        th:oninput="${textTransform == 'lowercase'} ? 'this.value = this.value.toLowerCase()' : ''"
+                    ></textarea>
+                </p>
+
             </div>
             <input th:if="${!#lists.contains(languages, entry.key)}" type="hidden" class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}"
                    th:id="${name + '.localization.' + entry.key}" th:name="${name + '.localization.' + entry.key}" th:value="${entry.value}"/>
