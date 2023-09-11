@@ -1,0 +1,50 @@
+<div id="google_map" style="width: 100%; height: 500px; padding: 0; margin: 10px;"></div>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<script th:src="'https://maps.googleapis.com/maps/api/js?key=' + ${apiKey} + '&callback=initMap&v=weekly'" defer ></script>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    function initMap() {
+        const map = new google.maps.Map(document.getElementById("google_map"), {
+            zoom: [[${zoom}]],
+            center: {
+                lat: [[${lat}]],
+                lng: [[${lng}]]
+            },
+        });
+
+        setMarkers(map);
+    }
+
+    const googleWorldMapPoints = [[${points}]];
+
+    function setMarkers(map) {
+        const image = {
+            url: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+            size: new google.maps.Size(20, 32),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(0, 32),
+        };
+        const shape = {
+            coords: [1, 1, 1, 20, 18, 20, 18, 1],
+            type: "poly",
+        };
+
+        for (let i = 0; i < googleWorldMapPoints.length; i++) {
+            const googleWorldMapPoint = googleWorldMapPoints[i];
+
+            new google.maps.Marker({
+                position: { lat: googleWorldMapPoint.lat, lng: googleWorldMapPoint.lng },
+                map,
+                icon: image,
+                shape: shape,
+                title: googleWorldMapPoint.name,
+                zIndex: 1,
+            });
+        }
+    }
+
+    window.initMap = initMap;
+    /*]]>*/
+</script>

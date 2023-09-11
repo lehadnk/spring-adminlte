@@ -12,7 +12,7 @@
         Update URL:
         <input class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}" th:id="${name}" th:name="${name} + '.fileUrl'" th:value="${value}" />
     </p>
-    <p th:if="${}">
+    <p>
         Upload file:
         <input type="file" th:name="${name} + '.file'" accept="video/*" th:id="${name} + '_file'" />
     </p>
