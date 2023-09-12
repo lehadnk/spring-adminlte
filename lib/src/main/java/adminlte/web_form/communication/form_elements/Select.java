@@ -12,6 +12,7 @@ public class Select extends AbstractFormElement<Select> {
     private Boolean disabled = false;
     private Boolean multiple = false;
     private Integer multipleSize = 0; // No effect with no multiple, infinite with multiple, set to limit
+    protected boolean nullable = true;
 
     public Select(Map<String, String> options) {
         this.options = new LinkedHashMap<>(options);
