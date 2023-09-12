@@ -16,7 +16,7 @@ public abstract class AbstractFormElement<T extends AbstractFormElement<T>> impl
     private ArrayList<ValidationResult> validationResults = new ArrayList<>();
     private boolean wasValidated = false;
     protected boolean required = false;
-    protected boolean nullable = false;
+    protected boolean nullable = true;
 
     abstract public String getTemplatePath();
 
