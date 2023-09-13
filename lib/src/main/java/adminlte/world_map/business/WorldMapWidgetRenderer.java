@@ -2,6 +2,7 @@ package adminlte.world_map.business;
 
 import adminlte.html_template_renderer.HtmlTemplateRendererService;
 import adminlte.world_map.WorldMapConfig;
+import adminlte.world_map.business.exception.NoApiKeyDefinedException;
 import adminlte.world_map.communication.WorldMapWidgetTemplate;
 import adminlte.world_map.communication.world_map_widget.AbstractWorldMapWidget;
 import adminlte.world_map.communication.world_map_widget.GoogleWorldMapWidget;
@@ -33,9 +34,15 @@ public class WorldMapWidgetRenderer {
 
     private String getApiKeyByWidget(AbstractWorldMapWidget<?> widget) {
         if (widget instanceof GoogleWorldMapWidget) {
+            if (worldMapConfig.googleApiKey == null) {
+                throw new NoApiKeyDefinedException("Google");
+            }
             return worldMapConfig.googleApiKey;
         }
         if (widget instanceof YandexWorldMapWidget) {
+            if (worldMapConfig.yandexApiKey == null) {
+                throw new NoApiKeyDefinedException("Yandex");
+            }
             return worldMapConfig.yandexApiKey;
         }
         return null;
