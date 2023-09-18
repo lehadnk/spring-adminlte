@@ -1,0 +1,24 @@
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+
+<div>
+    <p><label th:if="${label != null}" th:for="${name}" th:text="${label}"></label></p>
+
+    <p>
+        <th:block th:each="validationError : ${validationErrors}">
+            <span class="block error invalid-feedback" style="display: inline" th:text="${validationError}"></span>
+        </th:block>
+    </p>
+
+    <p>
+        <textarea class="editor" th:id="${name}" th:name="${name}" rows="20" th:text="${value}"></textarea>
+    </p>
+</div>
+
+<script th:inline="javascript">
+    var name = /*[[${name}]]*/ 'default';
+    ClassicEditor
+        .create(document.querySelector('#' + name))
+        .catch(error => {
+            console.error('There was a problem initializing the editor.', error);
+        });
+</script>
