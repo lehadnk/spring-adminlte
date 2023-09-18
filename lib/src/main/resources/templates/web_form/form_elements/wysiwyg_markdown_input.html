@@ -1,5 +1,3 @@
-<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
-
 <div>
     <p><label th:if="${label != null}" th:for="${name}" th:text="${label}"></label></p>
 
@@ -10,15 +8,29 @@
     </p>
 
     <p>
-        <textarea class="editor" th:id="${name}" th:name="${name}" rows="20" th:text="${value}"></textarea>
+        <div id="editor" class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}" th:text="${value}"></div>
+        <textarea style="display: none;" th:id="${name}" class="form-control" th:name="${name}" th:text="${value}"></textarea>
     </p>
 </div>
 
+<!--/* https://www.npmjs.com/package/@jdinabox/ckeditor5-build-markdown */-->
+<script src="/js/ckeditor/ckeditor.js"></script>
+
 <script th:inline="javascript">
-    var name = /*[[${name}]]*/ 'default';
-    ClassicEditor
-        .create(document.querySelector('#' + name))
-        .catch(error => {
-            console.error('There was a problem initializing the editor.', error);
-        });
+    /*<![CDATA[*/
+    MarkdownEditor
+        .create( document.querySelector( '#editor' ) )
+        .then( editor => {
+            window.editor = editor;
+
+            editor.model.document.on('change:data', (evt, data) => {
+                var name = /*[[${name}]]*/ 'default';
+                var inputElem = document.querySelector('#' + name);
+                inputElem.value = editor.getData();
+            });
+        } )
+        .catch( error => {
+            console.error( 'There was a problem initializing the editor.', error );
+        } );
+    /*]]>*/
 </script>
