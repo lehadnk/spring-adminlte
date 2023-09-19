@@ -1,6 +1,6 @@
 package adminlte.web_form.communication.form_elements;
 
-public class Markdown extends AbstractFormElement<Markdown> {
+public class Markdown extends AbstractFormFieldElement<Markdown> {
     private final String templatePath = "web_form/form_elements/markdown.html";
 
     @Override

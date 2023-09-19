@@ -3,7 +3,7 @@ package adminlte.web_form.communication.form_elements;
 import adminlte.web_form.communication.validators.WebFormValidatorInterface;
 import adminlte.web_form.dto.ValidationResult;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public interface WebFormElementInterface {
@@ -13,20 +13,14 @@ public interface WebFormElementInterface {
 
     String getValue();
 
-    ArrayList<ValidationResult> validate();
+    List<ValidationResult> validate();
 
-    ArrayList<ValidationResult> getValidationResults();
+    List<ValidationResult> getValidationResults();
 
     Boolean isValid();
 
     WebFormElementInterface addValidator(WebFormValidatorInterface validator);
 
-    String getLabel();
-
-    WebFormElementInterface setLabel(String label);
-
     Map<String, Object> getContextVariables();
-
-    WebFormElementInterface setRequired();
 
 }

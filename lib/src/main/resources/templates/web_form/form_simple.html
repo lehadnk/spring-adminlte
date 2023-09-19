@@ -1,6 +1,6 @@
 <form method="POST" th:enctype="${enctype}" th:action="${action}">
   <div th:utext="${contents}"></div>
-  <div th:if="${not #lists.isEmpty(validationErrors)}" th:each="validationError : ${validationErrors}">
+  <div style="margin-top: 10px;" th:if="${not #lists.isEmpty(validationErrors)}" th:each="validationError : ${validationErrors}">
       <span class="text-danger" th:text="${validationError}"></span>
   </div>
 </form>

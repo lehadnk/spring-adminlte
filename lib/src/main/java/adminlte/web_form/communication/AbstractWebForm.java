@@ -16,11 +16,12 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 abstract public class AbstractWebForm<TRequest> {
-    public LinkedHashMap<String, WebFormElementInterface> elements = new LinkedHashMap<>();
+    public LinkedHashMap<String, WebFormFieldElementInterface> elements = new LinkedHashMap<>();
     public Submit submitButton;
     public String actionUrl;
     public String enctype = "application/x-www-form-urlencoded";
     public List<String> validationErrorMessages = new ArrayList<>();
+    public boolean simpleLayout = false;
 
     final private ObjectMapper objectMapper;
 
@@ -28,6 +29,10 @@ abstract public class AbstractWebForm<TRequest> {
         this.objectMapper = new ObjectMapper();
         this.objectMapper.findAndRegisterModules();
         this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+    }
+
+    public void setSimpleLayout() {
+        this.simpleLayout = true;
     }
 
     public String getActionUrl() {
@@ -52,7 +57,7 @@ abstract public class AbstractWebForm<TRequest> {
         return this;
     }
 
-    protected void addElement(String name, WebFormElementInterface element) {
+    protected void addElement(String name, WebFormFieldElementInterface element) {
         this.elements.put(name, element);
     }
 

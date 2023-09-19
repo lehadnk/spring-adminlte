@@ -3,7 +3,7 @@ package adminlte.web_form.communication.form_elements;
 import java.util.*;
 import java.util.function.Function;
 
-public class Select extends AbstractFormElement<Select> {
+public class Select extends AbstractFormFieldElement<Select> {
 
     private String templatePath = "web_form/form_elements/select.html";
 

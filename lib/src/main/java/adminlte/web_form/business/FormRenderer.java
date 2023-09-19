@@ -5,9 +5,11 @@ import adminlte.web_form.communication.AbstractWebForm;
 import adminlte.web_form.communication.FormElementTemplate;
 import adminlte.web_form.communication.FormTemplate;
 import adminlte.web_form.communication.form_elements.WebFormElementInterface;
+import adminlte.web_form.communication.form_elements.WebFormFieldElementInterface;
 import adminlte.web_form.dto.ValidationResult;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FormRenderer {
     private HtmlTemplateRendererService htmlTemplateRendererFacade;
@@ -34,7 +36,7 @@ public class FormRenderer {
             contents.append(submitButton);
         }
 
-        var formTemplate = new FormTemplate(form.getActionUrl(), form.getEnctype(), contents.toString(), form.validationErrorMessages);
+        var formTemplate = new FormTemplate(form.getActionUrl(), form.getEnctype(), contents.toString(), form.validationErrorMessages, form.simpleLayout);
         return this.htmlTemplateRendererFacade.renderTemplate(formTemplate);
     }
 
@@ -44,10 +46,12 @@ public class FormRenderer {
             return null;
         }
 
-        return this.renderFormElement("submit", form.submitButton);
+        var formElementTemplate = new FormElementTemplate(form.submitButton.getName(), null, form.submitButton.getValue(), new ArrayList<>(), form.submitButton.getTemplatePath());
+        formElementTemplate.updateContext(form.submitButton.getContextVariables());
+        return this.htmlTemplateRendererFacade.renderTemplate(formElementTemplate);
     }
 
-    private String renderFormElement(String name, WebFormElementInterface element) {
+    private String renderFormElement(String name, WebFormFieldElementInterface element) {
         ArrayList<String> validationErrors = new ArrayList<>();
         for (ValidationResult validationResult: element.getValidationResults()) {
             if (!validationResult.isValid) {
@@ -59,4 +63,10 @@ public class FormRenderer {
         formElementTemplate.updateContext(element.getContextVariables());
         return this.htmlTemplateRendererFacade.renderTemplate(formElementTemplate);
     }
+//
+//    public String renderFormElement(String name, WebFormElementInterface element) {
+//        var formElementTemplate = new FormElementTemplate(name, null, element.getValue(), new ArrayList<>(), element.getTemplatePath());
+//        formElementTemplate.updateContext(element.getContextVariables());
+//        return this.htmlTemplateRendererFacade.renderTemplate(formElementTemplate);
+//    }
 }

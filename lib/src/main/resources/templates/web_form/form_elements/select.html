@@ -1,18 +1,16 @@
-<div>
-    <p><label th:if="${label != null}" th:for="${name}" th:text="${label}"></label></p>
-    <p>
-        <input th:if="${disabled == true}" type="hidden" th:id="${name}" th:name="${name}" th:value="${value}">
-        <select th:id="${name}" th:name="${name}" class="form-control" th:classappend="${searchable == true ? 'select2' : ''}" th:attrappend="disabled=${disabled == true ? 'disabled' : ''}" style="width: 100%;" th:multiple="${multiple}" th:size="${multipleSize}">
-            <option th:if="${nullable == true}" th:selected="${value == null || value == ''}"></option>
-            <th:block th:each="entry, stat : ${options}">
-                <th:block th:text="${entry.key}" />
-                <th:block th:text="${entry.value}" />
-                <th:block th:text="${value}" />
-                <option th:text="${entry.value}" th:value="${entry.key}" th:selected="${value == entry.key}"></option>
-            </th:block>
-        </select>
-        <th:block th:each="validationError : ${validationErrors}">
-            <span class="block error invalid-feedback" style="display: inline" th:text="${validationError}"></span>
+<div class="form-group">
+    <label th:if="${label != null}" th:for="${name}" th:text="${label}"></label>
+    <input th:if="${disabled == true}" type="hidden" th:id="${name}" th:name="${name}" th:value="${value}">
+    <select th:id="${name}" th:name="${name}" class="form-control" th:classappend="${searchable == true ? 'select2' : ''}" th:attrappend="disabled=${disabled == true ? 'disabled' : ''}" style="width: 100%;" th:multiple="${multiple}" th:size="${multipleSize}">
+        <option th:if="${nullable == true}" th:selected="${value == null || value == ''}"></option>
+        <th:block th:each="entry, stat : ${options}">
+            <th:block th:text="${entry.key}" />
+            <th:block th:text="${entry.value}" />
+            <th:block th:text="${value}" />
+            <option th:text="${entry.value}" th:value="${entry.key}" th:selected="${value == entry.key}"></option>
         </th:block>
-    </p>
+    </select>
+    <th:block th:each="validationError : ${validationErrors}">
+        <span class="block error invalid-feedback" style="display: inline" th:text="${validationError}"></span>
+    </th:block>
 </div>

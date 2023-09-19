@@ -1,5 +1,5 @@
-<div>
-    <p><label th:if="${label != null}" th:for="${name}" th:text="${label}"></label></p>
+<div class="form-group">
+    <label th:if="${label != null}" th:for="${name}" th:text="${label}"></label>
     <p>
     <div th:if="${value != null && value != ''}">
         <img th:src="${value}" th:width="${maxWidth}" th:height="${maxHeight}" />

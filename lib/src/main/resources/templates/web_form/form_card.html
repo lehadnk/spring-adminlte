@@ -1,0 +1,11 @@
+<form method="POST" th:enctype="${enctype}" th:action="${action}">
+    <div class="card card-default">
+      <div class="card-body">
+          <div th:utext="${contents}"></div>
+          <div style="margin-top: 10px;" th:if="${not #lists.isEmpty(validationErrors)}" th:each="validationError : ${validationErrors}">
+              <span class="text-danger" th:text="${validationError}"></span>
+          </div>
+      </div>
+    </div>
+</form>
+

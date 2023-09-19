@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class AbstractFormElementTest {
+public class AbstractFormFieldElementTest {
     @Test
     public void testIsValid()
     {

@@ -2,7 +2,7 @@ package adminlte.web_form.communication.form_elements;
 
 import java.util.HashMap;
 
-public class Audio extends AbstractFormElement<Audio> {
+public class Audio extends AbstractFormFieldElement<Audio> {
     private final String templatePath = "web_form/form_elements/audio.html";
 
     private Boolean hasUpdateUrlInput = false;

@@ -1,15 +1,13 @@
-<div>
-    <p><label th:if="${label != null}" th:for="${name}" th:text="${label}"></label></p>
+<div class="form-group">
+    <label th:if="${label != null}" th:for="${name}" th:text="${label}"></label>
+
+    <div id="editor" class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}" th:text="${value}"></div>
+    <textarea style="display: none;" th:id="${name}" class="form-control" th:name="${name}" th:text="${value}"></textarea>
 
     <p>
         <th:block th:each="validationError : ${validationErrors}">
             <span class="block error invalid-feedback" style="display: inline" th:text="${validationError}"></span>
         </th:block>
-    </p>
-
-    <p>
-        <div id="editor" class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}" th:text="${value}"></div>
-        <textarea style="display: none;" th:id="${name}" class="form-control" th:name="${name}" th:text="${value}"></textarea>
     </p>
 </div>
 

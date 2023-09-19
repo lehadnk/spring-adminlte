@@ -5,7 +5,7 @@ import adminlte.web_form.business.glossary.GlossaryFacadeInterface;
 import java.util.List;
 import java.util.Map;
 
-public class LocalizableWYSIWYGMarkdownInput extends AbstractFormElement<LocalizableWYSIWYGMarkdownInput> implements Localizable {
+public class LocalizableWYSIWYGMarkdownInput extends AbstractFormFieldElement<LocalizableWYSIWYGMarkdownInput> implements Localizable {
     private final String templatePath = "web_form/form_elements/localizable_wysiwyg_markdown_input.html";
 
     private final String glossaryKey;

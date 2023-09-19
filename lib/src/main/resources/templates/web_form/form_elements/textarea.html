@@ -1,10 +1,7 @@
-<div>
-    <p><label th:if="${label != null}" th:for="${name}" th:text="${label}"></label></p>
-    <p>
-        <textarea th:id="${name}" class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}" th:rows="${rowsCount}" rows="10" th:name="${name}" th:text="${value}" th:required="${required}" th:oninput="${textTransform == 'lowercase'} ? 'this.value = this.value.toLowerCase()' : ''">
-        </textarea>
-        <th:block th:each="validationError : ${validationErrors}">
-            <span class="block error invalid-feedback" th:text="${validationError}"></span>
-        </th:block>
-    </p>
+<div class="form-group">
+    <label th:if="${label != null}" th:for="${name}" th:text="${label}"></label>
+    <textarea th:id="${name}" class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}" th:rows="${rowsCount}" rows="10" th:name="${name}" th:text="${value}" th:required="${required}" th:oninput="${textTransform == 'lowercase'} ? 'this.value = this.value.toLowerCase()' : ''"></textarea>
+    <th:block th:each="validationError : ${validationErrors}">
+        <span class="block error invalid-feedback" th:text="${validationError}"></span>
+    </th:block>
 </div>

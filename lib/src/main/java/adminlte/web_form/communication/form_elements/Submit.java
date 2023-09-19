@@ -3,11 +3,10 @@ package adminlte.web_form.communication.form_elements;
 import java.util.HashMap;
 
 public class Submit extends AbstractFormElement<Submit> {
-
     private final String templatePath = "web_form/form_elements/submit.html";
+
     private String name = "submit";
-    private String value = "submit";
-    private String text;
+    private final String text;
 
     public Submit(String text) {
         this.text = text;
@@ -18,9 +17,9 @@ public class Submit extends AbstractFormElement<Submit> {
         return this;
     }
 
-    public Submit setValue(String value) {
-        this.value = value;
-        return this;
+    public String getName()
+    {
+        return this.name;
     }
 
     @Override

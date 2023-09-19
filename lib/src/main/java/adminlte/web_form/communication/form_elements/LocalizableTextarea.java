@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LocalizableTextarea extends AbstractFormElement<LocalizableTextarea> implements Localizable {
+public class LocalizableTextarea extends AbstractFormFieldElement<LocalizableTextarea> implements Localizable {
     private final String templatePath = "web_form/form_elements/localizable_textarea.html";
 
     private final String glossaryKey;

@@ -1,11 +1,10 @@
 package adminlte.web_form.communication.form_elements;
 
 import adminlte.web_form.communication.validators.IntegerValidator;
-import adminlte.web_form.communication.validators.RequiredFieldValidator;
 
 import java.util.Map;
 
-public class Input extends AbstractFormElement<Input> {
+public class Input extends AbstractFormFieldElement<Input> {
     private final String templatePath = "web_form/form_elements/input.html";
     private String type = "text";
 

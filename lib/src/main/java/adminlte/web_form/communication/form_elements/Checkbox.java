@@ -1,6 +1,6 @@
 package adminlte.web_form.communication.form_elements;
 
-public class Checkbox extends AbstractFormElement<Checkbox> {
+public class Checkbox extends AbstractFormFieldElement<Checkbox> {
     private final String templatePath = "web_form/form_elements/checkbox.html";
 
     @Override

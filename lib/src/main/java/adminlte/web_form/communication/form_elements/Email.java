@@ -2,7 +2,7 @@ package adminlte.web_form.communication.form_elements;
 
 import adminlte.web_form.communication.validators.EmailValidator;
 
-public class Email extends AbstractFormElement<Email> {
+public class Email extends AbstractFormFieldElement<Email> {
     private final String templatePath = "web_form/form_elements/email.html";
 
     public Email()

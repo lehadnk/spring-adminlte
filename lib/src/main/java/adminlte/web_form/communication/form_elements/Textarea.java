@@ -2,7 +2,7 @@ package adminlte.web_form.communication.form_elements;
 
 import java.util.Map;
 
-public class Textarea extends AbstractFormElement<Textarea> {
+public class Textarea extends AbstractFormFieldElement<Textarea> {
 
     private final String templatePath = "web_form/form_elements/textarea.html";
     private String textTransform = "";

@@ -2,30 +2,22 @@ package adminlte.web_form.communication.form_elements;
 
 
 import adminlte.web_form.communication.validators.WebFormValidatorInterface;
-import adminlte.web_form.communication.validators.RequiredFieldValidator;
 import adminlte.web_form.dto.ValidationResult;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public abstract class AbstractFormElement<T extends AbstractFormElement<T>> implements WebFormElementInterface {
-    public String label;
-    public String value;
-
     protected ArrayList<WebFormValidatorInterface> validators = new ArrayList<>();
     private ArrayList<ValidationResult> validationResults = new ArrayList<>();
     private boolean wasValidated = false;
-    protected boolean required = false;
-    protected boolean nullable = false;
+
+    public String value;
 
     abstract public String getTemplatePath();
 
-    public String getValue()
-    {
-        return this.value;
-    }
-
-    public ArrayList<ValidationResult> validate()
+    public List<ValidationResult> validate()
     {
         this.validationResults = new ArrayList<>();
         for(WebFormValidatorInterface validator: this.validators) {
@@ -36,7 +28,7 @@ public abstract class AbstractFormElement<T extends AbstractFormElement<T>> impl
         return this.validationResults;
     }
 
-    public ArrayList<ValidationResult> getValidationResults()
+    public List<ValidationResult> getValidationResults()
     {
         return this.validationResults;
     }
@@ -56,11 +48,6 @@ public abstract class AbstractFormElement<T extends AbstractFormElement<T>> impl
         return true;
     }
 
-    public String getLabel()
-    {
-        return this.label;
-    }
-
     public Map<String, Object> getContextVariables() {
         return null;
     }
@@ -76,30 +63,18 @@ public abstract class AbstractFormElement<T extends AbstractFormElement<T>> impl
         return this.casted();
     }
 
-    public T setValue(String value) {
-        this.value = value;
-        return this.casted();
-    }
-
     public T addValidationResult(ValidationResult validationResult) {
         this.validationResults.add(validationResult);
         return this.casted();
     }
 
-    public T setLabel(String label)
+    public String getValue()
     {
-        this.label = label;
-        return this.casted();
+        return this.value;
     }
 
-    public T setRequired() {
-        this.addValidator(new RequiredFieldValidator());
-        this.required = true;
-        return this.casted();
-    }
-
-    public T setNullable(boolean value) {
-        this.nullable = value;
+    public T setValue(String value) {
+        this.value = value;
         return this.casted();
     }
 }
