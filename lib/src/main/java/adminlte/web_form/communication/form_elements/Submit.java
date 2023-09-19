@@ -1,15 +1,36 @@
 package adminlte.web_form.communication.form_elements;
 
-public class Submit extends AbstractFormElement<Submit> {
-    private final String templatePath = "web_form/form_elements/submit.html";
+import java.util.HashMap;
 
-    public Submit(String name)
-    {
-        this.value = name;
+public class Submit extends AbstractFormElement<Submit> {
+
+    private final String templatePath = "web_form/form_elements/submit.html";
+    private String name = "submit";
+    private String value = "submit";
+    private String text;
+
+    public Submit(String text) {
+        this.text = text;
+    }
+
+    public Submit setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public Submit setValue(String value) {
+        this.value = value;
+        return this;
     }
 
     @Override
-    public String getTemplatePath() {
-        return this.templatePath;
+    public String getTemplatePath() { return this.templatePath; }
+
+    public HashMap<String, Object> getContextVariables() {
+        HashMap<String, Object> contextVariables = new HashMap<>();
+        contextVariables.put("text", this.text);
+        contextVariables.put("name", this.name);
+        contextVariables.put("value", this.value);
+        return contextVariables;
     }
 }
