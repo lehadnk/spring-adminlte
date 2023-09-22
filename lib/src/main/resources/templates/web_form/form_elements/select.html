@@ -4,10 +4,7 @@
     <select th:id="${name}" th:name="${name}" class="form-control" th:classappend="${searchable == true ? 'select2' : ''}" th:attrappend="disabled=${disabled == true ? 'disabled' : ''}" style="width: 100%;" th:multiple="${multiple}" th:size="${multipleSize}">
         <option th:if="${nullable == true}" th:selected="${value == null || value == ''}"></option>
         <th:block th:each="entry, stat : ${options}">
-            <th:block th:text="${entry.key}" />
-            <th:block th:text="${entry.value}" />
-            <th:block th:text="${value}" />
-            <option th:text="${entry.value}" th:value="${entry.key}" th:selected="${value == entry.key}"></option>
+            <option th:text="${entry.value}" th:value="${entry.key}" th:selected="${value != null && #strings.listSplit(value, ',').contains(entry.key)}"></option>
         </th:block>
     </select>
     <th:block th:each="validationError : ${validationErrors}">
