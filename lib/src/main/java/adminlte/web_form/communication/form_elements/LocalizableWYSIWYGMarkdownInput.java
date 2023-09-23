@@ -25,6 +25,18 @@ public class LocalizableWYSIWYGMarkdownInput extends AbstractFormFieldElement<Lo
         }
     }
 
+    public LocalizableWYSIWYGMarkdownInput(GlossaryFacadeInterface glossaryFacade) {
+        this.glossaryKey = "";
+        this.languages = glossaryFacade.getAvailableLanguages();
+        this.textMapByLanguage = glossaryFacade.getGlossaryTextMapByLanguage(this.glossaryKey);
+
+        for (var language : languages) {
+            if (!this.textMapByLanguage.containsKey(language)) {
+                this.textMapByLanguage.put(language, "");
+            }
+        }
+    }
+
     public String getGlossaryKey() {
         return glossaryKey;
     }
