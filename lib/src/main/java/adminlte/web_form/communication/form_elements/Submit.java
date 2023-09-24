@@ -5,6 +5,7 @@ import java.util.HashMap;
 public class Submit {
     private String name = "submit";
     private String value;
+    private Integer length = 3;
 
     private final String text;
 
@@ -38,6 +39,17 @@ public class Submit {
     public String getValue()
     {
         return this.value;
+    }
+
+    public Submit setLength(Integer length)
+    {
+        this.length = length;
+        return this;
+    }
+
+    public Integer getLength()
+    {
+        return this.length;
     }
 
     public HashMap<String, Object> getContextVariables()
