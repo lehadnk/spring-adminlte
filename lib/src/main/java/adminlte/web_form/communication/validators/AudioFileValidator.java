@@ -6,7 +6,7 @@ import ch.qos.logback.core.rolling.helper.FileNamePattern;
 import java.nio.file.Files;
 import java.util.List;
 
-public class AudioFileValidator extends AbstractFormValidator {
+public class AudioFileValidator extends AbstractFormValidator<String> {
     public List<String> allowedFormats = List.of("mp3", "wav");
 
     public AudioFileValidator setAllowedFormats(List<String> formats)
@@ -16,14 +16,13 @@ public class AudioFileValidator extends AbstractFormValidator {
     }
 
     @Override
-    public ValidationResult validate(Object value) {
+    public ValidationResult validate(String value) {
         if (value == null) {
             return this.successValidationResult();
         }
 
-        var fileName = value.toString();
         for (var extension : this.allowedFormats) {
-            if (fileName.endsWith("." + extension)) {
+            if (value.endsWith("." + extension)) {
                 return this.successValidationResult();
             }
         }

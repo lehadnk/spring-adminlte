@@ -21,7 +21,8 @@ public class ElementHydrator {
         this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
-    public Object hydrateElement(WebFormFieldElementInterface formElement, Object valueObject) {
+    // @todo This method is total bs, marked to overhaul
+    public Object hydrateFormElement(WebFormFieldElementInterface formElement, Object valueObject) {
         String value;
 
         if (valueObject == null) {

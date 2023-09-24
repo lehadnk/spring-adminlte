@@ -4,15 +4,15 @@ import adminlte.web_form.business.builder.ValidationResultFactory;
 import adminlte.web_form.communication.validators.AbstractFormValidator;
 import adminlte.web_form.dto.ValidationResult;
 
-public class ContainsOneValidator extends AbstractFormValidator {
+public class ContainsOneValidator extends AbstractFormValidator<String> {
 
     @Override
-    public ValidationResult validate(Object value) {
+    public ValidationResult validate(String value) {
         if (value == null) {
             return ValidationResultFactory.error("Value is null");
         }
 
-        if (value.toString().contains("1")) {
+        if (value.contains("1")) {
             return ValidationResultFactory.success();
         }
 

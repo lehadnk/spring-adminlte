@@ -7,11 +7,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
-abstract public class AbstractJsonStructureValidator<TJsonStructure> extends AbstractFormValidator {
+abstract public class AbstractJsonStructureValidator<TJsonStructure> extends AbstractFormValidator<String> {
     public Class<TJsonStructure> jsonStructureClass;
 
     @Override
-    public ValidationResult validate(Object value) {
+    public ValidationResult validate(String value) {
         TJsonStructure jsonObject;
 
         if (value == null) {

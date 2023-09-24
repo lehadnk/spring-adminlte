@@ -1,5 +1,6 @@
 package adminlte.web_form.communication;
 
+import adminlte.web_form.business.exceptions.NoElementException;
 import adminlte.web_form.business.hydrator.ElementHydrator;
 import adminlte.web_form.business.hydrator.FieldListProvider;
 import adminlte.web_form.business.hydrator.ObjectToFormHydrator;
@@ -72,6 +73,17 @@ abstract public class AbstractWebForm<TRequest> {
             var hydrator = new ObjectToFormHydrator<TRequest>(new FieldListProvider(), new ElementHydrator());
             hydrator.hydrateFromRequest(this, dto);
         }
+    }
+
+    public void hydrateElement(String name, Object value)
+    {
+        var element = this.elements.get(name);
+        if (element == null) {
+            throw new NoElementException();
+        }
+
+        var elementHydrator = new ElementHydrator();
+        elementHydrator.hydrateFormElement(element, value);
     }
 
     private static List<Field> getAllFields(Class<?> type) {

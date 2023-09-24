@@ -2,14 +2,14 @@ package adminlte.web_form.communication.validators;
 
 import adminlte.web_form.dto.ValidationResult;
 
-public class EmailValidator extends AbstractFormValidator {
+public class EmailValidator extends AbstractFormValidator<String> {
     @Override
-    public ValidationResult validate(Object value) {
+    public ValidationResult validate(String value) {
         if (value == null) {
             return this.errorValidationResult("Email cannot be empty");
         }
 
-        if (value.toString().contains("@")) {
+        if (value.contains("@")) {
             return this.successValidationResult();
         }
 

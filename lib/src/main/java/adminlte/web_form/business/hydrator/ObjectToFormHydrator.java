@@ -22,7 +22,7 @@ public class ObjectToFormHydrator<TRequest> {
                     var formElement = form.elements.get(field.getName());
 
                     field.setAccessible(true);
-                    var value = this.elementHydrator.hydrateElement(formElement, field.get(dto));
+                    var value = this.elementHydrator.hydrateFormElement(formElement, field.get(dto));
 
                     //@todo handling nullable property - I have a sense that we're doing something wrong here
                     if (value == null && formElement instanceof Input input && input.getNullable()) {

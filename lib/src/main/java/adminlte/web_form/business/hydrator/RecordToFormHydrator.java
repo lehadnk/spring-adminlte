@@ -1,7 +1,6 @@
 package adminlte.web_form.business.hydrator;
 
 import adminlte.web_form.communication.AbstractWebForm;
-import adminlte.web_form.communication.form_elements.WebFormFieldElementInterface;
 
 import java.lang.reflect.InvocationTargetException;
 
@@ -24,7 +23,7 @@ public class RecordToFormHydrator {
                     throw new RuntimeException(e);
                 }
 
-                this.elementHydrator.hydrateElement(form.elements.get(recordComponent.getName()), valueObject);
+                this.elementHydrator.hydrateFormElement(form.elements.get(recordComponent.getName()), valueObject);
             }
         }
     }
