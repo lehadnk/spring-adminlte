@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LocalizableInput extends AbstractFormFieldElement<LocalizableInput> implements Localizable {
+public class LocalizableInput extends AbstractFormFieldElement<LocalizableInput, String> implements Localizable {
     private final String templatePath = "web_form/form_elements/localizable_input.html";
 
     private final String glossaryKey;

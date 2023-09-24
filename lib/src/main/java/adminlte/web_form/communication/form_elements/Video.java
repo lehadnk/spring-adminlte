@@ -2,7 +2,7 @@ package adminlte.web_form.communication.form_elements;
 
 import java.util.HashMap;
 
-public class Video extends AbstractFormFieldElement<Video> {
+public class Video extends AbstractFormFieldElement<Video, String> {
     private final String templatePath = "web_form/form_elements/video.html";
 
     private Boolean hasUpdateUrlInput = false;

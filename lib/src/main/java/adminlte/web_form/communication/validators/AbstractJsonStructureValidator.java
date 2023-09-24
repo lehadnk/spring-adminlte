@@ -11,7 +11,7 @@ abstract public class AbstractJsonStructureValidator<TJsonStructure> extends Abs
     public Class<TJsonStructure> jsonStructureClass;
 
     @Override
-    public ValidationResult validate(String value) {
+    public ValidationResult validate(Object value) {
         TJsonStructure jsonObject;
 
         if (value == null) {
@@ -22,7 +22,7 @@ abstract public class AbstractJsonStructureValidator<TJsonStructure> extends Abs
         objectMapper.findAndRegisterModules();
 
         try {
-            jsonObject = objectMapper.readValue(value, this.jsonStructureClass);
+            jsonObject = objectMapper.readValue(value.toString(), this.jsonStructureClass);
         } catch (JsonProcessingException e) {
             return this.errorValidationResult("Invalid JSON structure");
         }
@@ -40,7 +40,7 @@ abstract public class AbstractJsonStructureValidator<TJsonStructure> extends Abs
                     missingFields.add(field.getName());
                 }
             }
-            if (missingFields.size() > 0) {
+            if (!missingFields.isEmpty()) {
                 return this.errorValidationResult("Invalid JSON structure. Missing required fields: " + String.join(", ", missingFields));
             }
         } catch (IllegalAccessException ex) {

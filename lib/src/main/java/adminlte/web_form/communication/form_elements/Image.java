@@ -2,7 +2,7 @@ package adminlte.web_form.communication.form_elements;
 
 import java.util.HashMap;
 
-public class Image extends AbstractFormFieldElement<Image> {
+public class Image extends AbstractFormFieldElement<Image, String> {
     private final String templatePath = "web_form/form_elements/image.html";
     private Integer maxWidth = 50;
     private Integer maxHeight = 50;

@@ -7,12 +7,12 @@ import adminlte.web_form.dto.ValidationResult;
 public class ContainsOneValidator extends AbstractFormValidator {
 
     @Override
-    public ValidationResult validate(String value) {
+    public ValidationResult validate(Object value) {
         if (value == null) {
             return ValidationResultFactory.error("Value is null");
         }
 
-        if (value.contains("1")) {
+        if (value.toString().contains("1")) {
             return ValidationResultFactory.success();
         }
 

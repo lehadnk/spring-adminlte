@@ -4,12 +4,12 @@ import adminlte.web_form.dto.ValidationResult;
 
 public class EmailValidator extends AbstractFormValidator {
     @Override
-    public ValidationResult validate(String value) {
+    public ValidationResult validate(Object value) {
         if (value == null) {
             return this.errorValidationResult("Email cannot be empty");
         }
 
-        if (value.contains("@")) {
+        if (value.toString().contains("@")) {
             return this.successValidationResult();
         }
 

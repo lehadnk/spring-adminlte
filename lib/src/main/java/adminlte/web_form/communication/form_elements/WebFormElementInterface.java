@@ -6,20 +6,20 @@ import adminlte.web_form.dto.ValidationResult;
 import java.util.List;
 import java.util.Map;
 
-public interface WebFormElementInterface {
-    WebFormElementInterface setValue(String value);
-
+public interface WebFormElementInterface<TValueType> {
     String getTemplatePath();
 
-    String getValue();
+    WebFormElementInterface<TValueType> setValue(TValueType value);
+
+    TValueType getValue();
+
+    WebFormElementInterface<TValueType> addValidator(WebFormValidatorInterface<TValueType> validator);
 
     List<ValidationResult> validate();
 
     List<ValidationResult> getValidationResults();
 
     Boolean isValid();
-
-    WebFormElementInterface addValidator(WebFormValidatorInterface validator);
 
     Map<String, Object> getContextVariables();
 

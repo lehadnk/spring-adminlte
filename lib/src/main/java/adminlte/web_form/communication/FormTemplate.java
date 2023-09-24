@@ -19,7 +19,7 @@ public class FormTemplate extends AbstractHtmlTemplate {
         this.context.setVariable("enctype", enctype);
         this.context.setVariable("contents", contents);
         this.context.setVariable("validationErrors", validationErrors);
-        this.templatePath = simpleLayout ? "web_form/form_simple.html" : "web_form/form_card.html";
+        this.templatePath = simpleLayout ? "web_form/form_simple.html" : this.templatePath;
     }
 
     @Override

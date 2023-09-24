@@ -2,7 +2,7 @@ package adminlte.web_form.communication.form_elements;
 
 import java.util.HashMap;
 
-public class File extends AbstractFormFieldElement<File> {
+public class File extends AbstractFormFieldElement<File, String> {
     private final String templatePath = "web_form/form_elements/file.html";
     private String accept;
     private Boolean multiple = false;

@@ -2,17 +2,24 @@ package adminlte.web_form.communication.form_elements;
 
 import java.util.HashMap;
 
-public class Submit extends AbstractFormElement<Submit> {
-    private final String templatePath = "web_form/form_elements/submit.html";
-
+public class Submit {
     private String name = "submit";
+    private String value;
+
     private final String text;
 
-    public Submit(String text) {
+    public Submit(String text)
+    {
         this.text = text;
     }
 
-    public Submit setName(String name) {
+    public String getText()
+    {
+        return this.text;
+    }
+
+    public Submit setName(String name)
+    {
         this.name = name;
         return this;
     }
@@ -22,10 +29,19 @@ public class Submit extends AbstractFormElement<Submit> {
         return this.name;
     }
 
-    @Override
-    public String getTemplatePath() { return this.templatePath; }
+    public Submit setValue(String value)
+    {
+        this.value = value;
+        return this;
+    }
 
-    public HashMap<String, Object> getContextVariables() {
+    public String getValue()
+    {
+        return this.value;
+    }
+
+    public HashMap<String, Object> getContextVariables()
+    {
         HashMap<String, Object> contextVariables = new HashMap<>();
         contextVariables.put("text", this.text);
         contextVariables.put("name", this.name);

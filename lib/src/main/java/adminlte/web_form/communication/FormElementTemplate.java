@@ -11,11 +11,10 @@ public class FormElementTemplate extends AbstractHtmlTemplate {
     public FormElementTemplate(
             String name,
             String label,
-            String value,
+            Object value,
             ArrayList<String> validationErrors,
             String templatePath
-    )
-    {
+    ) {
         this.context.setVariable("name", name);
         this.context.setVariable("label", label);
         this.context.setVariable("value", value);
@@ -24,12 +23,14 @@ public class FormElementTemplate extends AbstractHtmlTemplate {
     }
 
     @Override
-    public String getTemplatePath() {
+    public String getTemplatePath()
+    {
         return this.templatePath;
     }
 
     @Override
-    public AbstractHtmlLayout getLayoutTemplate() {
+    public AbstractHtmlLayout getLayoutTemplate()
+    {
         return null;
     }
 }

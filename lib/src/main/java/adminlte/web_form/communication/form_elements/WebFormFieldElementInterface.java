@@ -6,7 +6,7 @@ import adminlte.web_form.dto.ValidationResult;
 import java.util.List;
 import java.util.Map;
 
-public interface WebFormFieldElementInterface extends WebFormElementInterface {
+public interface WebFormFieldElementInterface<TValueType> extends WebFormElementInterface<TValueType> {
     String getLabel();
     WebFormFieldElementInterface setLabel(String label);
     WebFormElementInterface setRequired();

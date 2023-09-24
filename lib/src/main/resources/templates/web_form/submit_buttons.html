@@ -1,0 +1,5 @@
+<div class="row" th:each="button : ${submitButtons}">
+    <div class="col-sm-3">
+        <button class="btn btn-primary btn-block" type="submit" th:name="${button.getName()}" th:value="${button.getValue()}" th:text="${button.getText()}"></button>
+    </div>
+</div>

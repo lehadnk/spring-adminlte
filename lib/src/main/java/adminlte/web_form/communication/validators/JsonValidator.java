@@ -7,11 +7,17 @@ import com.fasterxml.jackson.core.JsonFactoryBuilder;
 import java.io.IOException;
 
 public class JsonValidator extends AbstractFormValidator {
-    private static final JsonFactory JSON_FACTORY = new JsonFactory(new JsonFactoryBuilder().disable(JsonFactory.Feature.INTERN_FIELD_NAMES));
+    private JsonFactory jsonFactory = new JsonFactory(new JsonFactoryBuilder().disable(JsonFactory.Feature.INTERN_FIELD_NAMES));
+
+    public JsonValidator setJsonFactory(JsonFactory jsonFactory)
+    {
+        this.jsonFactory = jsonFactory;
+        return this;
+    }
 
     @Override
-    public ValidationResult validate(String value) {
-        try(var parser = JSON_FACTORY.createParser(value)) {
+    public ValidationResult validate(Object value) {
+        try(var parser = this.jsonFactory.createParser(value.toString())) {
             var token = parser.nextToken();
             while (token != null) token = parser.nextToken();
         } catch (IOException ex) {

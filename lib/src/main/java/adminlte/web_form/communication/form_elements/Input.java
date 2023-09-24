@@ -4,7 +4,7 @@ import adminlte.web_form.communication.validators.IntegerValidator;
 
 import java.util.Map;
 
-public class Input extends AbstractFormFieldElement<Input> {
+public class Input extends AbstractFormFieldElement<Input, String> {
     private final String templatePath = "web_form/form_elements/input.html";
     private String type = "text";
 

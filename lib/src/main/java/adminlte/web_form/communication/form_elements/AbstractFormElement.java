@@ -8,19 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public abstract class AbstractFormElement<T extends AbstractFormElement<T>> implements WebFormElementInterface {
-    protected ArrayList<WebFormValidatorInterface> validators = new ArrayList<>();
+public abstract class AbstractFormElement<TSelf extends AbstractFormElement<TSelf, TValueType>, TValueType> implements WebFormElementInterface<TValueType> {
+    protected ArrayList<WebFormValidatorInterface<TValueType>> validators = new ArrayList<>();
     private ArrayList<ValidationResult> validationResults = new ArrayList<>();
     private boolean wasValidated = false;
 
-    public String value;
+    public TValueType value;
 
     abstract public String getTemplatePath();
 
     public List<ValidationResult> validate()
     {
         this.validationResults = new ArrayList<>();
-        for(WebFormValidatorInterface validator: this.validators) {
+        for(WebFormValidatorInterface<TValueType> validator: this.validators) {
             this.validationResults.add(validator.validate(this.getValue()));
         }
 
@@ -53,27 +53,28 @@ public abstract class AbstractFormElement<T extends AbstractFormElement<T>> impl
     }
 
     @SuppressWarnings("unchecked")
-    protected T casted()
+    protected TSelf casted()
     {
-        return (T) this;
+        return (TSelf) this;
     }
 
-    public T addValidator(WebFormValidatorInterface validator) {
+    public TSelf addValidator(WebFormValidatorInterface<TValueType> validator)
+    {
         this.validators.add(validator);
         return this.casted();
     }
 
-    public T addValidationResult(ValidationResult validationResult) {
+    public TSelf addValidationResult(ValidationResult validationResult) {
         this.validationResults.add(validationResult);
         return this.casted();
     }
 
-    public String getValue()
+    public TValueType getValue()
     {
         return this.value;
     }
 
-    public T setValue(String value) {
+    public TSelf setValue(TValueType value) {
         this.value = value;
         return this.casted();
     }

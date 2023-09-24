@@ -1,17 +1,21 @@
 package adminlte.web_form.communication.form_elements;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
 
-public class Select extends AbstractFormFieldElement<Select, String> {
+public class MultipleSelect extends AbstractFormFieldElement<MultipleSelect, List<String>> {
 
-    private String templatePath = "web_form/form_elements/select.html";
+    private String templatePath = "web_form/form_elements/multiple_select.html";
 
     final private Map<Object, String> options;
     private Boolean searchable = false;
     private Boolean disabled = false;
+    private Integer maxInputSize = 0; // Infinite if zero
 
-    public Select(Map<String, String> options)
+    public MultipleSelect(Map<String, String> options)
     {
         this.options = new LinkedHashMap<>(options);
     }
@@ -35,21 +39,27 @@ public class Select extends AbstractFormFieldElement<Select, String> {
         return this.templatePath;
     }
 
-    public Select addOption(Object key, String title)
+    public MultipleSelect addOption(Object key, String title)
     {
         this.options.put(key, title);
         return this;
     }
 
-    public Select setSearchable(Boolean value)
+    public MultipleSelect setSearchable(Boolean value)
     {
         this.searchable = value;
         return this;
     }
 
-    public Select setDisabled(Boolean value)
+    public MultipleSelect setDisabled(Boolean value)
     {
         this.disabled = value;
+        return this;
+    }
+
+    public MultipleSelect setMaxInputSize(int size)
+    {
+        this.maxInputSize = size;
         return this;
     }
 
@@ -57,9 +67,9 @@ public class Select extends AbstractFormFieldElement<Select, String> {
     {
         HashMap<String, Object> contextVariables = new HashMap<>();
         contextVariables.put("options", this.options);
-        contextVariables.put("nullable", this.nullable);
         contextVariables.put("searchable", this.searchable);
         contextVariables.put("disabled", this.disabled);
+        contextVariables.put("maxInputSize", this.maxInputSize);
         contextVariables.put("value", this.value);
 
         return contextVariables;

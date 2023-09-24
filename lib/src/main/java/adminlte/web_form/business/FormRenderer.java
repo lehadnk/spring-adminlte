@@ -4,12 +4,11 @@ import adminlte.html_template_renderer.HtmlTemplateRendererService;
 import adminlte.web_form.communication.AbstractWebForm;
 import adminlte.web_form.communication.FormElementTemplate;
 import adminlte.web_form.communication.FormTemplate;
-import adminlte.web_form.communication.form_elements.WebFormElementInterface;
+import adminlte.web_form.communication.SubmitButtonsTemplate;
 import adminlte.web_form.communication.form_elements.WebFormFieldElementInterface;
 import adminlte.web_form.dto.ValidationResult;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FormRenderer {
     private HtmlTemplateRendererService htmlTemplateRendererFacade;
@@ -31,7 +30,7 @@ public class FormRenderer {
             }
         }
 
-        var submitButton = this.renderSubmitButton(form);
+        var submitButton = this.renderSubmitButtons(form);
         if (submitButton != null) {
             contents.append(submitButton);
         }
@@ -40,18 +39,17 @@ public class FormRenderer {
         return this.htmlTemplateRendererFacade.renderTemplate(formTemplate);
     }
 
-    private String renderSubmitButton(AbstractWebForm<?> form)
+    private String renderSubmitButtons(AbstractWebForm<?> form)
     {
-        if (form.submitButton == null) {
+        if (form.submitButtons.isEmpty()) {
             return null;
         }
 
-        var formElementTemplate = new FormElementTemplate(form.submitButton.getName(), null, form.submitButton.getValue(), new ArrayList<>(), form.submitButton.getTemplatePath());
-        formElementTemplate.updateContext(form.submitButton.getContextVariables());
-        return this.htmlTemplateRendererFacade.renderTemplate(formElementTemplate);
+        var submitButtonsTemplate = new SubmitButtonsTemplate(form.submitButtons);
+        return this.htmlTemplateRendererFacade.renderTemplate(submitButtonsTemplate);
     }
 
-    private String renderFormElement(String name, WebFormFieldElementInterface element) {
+    private String renderFormElement(String name, WebFormFieldElementInterface<?> element) {
         ArrayList<String> validationErrors = new ArrayList<>();
         for (ValidationResult validationResult: element.getValidationResults()) {
             if (!validationResult.isValid) {
@@ -63,10 +61,4 @@ public class FormRenderer {
         formElementTemplate.updateContext(element.getContextVariables());
         return this.htmlTemplateRendererFacade.renderTemplate(formElementTemplate);
     }
-//
-//    public String renderFormElement(String name, WebFormElementInterface element) {
-//        var formElementTemplate = new FormElementTemplate(name, null, element.getValue(), new ArrayList<>(), element.getTemplatePath());
-//        formElementTemplate.updateContext(element.getContextVariables());
-//        return this.htmlTemplateRendererFacade.renderTemplate(formElementTemplate);
-//    }
 }
