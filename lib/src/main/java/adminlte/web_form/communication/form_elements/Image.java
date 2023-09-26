@@ -34,7 +34,7 @@ public class Image extends AbstractFormFieldElement<Image, String> {
         HashMap<String, Object> contextVariables = new HashMap<>();
         contextVariables.put("maxWidth", this.maxWidth);
         contextVariables.put("maxHeight", this.maxHeight);
-        contextVariables.put("hasDelete", this.hasDeleteButton);
+        contextVariables.put("hasDeleteButton", this.hasDeleteButton);
         contextVariables.put("hasUpdateUrlInput", this.hasUpdateUrlInput);
         return contextVariables;
     }
