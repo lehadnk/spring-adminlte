@@ -1,6 +1,5 @@
 package adminlte.entity_list_table.communication.http.tables.columns;
 
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 abstract public class AbstractColumn implements ColumnDefinitionInterface {
@@ -22,6 +21,10 @@ abstract public class AbstractColumn implements ColumnDefinitionInterface {
 
     public String getFieldName() {
         return this.fieldName;
+    }
+
+    public String getCsvCellContent(Object object) {
+        return "";
     }
 
     protected Object getObjectValue(Object object, String fieldName) {
@@ -50,7 +53,7 @@ abstract public class AbstractColumn implements ColumnDefinitionInterface {
             } else {
                 return fieldOutput;
             }
-        } catch (NoSuchFieldException|IllegalAccessException|NoSuchMethodException|InvocationTargetException e) {
+        } catch (NoSuchFieldException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
             return null;
         }
     }

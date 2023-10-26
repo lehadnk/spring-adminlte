@@ -12,11 +12,18 @@ public class UrlColumn extends TextColumn {
     }
 
     @Override
-    public String getTemplatePath() { return this.templatePath; }
+    public String getTemplatePath() {
+        return this.templatePath;
+    }
 
     public UrlColumn setUrlText(String urlText) {
         this.urlText = urlText;
         return this;
+    }
+
+    @Override
+    public String getCsvCellContent(Object object) {
+        return this.getObjectValue(object, this.fieldName).toString();
     }
 
     @Override
@@ -34,7 +41,9 @@ public class UrlColumn extends TextColumn {
                 urlText = "";
             } else {
 
-                if (urlText.isBlank()) { urlText = cellContent; }
+                if (urlText.isBlank()) {
+                    urlText = cellContent;
+                }
             }
         }
 
