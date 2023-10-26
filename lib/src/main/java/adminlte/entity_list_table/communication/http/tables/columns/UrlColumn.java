@@ -2,6 +2,8 @@ package adminlte.entity_list_table.communication.http.tables.columns;
 
 import org.thymeleaf.context.Context;
 
+import java.util.Objects;
+
 public class UrlColumn extends TextColumn {
 
     private final String templatePath = "entity_list_table/columns/url_column.html";
@@ -12,9 +14,7 @@ public class UrlColumn extends TextColumn {
     }
 
     @Override
-    public String getTemplatePath() {
-        return this.templatePath;
-    }
+    public String getTemplatePath() { return this.templatePath; }
 
     public UrlColumn setUrlText(String urlText) {
         this.urlText = urlText;
@@ -23,7 +23,7 @@ public class UrlColumn extends TextColumn {
 
     @Override
     public String getCsvCellContent(Object object) {
-        return this.getObjectValue(object, this.fieldName).toString();
+        return Objects.toString(this.getObjectValue(object, this.fieldName), "");
     }
 
     @Override
@@ -41,9 +41,7 @@ public class UrlColumn extends TextColumn {
                 urlText = "";
             } else {
 
-                if (urlText.isBlank()) {
-                    urlText = cellContent;
-                }
+                if (urlText.isBlank()) { urlText = cellContent; }
             }
         }
 
