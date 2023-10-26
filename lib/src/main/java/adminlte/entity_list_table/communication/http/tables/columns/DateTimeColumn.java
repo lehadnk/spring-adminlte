@@ -5,8 +5,10 @@ import org.thymeleaf.context.Context;
 import java.sql.Date;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class DateTimeColumn extends AbstractColumn {
+
     private boolean useLocalTime = false;
     private String templatePath = "entity_list_table/columns/date_time_column.html";
     private String format = null;
@@ -32,12 +34,10 @@ public class DateTimeColumn extends AbstractColumn {
     }
 
     @Override
-    public String getTemplatePath() {
-        return this.templatePath;
-    }
+    public String getTemplatePath() { return this.templatePath; }
 
     public String getCsvCellContent(Object object) {
-        return this.getFormattedUtcDateTimeString(object);
+        return Objects.toString(this.getFormattedUtcDateTimeString(object), "");
     }
 
     public Context prepareContext(Object object) {
@@ -50,13 +50,10 @@ public class DateTimeColumn extends AbstractColumn {
 
     private String getFormattedUtcDateTimeString(Object object) {
         var instantObject = this.getInstant(object);
-        if (instantObject == null) {
-            return "";
-        }
 
-        if (this.format == null) {
-            return instantObject.toString();
-        }
+        if (instantObject == null) { return ""; }
+
+        if (this.format == null) { return instantObject.toString(); }
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(this.format).withZone(ZoneId.of("UTC"));
         return formatter.format(instantObject);
@@ -65,23 +62,15 @@ public class DateTimeColumn extends AbstractColumn {
     private Instant getInstant(Object object) {
         var content = this.getObjectValue(object, this.fieldName);
 
-        if (content == null) {
-            return null;
-        }
+        if (content == null) { return null; }
 
-        if (content instanceof Instant) {
-            return (Instant) content;
-        }
+        if (content instanceof Instant) { return (Instant)content; }
 
-        if (content instanceof Date) {
-            return ((Date) content).toLocalDate().atStartOfDay().toInstant(ZoneOffset.UTC);
-        }
+        if (content instanceof Date) { return ((Date)content).toLocalDate().atStartOfDay().toInstant(ZoneOffset.UTC); }
 
         // assuming that LocalDateTime stores UTC value
-        if (content instanceof LocalDateTime) {
-            return ((LocalDateTime) content).toInstant(ZoneOffset.UTC);
-        }
+        if (content instanceof LocalDateTime) { return ((LocalDateTime)content).toInstant(ZoneOffset.UTC); }
 
-        return (Instant) content;
+        return (Instant)content;
     }
 }
