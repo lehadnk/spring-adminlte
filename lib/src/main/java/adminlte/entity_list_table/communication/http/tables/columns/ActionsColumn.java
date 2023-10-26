@@ -1,6 +1,7 @@
 package adminlte.entity_list_table.communication.http.tables.columns;
 
 import adminlte.entity_list_table.dto.CellActionButton;
+
 import org.thymeleaf.context.Context;
 
 import java.util.ArrayList;
@@ -25,7 +26,6 @@ public class ActionsColumn extends AbstractColumn {
         return ctx;
     }
 
-
     private ArrayList<CellActionButton> getCellActionButtons(Object object) {
         var result = new ArrayList<CellActionButton>();
         for (var actionButton : this.actionButtons) {
@@ -37,7 +37,8 @@ public class ActionsColumn extends AbstractColumn {
                 }
                 url = url.replaceAll("<:" + idField + ">", identifier);
             }
-            var cellActionButton = new CellActionButton(url, actionButton.text, actionButton.cssClass, actionButton.method);
+            var cellActionButton = new CellActionButton(url, actionButton.text, actionButton.cssClass,
+                    actionButton.method);
             result.add(cellActionButton);
         }
         return result;

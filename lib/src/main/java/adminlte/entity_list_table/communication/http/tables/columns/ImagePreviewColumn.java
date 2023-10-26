@@ -14,8 +14,12 @@ public class ImagePreviewColumn extends AbstractColumn {
         return this.templatePath;
     }
 
-    public Context prepareContext(Object object)
-    {
+    @Override
+    public String getCsvCellContent(Object object) {
+        return this.getObjectValue(object, this.fieldName).toString();
+    }
+
+    public Context prepareContext(Object object) {
         var ctx = new Context();
         var content = this.getObjectValue(object, this.fieldName);
         if (content != null) {

@@ -4,8 +4,14 @@ import org.thymeleaf.context.Context;
 
 public interface ColumnDefinitionInterface {
     String getTemplatePath();
+
     ColumnDefinitionInterface setTitle(String title);
+
     String getTitle();
+
     String getFieldName();
+
     Context prepareContext(Object object);
+
+    String getCsvCellContent(Object object);
 }
