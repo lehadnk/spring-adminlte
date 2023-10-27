@@ -10,17 +10,22 @@ public class EnumColumn extends TextColumn {
 
     @Override
     public String getCsvCellContent(Object object) {
-        // TODO: handle null value of enum ?
         var content = this.getObjectValue(object, this.fieldName);
 
-        return ((DisplayableEnumInterface)content).getDisplayName().toString();
+        if (content == null) {
+            return "";
+        }
+
+        return ((DisplayableEnumInterface) content).getDisplayName().toString();
     }
 
     public Context prepareContext(Object object) {
         var ctx = new Context();
         var content = this.getObjectValue(object, this.fieldName);
 
-        if (content != null) { content = ((DisplayableEnumInterface)content).getDisplayName().toString(); }
+        if (content != null) {
+            content = ((DisplayableEnumInterface) content).getDisplayName().toString();
+        }
         ctx.setVariable("content", content);
         return ctx;
     }
