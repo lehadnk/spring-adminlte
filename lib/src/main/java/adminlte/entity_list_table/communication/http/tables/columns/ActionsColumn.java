@@ -31,15 +31,20 @@ public class ActionsColumn extends AbstractColumn {
         for (var actionButton : this.actionButtons) {
             var url = actionButton.url;
             for (var idField : actionButton.identifierFields) {
-                var identifier = this.getObjectValue(object, idField).toString();
+                var identifier = this.getObjectValue(object, idField);
                 if (identifier == null) {
-                    continue;
+                    url = null;
+                    break;
                 }
-                url = url.replaceAll("<:" + idField + ">", identifier);
+                url = url.replaceAll("<:" + idField + ">", identifier.toString());
             }
-            var cellActionButton = new CellActionButton(url, actionButton.text, actionButton.cssClass,
-                    actionButton.method);
-            result.add(cellActionButton);
+            // Don't generate a button if any of the identifies is null, since it will be a
+            // broken link either way.
+            if (url != null) {
+                var cellActionButton = new CellActionButton(url, actionButton.text, actionButton.cssClass,
+                        actionButton.method);
+                result.add(cellActionButton);
+            }
         }
         return result;
     }

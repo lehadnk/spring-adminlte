@@ -28,6 +28,10 @@ abstract public class AbstractColumn implements ColumnDefinitionInterface {
     }
 
     protected Object getObjectValue(Object object, String fieldName) {
+        // Will break on object > null > field request without this
+        if (object == null) {
+            return null;
+        }
         var fieldParts = fieldName.split("\\.", 2);
         var topLevelFieldName = fieldParts[0];
         var lowLevelFieldName = fieldParts.length == 2 ? fieldParts[1] : null;
