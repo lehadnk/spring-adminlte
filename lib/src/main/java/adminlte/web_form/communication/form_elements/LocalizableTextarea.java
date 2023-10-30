@@ -2,9 +2,10 @@ package adminlte.web_form.communication.form_elements;
 
 import adminlte.web_form.business.glossary.GlossaryFacadeInterface;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.*;
 
 public class LocalizableTextarea extends AbstractFormFieldElement<LocalizableTextarea, String> implements Localizable {
     private final String templatePath = "web_form/form_elements/localizable_textarea.html";
@@ -58,18 +59,26 @@ public class LocalizableTextarea extends AbstractFormFieldElement<LocalizableTex
 
     public Map<String, Object> getContextVariables() {
         return Map.of(
-            "textTransform", this.textTransform,
-            "glossaryKey", this.glossaryKey,
-            "languages", this.languages,
-            "textMapByLanguage", this.textMapByLanguage,
-            "rows", this.rows
-        );
+                "required", this.required,
+                "textTransform", this.textTransform,
+                "glossaryKey", this.glossaryKey,
+                "languages", this.languages,
+                "textMapByLanguage", this.textMapByLanguage,
+                "rows", this.rows);
     }
 
     public LocalizableTextarea setValue(Map<String, String> value) {
         if (value == null) {
             return this;
         }
+        var objectMapper = new ObjectMapper();
+
+        try {
+            this.value = objectMapper.writeValueAsString(value);
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
+
         this.textMapByLanguage.putAll(value);
         return this;
     }
