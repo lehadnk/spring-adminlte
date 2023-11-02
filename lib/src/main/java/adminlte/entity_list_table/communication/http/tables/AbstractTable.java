@@ -25,74 +25,43 @@ abstract public class AbstractTable<TDto> {
 
     abstract public void defineColumns();
 
-    public void setPaginationParameter(String paginationParameter) { this.paginationParameter = paginationParameter; }
+    public void setPaginationParameter(String paginationParameter) {
+        this.paginationParameter = paginationParameter;
+    }
 
-    public void setSearchParameter(String searchParameter) { this.searchParameter = searchParameter; }
+    public void setSearchParameter(String searchParameter) {
+        this.searchParameter = searchParameter;
+    }
 
-    public void setJumpToTable(Boolean jumpToTable) { this.jumpToTable = jumpToTable; }
+    public void setJumpToTable(Boolean jumpToTable) {
+        this.jumpToTable = jumpToTable;
+    }
 
-    public void setHasSearchButton(Boolean hasSearchButton) { this.hasSearchButton = hasSearchButton; }
+    public void setHasSearchButton(Boolean hasSearchButton) {
+        this.hasSearchButton = hasSearchButton;
+    }
 
     protected void addColumn(ColumnDefinitionInterface column) {
         this.columns.add(column);
     }
 
-    public Boolean getHasSearchButton() { return this.hasSearchButton; }
+    public Boolean getHasSearchButton() {
+        return this.hasSearchButton;
+    }
 
-    public Boolean getJumpToTable() { return this.jumpToTable; }
+    public Boolean getJumpToTable() {
+        return this.jumpToTable;
+    }
 
-    public String getPaginationParameter() { return this.paginationParameter; }
+    public String getPaginationParameter() {
+        return this.paginationParameter;
+    }
 
-    public String getSearchParameter() { return this.searchParameter; }
+    public String getSearchParameter() {
+        return this.searchParameter;
+    }
 
-    public List<ColumnDefinitionInterface> getCsvColumns() { return new ArrayList<ColumnDefinitionInterface>(); }
-
-    public String generateCsv(String fileName, boolean addQuotation) {
-        List<ColumnDefinitionInterface> csvColumns = this.getCsvColumns();
-
-        if (csvColumns.isEmpty()) { return ""; }
-        StringBuilder csvContent = new StringBuilder();
-
-        // Headers
-        for (int i = 0; i < csvColumns.size(); i++) {
-            String title = csvColumns.get(i).getTitle();
-
-            // Remove outer double quotations
-            title = title.replaceAll("^\"+|\"+$", "");
-
-            if (addQuotation) { title = "\"" + title + "\""; }
-            csvContent.append(title);
-
-            if (i != csvColumns.size() - 1) {
-                csvContent.append(",");
-            } else {
-                csvContent.append("\n");
-            }
-        }
-
-        // Data rows
-        for (TDto entity : this.entityPaginatedList.getEntities()) {
-
-            for (int i = 0; i < csvColumns.size(); i++) {
-                var column = csvColumns.get(i);
-                String content = column.getCsvCellContent(entity);
-
-                // Remove outer double quotations
-                content = content.replaceAll("^\"+|\"+$", "");
-
-                if (addQuotation) { content = "\"" + content + "\""; }
-
-                csvContent.append(content);
-
-                // At least we don't need to use external libraries
-                if (i != csvColumns.size() - 1) {
-                    csvContent.append(",");
-                } else {
-                    csvContent.append("\n");
-                }
-            }
-        }
-
-        return csvContent.toString();
+    public List<ColumnDefinitionInterface> getCsvColumns() {
+        return columns;
     }
 }
