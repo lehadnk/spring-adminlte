@@ -9,7 +9,6 @@ public class JsonColumn extends TextColumn {
 
     private ObjectMapper objectMapper;
 
-    // TODO: Support 
     public JsonColumn(String fieldName) {
         super(fieldName);
         objectMapper = new ObjectMapper();
@@ -18,8 +17,6 @@ public class JsonColumn extends TextColumn {
 
     @Override
     public String getCsvCellContent(Object object) {
-        // TODO: Add filtering ?
-
         var content = this.getObjectValue(object, this.fieldName);
 
         if (content != null) {
