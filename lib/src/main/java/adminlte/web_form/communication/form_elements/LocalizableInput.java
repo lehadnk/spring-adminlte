@@ -1,13 +1,11 @@
 package adminlte.web_form.communication.form_elements;
 
-
 import adminlte.web_form.business.glossary.GlossaryFacadeInterface;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class LocalizableInput extends AbstractFormFieldElement<LocalizableInput, String> implements Localizable {
     private final String templatePath = "web_form/form_elements/localizable_input.html";
@@ -56,10 +54,10 @@ public class LocalizableInput extends AbstractFormFieldElement<LocalizableInput,
 
     public Map<String, Object> getContextVariables() {
         return Map.of(
-            "glossaryKey", this.glossaryKey,
-            "languages", this.languages,
-            "textMapByLanguage", this.textMapByLanguage
-        );
+                "required", this.required,
+                "glossaryKey", this.glossaryKey,
+                "languages", this.languages,
+                "textMapByLanguage", this.textMapByLanguage);
     }
 
     public LocalizableInput setValue(Map<String, String> value) {
