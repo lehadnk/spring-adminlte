@@ -4,6 +4,7 @@ import adminlte.entity_list_table.business.PaginatedEntityListInterface;
 import adminlte.entity_list_table.communication.http.tables.columns.ColumnDefinitionInterface;
 
 import java.util.ArrayList;
+import java.util.List;
 
 abstract public class AbstractTable<TDto> {
 
@@ -24,14 +25,19 @@ abstract public class AbstractTable<TDto> {
 
     abstract public void defineColumns();
 
-    public void setPaginationParameter(String paginationParameter) { this.paginationParameter = paginationParameter; }
+    public void setPaginationParameter(String paginationParameter) {
+        this.paginationParameter = paginationParameter;
+    }
 
-    public void setSearchParameter(String searchParameter) { this.searchParameter = searchParameter; }
+    public void setSearchParameter(String searchParameter) {
+        this.searchParameter = searchParameter;
+    }
 
-    public void setJumpToTable(Boolean jumpToTable) { this.jumpToTable = jumpToTable; }
+    public void setJumpToTable(Boolean jumpToTable) {
+        this.jumpToTable = jumpToTable;
+    }
 
-    public void setHasSearchButton(Boolean hasSearchButton)
-    {
+    public void setHasSearchButton(Boolean hasSearchButton) {
         this.hasSearchButton = hasSearchButton;
     }
 
@@ -39,11 +45,23 @@ abstract public class AbstractTable<TDto> {
         this.columns.add(column);
     }
 
-    public Boolean getHasSearchButton() { return this.hasSearchButton; }
+    public Boolean getHasSearchButton() {
+        return this.hasSearchButton;
+    }
 
-    public Boolean getJumpToTable() { return this.jumpToTable; }
+    public Boolean getJumpToTable() {
+        return this.jumpToTable;
+    }
 
-    public String getPaginationParameter() { return this.paginationParameter; }
+    public String getPaginationParameter() {
+        return this.paginationParameter;
+    }
 
-    public String getSearchParameter() { return this.searchParameter; }
+    public String getSearchParameter() {
+        return this.searchParameter;
+    }
+
+    public List<ColumnDefinitionInterface> getCsvColumns() {
+        return columns;
+    }
 }

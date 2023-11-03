@@ -3,16 +3,16 @@ package adminlte.entity_list_table.communication.http.tables.columns;
 import org.thymeleaf.context.Context;
 
 import java.sql.Date;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZoneOffset;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 public class DateTimeColumn extends AbstractColumn {
+
     private boolean useLocalTime = false;
     private String templatePath = "entity_list_table/columns/date_time_column.html";
     private String format = null;
+
     public DateTimeColumn(String fieldName) {
         super(fieldName);
     }
@@ -38,6 +38,10 @@ public class DateTimeColumn extends AbstractColumn {
         return this.templatePath;
     }
 
+    public String getCsvCellContent(Object object) {
+        return Objects.toString(this.getFormattedUtcDateTimeString(object), "");
+    }
+
     public Context prepareContext(Object object) {
         var ctx = new Context();
         ctx.setVariable("content", this.getInstant(object));
@@ -48,6 +52,7 @@ public class DateTimeColumn extends AbstractColumn {
 
     private String getFormattedUtcDateTimeString(Object object) {
         var instantObject = this.getInstant(object);
+
         if (instantObject == null) {
             return "";
         }

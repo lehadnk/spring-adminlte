@@ -2,6 +2,8 @@ package adminlte.entity_list_table.communication.http.tables.columns;
 
 import org.thymeleaf.context.Context;
 
+import java.util.Objects;
+
 public class UrlColumn extends TextColumn {
 
     private final String templatePath = "entity_list_table/columns/url_column.html";
@@ -17,6 +19,11 @@ public class UrlColumn extends TextColumn {
     public UrlColumn setUrlText(String urlText) {
         this.urlText = urlText;
         return this;
+    }
+
+    @Override
+    public String getCsvCellContent(Object object) {
+        return Objects.toString(this.getObjectValue(object, this.fieldName), "");
     }
 
     @Override
