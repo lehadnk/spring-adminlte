@@ -11,7 +11,7 @@ public class LocalizableTextarea extends AbstractFormFieldElement<LocalizableTex
     private final String templatePath = "web_form/form_elements/localizable_textarea.html";
 
     private final String glossaryKey;
-    private final List<String> languages;
+    private List<String> languages;
     private final Map<String, String> textMapByLanguage;
     private String textTransform = "";
     private int rows = 10;
@@ -80,6 +80,11 @@ public class LocalizableTextarea extends AbstractFormFieldElement<LocalizableTex
         }
 
         this.textMapByLanguage.putAll(value);
+        return this;
+    }
+
+    public LocalizableTextarea setLanguages(List<String> languages) {
+        this.languages = languages;
         return this;
     }
 }
