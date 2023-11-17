@@ -9,7 +9,7 @@ public class LocalizableWYSIWYGMarkdownInput extends AbstractFormFieldElement<Lo
     private final String templatePath = "web_form/form_elements/localizable_wysiwyg_markdown_input.html";
 
     private final String glossaryKey;
-    private final List<String> languages;
+    private List<String> languages;
     private final Map<String, String> textMapByLanguage;
     private Boolean hasUpdateWithRawTextInput = false;
 
@@ -71,5 +71,10 @@ public class LocalizableWYSIWYGMarkdownInput extends AbstractFormFieldElement<Lo
         }
         this.textMapByLanguage.putAll(value);
         return this;
+    }
+
+    public LocalizableWYSIWYGMarkdownInput setLanguages(List<String> languages) {
+        this.languages = languages;
+        return null;
     }
 }

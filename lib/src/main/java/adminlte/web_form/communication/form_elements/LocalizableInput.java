@@ -11,7 +11,7 @@ public class LocalizableInput extends AbstractFormFieldElement<LocalizableInput,
     private final String templatePath = "web_form/form_elements/localizable_input.html";
 
     private final String glossaryKey;
-    private final List<String> languages;
+    private List<String> languages;
     private final Map<String, String> textMapByLanguage;
 
     public LocalizableInput(String glossaryKey, GlossaryFacadeInterface glossaryFacade) {
@@ -73,6 +73,11 @@ public class LocalizableInput extends AbstractFormFieldElement<LocalizableInput,
         }
 
         this.textMapByLanguage.putAll(value);
+        return this;
+    }
+
+    public LocalizableInput setLanguages(List<String> languages) {
+        this.languages = languages;
         return this;
     }
 }
