@@ -58,13 +58,14 @@ public class LocalizableTextarea extends AbstractFormFieldElement<LocalizableTex
     }
 
     public Map<String, Object> getContextVariables() {
-        return Map.of(
-                "required", this.required,
-                "textTransform", this.textTransform,
-                "glossaryKey", this.glossaryKey,
-                "languages", this.languages,
-                "textMapByLanguage", this.textMapByLanguage,
-                "rows", this.rows);
+        var variables = new HashMap<String, Object>();
+        variables.put("required", this.required);
+        variables.put("glossaryKey", this.glossaryKey);
+        variables.put("languages", this.languages);
+        variables.put("textMapByLanguage", this.textMapByLanguage);
+        variables.put("rows", this.rows);
+
+        return variables;
     }
 
     public LocalizableTextarea setValue(Map<String, String> value) {

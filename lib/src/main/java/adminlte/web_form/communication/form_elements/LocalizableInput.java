@@ -53,11 +53,13 @@ public class LocalizableInput extends AbstractFormFieldElement<LocalizableInput,
     }
 
     public Map<String, Object> getContextVariables() {
-        return Map.of(
-                "required", this.required,
-                "glossaryKey", this.glossaryKey,
-                "languages", this.languages,
-                "textMapByLanguage", this.textMapByLanguage);
+        var variables = new HashMap<String, Object>();
+        variables.put("required", this.required);
+        variables.put("glossaryKey", this.glossaryKey);
+        variables.put("languages", this.languages);
+        variables.put("textMapByLanguage", this.textMapByLanguage);
+
+        return variables;
     }
 
     public LocalizableInput setValue(Map<String, String> value) {
