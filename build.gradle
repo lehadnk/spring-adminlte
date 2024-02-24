@@ -9,14 +9,15 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
+    id 'io.github.gradle-nexus.publish-plugin' version '1.3.0'
 }
 
-version = '1.6.1'
-
-group = 'com.github.lehadnk'
+group = 'io.github.lehadnk'
+version = '1.6.2'
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
@@ -38,6 +39,24 @@ jar {
     enabled = true
 }
 
+
+
+
+
+
+nexusPublishing {
+    packageGroup = "io.github.lehadnk"
+    repositories {
+        sonatype {
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+
+            stagingProfileId = ''
+
+        }
+    }
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication){
@@ -45,14 +64,14 @@ publishing {
             from components.java
         }
     }
-    repositories {
-        maven {
-            name = "GitHubPackages"
-            url = "https://maven.pkg.github.com/lehadnk/spring-adminlte"
-            credentials {
-                username = System.getenv("GITHUB_USERNAME")
-                password = System.getenv("GITHUB_TOKEN")
-            }
-        }
-    }
+//    repositories {
+//        maven {
+//            name = "GitHubPackages"
+//            url = "https://maven.pkg.github.com/lehadnk/spring-adminlte"
+//            credentials {
+//                username = System.getenv("GITHUB_USERNAME")
+//                password = System.getenv("GITHUB_TOKEN")
+//            }
+//        }
+//    }
 }
