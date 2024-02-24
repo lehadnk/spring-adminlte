@@ -132,8 +132,33 @@
     });
   }
 
+  function applyDateTimeFormatToElements() {
+    var elements = document.querySelectorAll('.dateTimeColumnForJavaScript');
+    elements.forEach(function (element) {
+        transformElement(element);
+    });
+}
+
+function transformElement(element) {
+  var utcDateString = element.getAttribute('data-time');
+    var localDate = new Date(utcDateString);
+    var options = {
+        year: "numeric",
+        month: "numeric",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+        hour12: false,
+        timeZoneName: "short"
+    };
+    var localDateString = new Intl.DateTimeFormat("default", options).format(localDate);
+    element.textContent = localDateString;
+}
+
   document.addEventListener('DOMContentLoaded', function () {
     applyEventListenersToTables();
+    applyDateTimeFormatToElements();
   }, false);
 
 </script>
