@@ -257,3 +257,6 @@ public class DemoApplicationMenuItemsProvider implements MenuItemsProviderInterf
 Change version in build.gradle to dev
 
 `./gradlew build && ./gradlew jar && ./gradlew publishToMavenLocal`
+
+# Publishing to remote repository
+`./gradlew clean sonatypeCentralUpload`
