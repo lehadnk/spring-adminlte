@@ -33,7 +33,6 @@ java {
     }
     withSourcesJar()
     withJavadocJar()
-
 }
 
 jar {
@@ -41,8 +40,8 @@ jar {
 }
 
 sonatypeCentralUpload {
-    username = 'Slju+skX'
-    password = 'WfJqfKw+qbAxOU7RH7aqg1J1ChYVJfA3Bhuy5g58MsGk'
+    username = sonatypeTokenUsername
+    password = sonatypeTokenPassword
 
     archives = files(
             file("build/libs/adminlte-${version}.jar"),
