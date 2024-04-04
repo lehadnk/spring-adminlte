@@ -254,9 +254,24 @@ public class DemoApplicationMenuItemsProvider implements MenuItemsProviderInterf
 ```
 
 # Publishing the dev build to local repository
-Change version in build.gradle to dev
+ - Change version in build.gradle to dev
+ - Add mavenLocal() to repositories
+ - Use this publishing block: 
+```
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+        }
 
-`./gradlew build && ./gradlew jar && ./gradlew publishToMavenLocal`
+    }
+    repositories {
+        mavenLocal()
+    }
+}
+```
+
+ - Run `./gradlew build && ./gradlew jar && ./gradlew publishToMavenLocal`
 
 # Publishing to remote repository
 `./gradlew clean sonatypeCentralUpload`

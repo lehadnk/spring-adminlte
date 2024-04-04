@@ -13,4 +13,4 @@ plugins {
 }
 
 rootProject.name = 'adminlte'
-include('lib')
+include('adminlte')
