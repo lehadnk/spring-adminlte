@@ -7,6 +7,7 @@ import java.util.Map;
 public class Input extends AbstractFormFieldElement<Input, String> {
     private final String templatePath = "web_form/form_elements/input.html";
     private String type = "text";
+    private Boolean disabled = false;
 
     public static Input numberInput(String label) {
         return (Input) new Input()
@@ -31,6 +32,12 @@ public class Input extends AbstractFormFieldElement<Input, String> {
         return this;
     }
 
+    public Input setDisabled(Boolean value)
+    {
+        this.disabled = value;
+        return this;
+    }
+
     public boolean getNullable() {
         return this.nullable;
     }
@@ -45,7 +52,8 @@ public class Input extends AbstractFormFieldElement<Input, String> {
         return Map.of(
             "required", this.required,
             "nullable", this.nullable,
-            "type", this.type
+            "type", this.type,
+            "disabled", this.disabled
         );
     }
 }
