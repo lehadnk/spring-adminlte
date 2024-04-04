@@ -5,12 +5,13 @@ import adminlte.entity_list_table.dto.CellActionButton;
 import org.thymeleaf.context.Context;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ActionsColumn extends AbstractColumn {
     private String templatePath = "entity_list_table/columns/actions_column.html";
-    private ArrayList<ActionButton> actionButtons;
+    private List<ActionButton> actionButtons;
 
-    public ActionsColumn(ArrayList<ActionButton> actionButtons) {
+    public ActionsColumn(List<ActionButton> actionButtons) {
         super("actions");
         this.actionButtons = actionButtons;
     }
