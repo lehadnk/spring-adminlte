@@ -2,7 +2,6 @@ package adminlte.entity_list_table;
 
 import adminlte.html_template_renderer.HtmlTemplateRendererService;
 import adminlte.i18n.I18nService;
-
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

@@ -2,7 +2,6 @@ package adminlte.entity_list_table.communication.http.tables.columns;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.thymeleaf.context.Context;
 
 public class JsonColumn extends TextColumn {

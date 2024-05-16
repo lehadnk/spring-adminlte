@@ -1,7 +1,6 @@
 package adminlte.entity_list_table.communication.http.tables.columns;
 
 import adminlte.entity_list_table.dto.CellActionButton;
-
 import org.thymeleaf.context.Context;
 
 import java.util.ArrayList;

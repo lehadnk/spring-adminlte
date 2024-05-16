@@ -1,6 +1,8 @@
 package adminlte.web_form.communication.form_elements;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.function.Function;
 
 public class Select extends AbstractFormFieldElement<Select, String> {

@@ -3,7 +3,6 @@ package adminlte.web_form.communication;
 import adminlte.html_template_renderer.business.template.AbstractHtmlLayout;
 import adminlte.html_template_renderer.business.template.AbstractHtmlTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FormElementTemplate extends AbstractHtmlTemplate {

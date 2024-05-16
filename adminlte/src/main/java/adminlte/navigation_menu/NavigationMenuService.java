@@ -4,8 +4,6 @@ import adminlte.navigation_menu.business.MenuRenderer;
 import adminlte.navigation_menu.business.NavigationMenuBuilder;
 import adminlte.navigation_menu.communication.AbstractMenu;
 import adminlte.navigation_menu.communication.navigation_menu.NavigationMenu;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 public class NavigationMenuService {
     private MenuRenderer menuRenderer;

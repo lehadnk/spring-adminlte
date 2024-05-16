@@ -1,11 +1,12 @@
 package adminlte.web_form.communication.form_elements;
 
 import adminlte.web_form.business.glossary.GlossaryFacadeInterface;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LocalizableTextarea extends AbstractFormFieldElement<LocalizableTextarea, String> implements Localizable {
     private final String templatePath = "web_form/form_elements/localizable_textarea.html";
