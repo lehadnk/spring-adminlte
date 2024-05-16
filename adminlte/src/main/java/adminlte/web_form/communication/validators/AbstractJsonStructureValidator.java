@@ -33,7 +33,7 @@ abstract public class AbstractJsonStructureValidator<TJsonStructure> extends Abs
 
         try {
             Field[] fields = this.jsonStructureClass.getFields();
-            ArrayList<String> missingFields = new ArrayList<>();
+            var missingFields = new ArrayList<String>();
             for(Field field: fields) {
                 var jsonFieldValue = field.get(jsonObject);
                 if (jsonFieldValue == null) {

@@ -4,6 +4,7 @@ import adminlte.html_template_renderer.business.template.AbstractHtmlLayout;
 import adminlte.html_template_renderer.business.template.AbstractHtmlTemplate;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class FormElementTemplate extends AbstractHtmlTemplate {
     private String templatePath;
@@ -12,7 +13,7 @@ public class FormElementTemplate extends AbstractHtmlTemplate {
             String name,
             String label,
             Object value,
-            ArrayList<String> validationErrors,
+            List<String> validationErrors,
             String templatePath
     ) {
         this.context.setVariable("name", name);

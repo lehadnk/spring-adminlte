@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class AbstractFormElement<TSelf extends AbstractFormElement<TSelf, TValueType>, TValueType> implements WebFormElementInterface<TValueType> {
-    protected ArrayList<WebFormValidatorInterface<TValueType>> validators = new ArrayList<>();
-    private ArrayList<ValidationResult> validationResults = new ArrayList<>();
+    protected List<WebFormValidatorInterface<TValueType>> validators = new ArrayList<>();
+    private List<ValidationResult> validationResults = new ArrayList<>();
     private boolean wasValidated = false;
 
     public TValueType value;

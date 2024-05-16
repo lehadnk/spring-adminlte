@@ -63,9 +63,9 @@ public class MultipleSelect extends AbstractFormFieldElement<MultipleSelect, Lis
         return this;
     }
 
-    public HashMap<String, Object> getContextVariables()
+    public Map<String, Object> getContextVariables()
     {
-        HashMap<String, Object> contextVariables = new HashMap<>();
+        var contextVariables = new HashMap<String, Object>();
         contextVariables.put("options", this.options);
         contextVariables.put("searchable", this.searchable);
         contextVariables.put("disabled", this.disabled);

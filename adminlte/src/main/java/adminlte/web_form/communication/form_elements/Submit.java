@@ -1,6 +1,7 @@
 package adminlte.web_form.communication.form_elements;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Submit {
     private String name = "submit";
@@ -52,9 +53,9 @@ public class Submit {
         return this.length;
     }
 
-    public HashMap<String, Object> getContextVariables()
+    public Map<String, Object> getContextVariables()
     {
-        HashMap<String, Object> contextVariables = new HashMap<>();
+        var contextVariables = new HashMap<String, Object>();
         contextVariables.put("text", this.text);
         contextVariables.put("name", this.name);
         contextVariables.put("value", this.value);

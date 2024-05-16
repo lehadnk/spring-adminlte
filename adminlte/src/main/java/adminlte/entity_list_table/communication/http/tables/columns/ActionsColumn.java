@@ -27,7 +27,7 @@ public class ActionsColumn extends AbstractColumn {
         return ctx;
     }
 
-    private ArrayList<CellActionButton> getCellActionButtons(Object object) {
+    private List<CellActionButton> getCellActionButtons(Object object) {
         var result = new ArrayList<CellActionButton>();
         for (var actionButton : this.actionButtons) {
             var url = actionButton.url;

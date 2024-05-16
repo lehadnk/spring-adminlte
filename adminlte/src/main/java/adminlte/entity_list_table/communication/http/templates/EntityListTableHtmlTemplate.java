@@ -3,7 +3,7 @@ package adminlte.entity_list_table.communication.http.templates;
 import adminlte.html_template_renderer.business.template.AbstractHtmlLayout;
 import adminlte.html_template_renderer.business.template.AbstractHtmlTemplate;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class EntityListTableHtmlTemplate extends AbstractHtmlTemplate {
 
@@ -11,8 +11,8 @@ public class EntityListTableHtmlTemplate extends AbstractHtmlTemplate {
 
     public EntityListTableHtmlTemplate(
         String title,
-        ArrayList<String> headerTitles,
-        ArrayList<ArrayList<String>> dataset,
+        List<String> headerTitles,
+        List<List<String>> dataset,
         Integer currentPage,
         Integer pagesTotal,
         Integer startPage,

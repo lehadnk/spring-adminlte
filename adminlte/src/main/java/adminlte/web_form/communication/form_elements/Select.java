@@ -53,9 +53,9 @@ public class Select extends AbstractFormFieldElement<Select, String> {
         return this;
     }
 
-    public HashMap<String, Object> getContextVariables()
+    public Map<String, Object> getContextVariables()
     {
-        HashMap<String, Object> contextVariables = new HashMap<>();
+        var contextVariables = new HashMap<String, Object>();
         contextVariables.put("options", this.options);
         contextVariables.put("nullable", this.nullable);
         contextVariables.put("searchable", this.searchable);

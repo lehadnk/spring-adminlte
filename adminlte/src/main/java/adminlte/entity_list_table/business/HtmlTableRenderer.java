@@ -9,13 +9,15 @@ import adminlte.i18n.I18nService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class HtmlTableRenderer implements TableRendererInterface {
 
     private final HtmlTemplateRendererService htmlTemplateRendererService;
     private final I18nService i18nService;
-    private final ArrayList<String> requiredDtoFields = new ArrayList<>();
-    private final HashMap<String, ColumnDefinitionInterface> requiredColumnDefinitions = new HashMap<>();
+    private final List<String> requiredDtoFields = new ArrayList<>();
+    private final Map<String, ColumnDefinitionInterface> requiredColumnDefinitions = new HashMap<>();
 
     public HtmlTableRenderer(
             HtmlTemplateRendererService htmlTemplateRendererService,
@@ -27,7 +29,7 @@ public class HtmlTableRenderer implements TableRendererInterface {
     public String render(AbstractTable<?> table) {
         var headerTitles = new ArrayList<String>();
 
-        var dataset = new ArrayList<ArrayList<String>>();
+        var dataset = new ArrayList<List<String>>();
 
         for (var columnDefinition : table.columns) {
             headerTitles.add(columnDefinition.getTitle());
@@ -69,8 +71,7 @@ public class HtmlTableRenderer implements TableRendererInterface {
         // has more than one fully
         // unconfigured table - e.g. both use same pagination and search. Although at
         // that point it's mistake on them
-        String tableId = "table_"
-                + Math.abs((table.getPaginationParameter() + table.getSearchParameter()).hashCode()) % 100;
+        String tableId = "table_" + Math.abs((table.getPaginationParameter() + table.getSearchParameter()).hashCode()) % 100;
 
         var entityListTableHtmlTemplate = new EntityListTableHtmlTemplate(
                 table.getTitle(),
@@ -90,7 +91,7 @@ public class HtmlTableRenderer implements TableRendererInterface {
         return this.htmlTemplateRendererService.renderTemplate(entityListTableHtmlTemplate);
     }
 
-    private ArrayList<String> renderRow(Object dto) {
+    private List<String> renderRow(Object dto) {
         var result = new ArrayList<String>();
 
         for (String columnName : this.requiredDtoFields) {

@@ -1,6 +1,7 @@
 package adminlte.web_form.communication.form_elements;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Password extends AbstractFormFieldElement<Password, String> {
     private final String templatePath = "web_form/form_elements/password.html";
@@ -24,8 +25,8 @@ public class Password extends AbstractFormFieldElement<Password, String> {
         return this;
     }
 
-    public HashMap<String, Object> getContextVariables() {
-        HashMap<String, Object> contextVariables = new HashMap<>();
+    public Map<String, Object> getContextVariables() {
+        var contextVariables = new HashMap<String, Object>();
         contextVariables.put("autocompleteCurrentPassword", this.autocompleteCurrentPassword);
         contextVariables.put("autocompleteNewPassword", this.autocompleteNewPassword);
         return contextVariables;

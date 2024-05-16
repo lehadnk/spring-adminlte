@@ -2,13 +2,7 @@ package adminlte.html_template_renderer.business;
 
 import adminlte.html_template_renderer.HtmlTemplateRendererConfig;
 import adminlte.html_template_renderer.business.template.AbstractHtmlTemplate;
-import adminlte.session.SessionServiceInterface;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateEngine;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class TemplateRenderer {
     private final TemplateEngine templateEngine;

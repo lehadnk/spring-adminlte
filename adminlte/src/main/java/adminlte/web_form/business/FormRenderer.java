@@ -50,7 +50,7 @@ public class FormRenderer {
     }
 
     private String renderFormElement(String name, WebFormFieldElementInterface<?> element) {
-        ArrayList<String> validationErrors = new ArrayList<>();
+        var validationErrors = new ArrayList<String>();
         for (ValidationResult validationResult: element.getValidationResults()) {
             if (!validationResult.isValid) {
                 validationErrors.add(validationResult.errorMessage);

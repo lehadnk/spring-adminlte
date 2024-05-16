@@ -1,6 +1,7 @@
 package adminlte.web_form.communication.form_elements;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class File extends AbstractFormFieldElement<File, String> {
     private final String templatePath = "web_form/form_elements/file.html";
@@ -19,8 +20,8 @@ public class File extends AbstractFormFieldElement<File, String> {
         return this;
     }
 
-    public HashMap<String, Object> getContextVariables() {
-        HashMap<String, Object> contextVariables = new HashMap<>();
+    public Map<String, Object> getContextVariables() {
+        var contextVariables = new HashMap<String, Object>();
         contextVariables.put("accept", this.accept);
         contextVariables.put("multiple", this.multiple);
         return contextVariables;

@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.time.temporal.ChronoField;
 import java.util.ArrayList;
+import java.util.List;
 
 public class LocalDateTimeEditor extends PropertyEditorSupport {
 
@@ -16,7 +17,7 @@ public class LocalDateTimeEditor extends PropertyEditorSupport {
     public void setAsText(String text) throws IllegalArgumentException {
         setValue(null);
 
-        ArrayList<String> patterns = new ArrayList<>();
+        List<String> patterns = new ArrayList<>();
         patterns.add("yyyy-MM-dd'T'HH:mm:ss");
         patterns.add("yyyy-MM-dd'T'HH:mm");
 

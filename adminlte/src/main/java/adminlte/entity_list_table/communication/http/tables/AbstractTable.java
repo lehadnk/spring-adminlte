@@ -9,7 +9,7 @@ import java.util.List;
 abstract public class AbstractTable<TDto> {
 
     public final PaginatedEntityListInterface<TDto> entityPaginatedList;
-    public ArrayList<ColumnDefinitionInterface> columns = new ArrayList<>();
+    public List<ColumnDefinitionInterface> columns = new ArrayList<>();
     public String search;
     protected boolean hasSearchButton = false;
     protected boolean jumpToTable = true;

@@ -1,6 +1,7 @@
 package adminlte.web_form.communication.form_elements;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Image extends AbstractFormFieldElement<Image, String> {
     private final String templatePath = "web_form/form_elements/image.html";
@@ -30,8 +31,8 @@ public class Image extends AbstractFormFieldElement<Image, String> {
         return this;
     }
 
-    public HashMap<String, Object> getContextVariables() {
-        HashMap<String, Object> contextVariables = new HashMap<>();
+    public Map<String, Object> getContextVariables() {
+        var contextVariables = new HashMap<String, Object>();
         contextVariables.put("maxWidth", this.maxWidth);
         contextVariables.put("maxHeight", this.maxHeight);
         contextVariables.put("hasDeleteButton", this.hasDeleteButton);

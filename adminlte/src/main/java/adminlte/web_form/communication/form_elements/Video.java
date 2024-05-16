@@ -1,6 +1,7 @@
 package adminlte.web_form.communication.form_elements;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Video extends AbstractFormFieldElement<Video, String> {
     private final String templatePath = "web_form/form_elements/video.html";
@@ -20,8 +21,8 @@ public class Video extends AbstractFormFieldElement<Video, String> {
         return this.templatePath;
     }
 
-    public HashMap<String, Object> getContextVariables() {
-        HashMap<String, Object> contextVariables = new HashMap<>();
+    public Map<String, Object> getContextVariables() {
+        var contextVariables = new HashMap<String, Object>();
         contextVariables.put("hasUpdateUrlInput", this.hasUpdateUrlInput);
         return contextVariables;
     }
