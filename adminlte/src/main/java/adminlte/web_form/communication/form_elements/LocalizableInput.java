@@ -59,7 +59,7 @@ public class LocalizableInput extends AbstractFormFieldElement<LocalizableInput,
         variables.put("glossaryKey", this.glossaryKey);
         variables.put("languages", this.languages);
         variables.put("textMapByLanguage", this.textMapByLanguage);
-
+        variables.put("id", this.id);
         return variables;
     }
 

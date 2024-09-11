@@ -31,6 +31,10 @@ public class HtmlTableRenderer implements TableRendererInterface {
 
         var dataset = new ArrayList<List<String>>();
 
+        if (table.columns.isEmpty()) {
+            table.defineColumns();
+        }
+
         for (var columnDefinition : table.columns) {
             headerTitles.add(columnDefinition.getTitle());
             this.requiredDtoFields.add(columnDefinition.getFieldName());
@@ -87,7 +91,9 @@ public class HtmlTableRenderer implements TableRendererInterface {
                 table.getPaginationParameter(),
                 table.getSearchParameter(),
                 tableId,
-                table.getJumpToTable());
+                table.getJumpToTable()
+        );
+
         return this.htmlTemplateRendererService.renderTemplate(entityListTableHtmlTemplate);
     }
 

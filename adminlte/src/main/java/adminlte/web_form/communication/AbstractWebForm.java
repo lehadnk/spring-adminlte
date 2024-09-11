@@ -7,8 +7,6 @@ import adminlte.web_form.business.hydrator.ObjectToFormHydrator;
 import adminlte.web_form.business.hydrator.RecordToFormHydrator;
 import adminlte.web_form.communication.form_elements.Submit;
 import adminlte.web_form.communication.form_elements.WebFormFieldElementInterface;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -17,20 +15,12 @@ import java.util.List;
 import java.util.Map;
 
 abstract public class AbstractWebForm<TRequest> {
-    public Map<String, WebFormFieldElementInterface> elements = new LinkedHashMap<>();
+    public Map<String, WebFormFieldElementInterface<?>> elements = new LinkedHashMap<>();
     public List<Submit> submitButtons = new ArrayList<>();
     public String actionUrl;
     public String enctype = "application/x-www-form-urlencoded";
     public List<String> validationErrorMessages = new ArrayList<>();
     public boolean simpleLayout = false;
-
-    final private ObjectMapper objectMapper;
-
-    public AbstractWebForm() {
-        this.objectMapper = new ObjectMapper();
-        this.objectMapper.findAndRegisterModules();
-        this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
-    }
 
     public void setSimpleLayout() {
         this.simpleLayout = true;
@@ -58,7 +48,7 @@ abstract public class AbstractWebForm<TRequest> {
         return this;
     }
 
-    protected void addElement(String name, WebFormFieldElementInterface element) {
+    protected void addElement(String name, WebFormFieldElementInterface<?> element) {
         this.elements.put(name, element);
     }
 

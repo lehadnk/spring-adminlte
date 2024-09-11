@@ -21,9 +21,11 @@ public class Audio extends AbstractFormFieldElement<Audio, String> {
         return this.templatePath;
     }
 
+    @Override
     public Map<String, Object> getContextVariables() {
         var contextVariables = new HashMap<String, Object>();
         contextVariables.put("hasUpdateUrlInput", this.hasUpdateUrlInput);
+        contextVariables.put("id", this.id);
         return contextVariables;
     }
 }

@@ -2,6 +2,7 @@ package adminlte.web_form.communication.form_elements;
 
 import adminlte.web_form.communication.validators.IntegerValidator;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Input extends AbstractFormFieldElement<Input, String> {
@@ -49,11 +50,13 @@ public class Input extends AbstractFormFieldElement<Input, String> {
 
     @Override
     public Map<String, Object> getContextVariables() {
-        return Map.of(
-            "required", this.required,
-            "nullable", this.nullable,
-            "type", this.type,
-            "disabled", this.disabled
-        );
+        var context = new HashMap<String, Object>();
+        context.put("required", this.required);
+        context.put("nullable", this.nullable);
+        context.put("type", this.type);
+        context.put("disabled", this.disabled);
+        context.put("id", this.id);
+
+        return context;
     }
 }

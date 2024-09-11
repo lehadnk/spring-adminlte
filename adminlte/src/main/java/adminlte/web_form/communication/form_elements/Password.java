@@ -29,6 +29,7 @@ public class Password extends AbstractFormFieldElement<Password, String> {
         var contextVariables = new HashMap<String, Object>();
         contextVariables.put("autocompleteCurrentPassword", this.autocompleteCurrentPassword);
         contextVariables.put("autocompleteNewPassword", this.autocompleteNewPassword);
+        contextVariables.put("id", this.id);
         return contextVariables;
     }
 }

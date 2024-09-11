@@ -6,7 +6,7 @@ import adminlte.html_template_renderer.business.template.AbstractHtmlTemplate;
 import java.util.List;
 
 public class FormElementTemplate extends AbstractHtmlTemplate {
-    private String templatePath;
+    private final String templatePath;
 
     public FormElementTemplate(
             String name,

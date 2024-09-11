@@ -16,9 +16,9 @@ abstract public class AbstractTable<TDto> {
     protected String paginationParameter = "page";
     protected String searchParameter = "search";
 
-    public AbstractTable(PaginatedEntityListInterface<TDto> entityPaginatedList) {
+    public AbstractTable(PaginatedEntityListInterface<TDto> entityPaginatedList)
+    {
         this.entityPaginatedList = entityPaginatedList;
-        this.defineColumns();
     }
 
     abstract public String getTitle();

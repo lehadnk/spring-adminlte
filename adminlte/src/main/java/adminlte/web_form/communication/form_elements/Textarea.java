@@ -1,5 +1,6 @@
 package adminlte.web_form.communication.form_elements;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Textarea extends AbstractFormFieldElement<Textarea, String> {
@@ -25,11 +26,13 @@ public class Textarea extends AbstractFormFieldElement<Textarea, String> {
     }
 
     @Override
-    public Map<String, Object> getContextVariables() { return Map.of(
-        "textTransform",
-        textTransform,
-        "rowsCount",
-        rowsCount,
-        "required",
-        this.required); }
+    public Map<String, Object> getContextVariables() {
+        var context = new HashMap<String, Object>();
+        context.put("textTransform", this.textTransform);
+        context.put("rowsCount", this.rowsCount);
+        context.put("required", this.required);
+        context.put("id", this.id);
+
+        return context;
+    }
 }

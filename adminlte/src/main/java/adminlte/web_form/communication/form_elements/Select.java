@@ -63,7 +63,7 @@ public class Select extends AbstractFormFieldElement<Select, String> {
         contextVariables.put("searchable", this.searchable);
         contextVariables.put("disabled", this.disabled);
         contextVariables.put("value", this.value);
-
+        contextVariables.put("id", this.id);
         return contextVariables;
     }
 }

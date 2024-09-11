@@ -1,6 +1,6 @@
 <div class="form-group">
     <label th:if="${label != null}" th:for="${name}" th:text="${label}"></label>
-    <input class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}" th:id=${name} th:type=${type} th:name="${name}" th:value="${value}" th:required="${required}" th:visible="${visible}" th:attrappend="disabled=${disabled == true ? 'disabled' : ''}" />
+    <input class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}" th:id="${id}" th:type="${type}" th:name="${name}" th:value="${value}" th:required="${required}" th:visible="${visible}" th:attrappend="disabled=${disabled == true ? 'disabled' : ''}" />
     <input th:if="${disabled == true}" type="hidden" th:id="${name}" th:name="${name}" th:value="${value}">
     <th:block th:each="validationError : ${validationErrors}">
         <span class="block error invalid-feedback" th:text="${validationError}"></span>

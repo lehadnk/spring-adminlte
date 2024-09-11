@@ -2,6 +2,7 @@ package adminlte.web_form.communication.form_elements;
 
 import adminlte.web_form.business.glossary.GlossaryFacadeInterface;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -52,12 +53,14 @@ public class LocalizableWYSIWYGMarkdownInput extends AbstractFormFieldElement<Lo
     }
 
     public Map<String, Object> getContextVariables() {
-        return Map.of(
-            "glossaryKey", this.glossaryKey,
-            "languages", this.languages,
-            "textMapByLanguage", this.textMapByLanguage,
-            "hasUpdateWithRawTextInput", this.hasUpdateWithRawTextInput
-        );
+        var context = new HashMap<String, Object>();
+        context.put("glossaryKey", this.glossaryKey);
+        context.put("languages", this.languages);
+        context.put("textMapByLanguage", this.textMapByLanguage);
+        context.put("hasUpdateWithRawTextInput", this.hasUpdateWithRawTextInput);
+        context.put("id", this.id);
+
+        return context;
     }
 
     private LocalizableWYSIWYGMarkdownInput setHasUpdateWithRawTextInput(Boolean hasUpdateWithRawTextInput) {

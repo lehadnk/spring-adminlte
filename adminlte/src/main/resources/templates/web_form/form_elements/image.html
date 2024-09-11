@@ -14,7 +14,7 @@
         <input type="file" th:name="${name} + '.file'" accept="image/*" th:id="${name} + '_file'" />
     </p>
     <p th:if="${hasDeleteButton}">
-        <button th:if="${value != null && value != ''}" type="submit" th:id="${name} + '_file_delete'" th:name="${name} + '.fileDelete'" th:value="${name} + '_file_delete'">Delete image</button>
+        <button th:if="${value != null && value != ''}" type="submit" th:id="${name} + '_file_delete'" th:name="${name} + '.fileDelete'" th:value="${name} + '_file_delete'">Delete file</button>
     </p>
     <th:block th:each="validationError : ${validationErrors}">
         <span class="block error invalid-feedback" th:text="${validationError}"></span>

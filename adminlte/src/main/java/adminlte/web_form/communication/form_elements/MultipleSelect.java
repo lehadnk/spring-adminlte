@@ -71,7 +71,7 @@ public class MultipleSelect extends AbstractFormFieldElement<MultipleSelect, Lis
         contextVariables.put("disabled", this.disabled);
         contextVariables.put("maxInputSize", this.maxInputSize);
         contextVariables.put("value", this.value);
-
+        contextVariables.put("id", this.id);
         return contextVariables;
     }
 }

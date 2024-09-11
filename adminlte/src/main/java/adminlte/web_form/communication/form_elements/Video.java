@@ -24,6 +24,7 @@ public class Video extends AbstractFormFieldElement<Video, String> {
     public Map<String, Object> getContextVariables() {
         var contextVariables = new HashMap<String, Object>();
         contextVariables.put("hasUpdateUrlInput", this.hasUpdateUrlInput);
+        contextVariables.put("id", this.id);
         return contextVariables;
     }
 }

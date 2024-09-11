@@ -37,6 +37,7 @@ public class Image extends AbstractFormFieldElement<Image, String> {
         contextVariables.put("maxHeight", this.maxHeight);
         contextVariables.put("hasDeleteButton", this.hasDeleteButton);
         contextVariables.put("hasUpdateUrlInput", this.hasUpdateUrlInput);
+        contextVariables.put("id", this.id);
         return contextVariables;
     }
 }

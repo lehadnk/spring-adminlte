@@ -65,7 +65,7 @@ public class LocalizableTextarea extends AbstractFormFieldElement<LocalizableTex
         variables.put("languages", this.languages);
         variables.put("textMapByLanguage", this.textMapByLanguage);
         variables.put("rows", this.rows);
-
+        variables.put("id", this.id);
         return variables;
     }
 
