@@ -9,9 +9,10 @@ public class CsvTableRenderer implements TableRendererInterface {
     private Boolean addQuotation = true;
 
     public CsvTableRenderer() { }
-    
-    public CsvTableRenderer(Boolean addQuotation) {
+
+    public CsvTableRenderer setAddQuotation(Boolean addQuotation){
         this.addQuotation = addQuotation;
+        return this;
     }
 
     public String render(AbstractTable<?> table) {
