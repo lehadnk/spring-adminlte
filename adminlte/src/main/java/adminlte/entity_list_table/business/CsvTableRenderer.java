@@ -6,9 +6,13 @@ import adminlte.entity_list_table.communication.http.tables.columns.ColumnDefini
 import java.util.List;
 
 public class CsvTableRenderer implements TableRendererInterface {
-    public String render(AbstractTable<?> table) {
 
-        Boolean addQuotation = true;
+    public String render(AbstractTable<?> table) {
+        this.render(table, true);
+    }
+
+    public String render(AbstractTable<?> table, Boolean addQuotation) {
+
         List<ColumnDefinitionInterface> csvColumns = table.getCsvColumns();
 
         if (csvColumns.isEmpty()) {
