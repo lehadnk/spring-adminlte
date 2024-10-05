@@ -6,12 +6,15 @@ import adminlte.entity_list_table.communication.http.tables.columns.ColumnDefini
 import java.util.List;
 
 public class CsvTableRenderer implements TableRendererInterface {
+    private Boolean addQuotation = true;
 
-    public String render(AbstractTable<?> table) {
-        this.render(table, true);
+    public CsvTableRenderer() { }
+    
+    public CsvTableRenderer(Boolean addQuotation) {
+        this.addQuotation = addQuotation;
     }
 
-    public String render(AbstractTable<?> table, Boolean addQuotation) {
+    public String render(AbstractTable<?> table) {
 
         List<ColumnDefinitionInterface> csvColumns = table.getCsvColumns();
 
@@ -27,7 +30,7 @@ public class CsvTableRenderer implements TableRendererInterface {
             // Remove outer double quotations
             title = title.replaceAll("^\"+|\"+$", "");
 
-            if (addQuotation) {
+            if (this.addQuotation) {
                 title = "\"" + title + "\"";
             }
             csvContent.append(title);
@@ -49,7 +52,7 @@ public class CsvTableRenderer implements TableRendererInterface {
                 // Remove outer double quotations
                 content = content.replaceAll("^\"+|\"+$", "");
 
-                if (addQuotation) {
+                if (this.addQuotation) {
                     content = "\"" + content + "\"";
                 }
 
