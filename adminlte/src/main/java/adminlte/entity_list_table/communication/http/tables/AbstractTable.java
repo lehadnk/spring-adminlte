@@ -16,8 +16,7 @@ abstract public class AbstractTable<TDto> {
     protected String paginationParameter = "page";
     protected String searchParameter = "search";
 
-    public AbstractTable(PaginatedEntityListInterface<TDto> entityPaginatedList)
-    {
+    public AbstractTable(PaginatedEntityListInterface<TDto> entityPaginatedList) {
         this.entityPaginatedList = entityPaginatedList;
     }
 
@@ -25,24 +24,29 @@ abstract public class AbstractTable<TDto> {
 
     abstract public void defineColumns();
 
-    public void setPaginationParameter(String paginationParameter) {
+    public AbstractTable setPaginationParameter(String paginationParameter) {
         this.paginationParameter = paginationParameter;
+        return this;
     }
 
-    public void setSearchParameter(String searchParameter) {
+    public AbstractTable setSearchParameter(String searchParameter) {
         this.searchParameter = searchParameter;
+        return this;
     }
 
-    public void setJumpToTable(Boolean jumpToTable) {
+    public AbstractTable setJumpToTable(Boolean jumpToTable) {
         this.jumpToTable = jumpToTable;
+        return this;
     }
 
-    public void setHasSearchButton(Boolean hasSearchButton) {
+    public AbstractTable setHasSearchButton(Boolean hasSearchButton) {
         this.hasSearchButton = hasSearchButton;
+        return this;
     }
 
-    protected void addColumn(ColumnDefinitionInterface column) {
+    protected AbstractTable addColumn(ColumnDefinitionInterface column) {
         this.columns.add(column);
+        return this;
     }
 
     public Boolean getHasSearchButton() {
