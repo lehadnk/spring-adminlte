@@ -13,7 +13,7 @@ plugins {
 }
 
 group = 'io.github.lehadnk'
-version = '1.7.0-beta8'
+version = '1.7.1'
 
 repositories {
     mavenCentral()
