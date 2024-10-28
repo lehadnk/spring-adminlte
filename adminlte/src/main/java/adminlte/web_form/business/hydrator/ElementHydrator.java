@@ -5,17 +5,18 @@ import adminlte.web_form.communication.form_elements.Localizable;
 import adminlte.web_form.communication.form_elements.WebFormFieldElementInterface;
 import adminlte.web_form.dto.FileData;
 import adminlte.web_form.dto.LocalizedField;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 public class ElementHydrator {
     final private ObjectMapper objectMapper;
 
-    public ElementHydrator()
-    {
+    public ElementHydrator() {
         this.objectMapper = new ObjectMapper();
         this.objectMapper.findAndRegisterModules();
         this.objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
@@ -43,12 +44,16 @@ public class ElementHydrator {
             return localizedFieldValue;
         } else if (valueObject instanceof FileData fileData) {
             value = fileData.getFileUrl();
-        } else if (valueObject instanceof Integer || valueObject instanceof Long || valueObject instanceof Double || valueObject instanceof Float || valueObject instanceof Boolean || valueObject instanceof Character || valueObject instanceof String) {
+        } else if (valueObject instanceof Integer || valueObject instanceof Long || valueObject instanceof Double
+                || valueObject instanceof Float || valueObject instanceof Boolean || valueObject instanceof Character
+                || valueObject instanceof String) {
             value = valueObject.toString();
         } else if (valueObject instanceof LocalDateTime localDateTime) {
             value = localDateTime.toString();
         } else if (valueObject.getClass().isEnum()) {
             value = valueObject.toString();
+        } else if (valueObject instanceof UUID uuid) {
+            value = uuid.toString();
         } else {
             try {
                 value = this.objectMapper.writeValueAsString(valueObject);
