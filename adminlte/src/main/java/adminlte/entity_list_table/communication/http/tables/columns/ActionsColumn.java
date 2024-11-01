@@ -37,6 +37,7 @@ public class ActionsColumn extends AbstractColumn {
                     break;
                 }
                 url = url.replaceAll("<:" + idField + ">", identifier.toString());
+                url = url.replaceAll("{" + idField + "}", identifier.toString());
             }
             // Don't generate a button if any of the identifies is null, since it will be a
             // broken link either way.
