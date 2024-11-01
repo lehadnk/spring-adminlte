@@ -10,6 +10,7 @@ public class ComputedTextColumn extends AbstractColumn {
 
     public ComputedTextColumn(String fieldName, String format) {
         super(fieldName);
+        this.format = format;
     }
 
     @Override
@@ -38,7 +39,7 @@ public class ComputedTextColumn extends AbstractColumn {
 
             // ActionColumn format
             if (format != null) {
-                content = format.replaceAll("{" + fieldName + "}", (String) content);
+                content = format.replaceAll("\\{" + fieldName + "\\}", (String) content);
             }
 
             return (String) content;
