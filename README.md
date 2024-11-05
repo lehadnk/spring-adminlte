@@ -258,17 +258,59 @@ public class DemoApplicationMenuItemsProvider implements MenuItemsProviderInterf
  - Add mavenLocal() to repositories
  - Use this publishing block: 
 ```
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group = 'io.github.lehadnk'
+version = 'dev'
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+tasks.withType(Javadoc).configureEach { enabled = false }
+
+dependencies {
+    implementation 'org.springframework:spring-context:6.1.6'
+    implementation 'org.springframework:spring-web:6.1.6'
+    implementation 'org.thymeleaf:thymeleaf:3.1.2.RELEASE'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.17.1'
+
+    testImplementation 'junit:junit:4.13.2'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(19)
+    }
+    withSourcesJar()
+    withJavadocJar()
+}
+
+jar {
+    enabled = true
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
         }
-
     }
     repositories {
         mavenLocal()
     }
 }
+﻿
+KnewOne
+knewone
+Clo/wn
+ 
+ 
+fuck russia.
 ```
 
  - Run `./gradlew build && ./gradlew jar && ./gradlew publishToMavenLocal`
