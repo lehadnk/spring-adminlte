@@ -304,13 +304,6 @@ publishing {
         mavenLocal()
     }
 }
-﻿
-KnewOne
-knewone
-Clo/wn
- 
- 
-fuck russia.
 ```
 
  - Run `./gradlew build && ./gradlew jar && ./gradlew publishToMavenLocal`
