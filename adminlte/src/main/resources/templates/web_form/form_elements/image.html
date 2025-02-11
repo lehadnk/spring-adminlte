@@ -13,7 +13,7 @@
         Upload file:
         <input type="file" th:name="${name} + '.file'" accept="image/*" th:id="${name} + '_file'" />
         <th:block th:if="${maxUploadSizeBytes != null}">
-            <span style="display:block; font-size: small" th:text="'Flie size limit: ' + ${maxUploadSizeText}"></span>
+            <span style="display:block; font-size: small" th:text="'File size limit: ' + ${maxUploadSizeText}"></span>
         </th:block>
     </p>
     <p th:if="${hasDeleteButton}">
