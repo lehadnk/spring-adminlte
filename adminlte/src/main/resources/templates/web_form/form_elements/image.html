@@ -12,6 +12,9 @@
     <p>
         Upload file:
         <input type="file" th:name="${name} + '.file'" accept="image/*" th:id="${name} + '_file'" />
+        <th:block th:if="${maxUploadSizeBytes != null}">
+            <span style="display:block; font-size: small" th:text="'File size limit: ' + ${maxUploadSizeText}"></span>
+        </th:block>
     </p>
     <p th:if="${hasDeleteButton}">
         <button th:if="${value != null && value != ''}" type="submit" th:id="${name} + '_file_delete'" th:name="${name} + '.fileDelete'" th:value="${name} + '_file_delete'">Delete file</button>
@@ -20,3 +23,20 @@
         <span class="block error invalid-feedback" th:text="${validationError}"></span>
     </th:block>
 </div>
+
+<script th:inline="javascript">
+    {
+        let name = /*[[${name} + '_file']]*/ 'default';
+        let maxUploadSizeBytes = /*[[${maxUploadSizeBytes}]]*/ null;
+        let maxUploadSizeText = /*[[${maxUploadSizeText}]]*/ null;
+        if (maxUploadSizeBytes !== null) {
+            const uploadField = document.getElementById(name);
+            uploadField.onchange = function () {
+                if (this.files[0].size > maxUploadSizeBytes) {
+                    alert(`File is too big. Max allowed upload size: ${maxUploadSizeText}`);
+                    this.value = "";
+                }
+            };
+        }
+    }
+</script>
