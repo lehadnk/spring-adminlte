@@ -9,6 +9,7 @@ public class File extends AbstractFormFieldElement<File, String> {
     private Boolean multiple = false;
     private Boolean hasUpdateUrlInput = false;
     private Boolean hasDeleteButton = true;
+    private Integer maxUploadSizeBytes = null;
 
     public File(String accept) {
         this.accept = accept;
@@ -32,6 +33,11 @@ public class File extends AbstractFormFieldElement<File, String> {
         return this;
     }
 
+    public File setMaxUploadSizeBytes(Integer maxUploadSizeBytes) {
+        this.maxUploadSizeBytes = maxUploadSizeBytes;
+        return this;
+    }
+
     public Map<String, Object> getContextVariables() {
         var contextVariables = new HashMap<String, Object>();
         contextVariables.put("accept", this.accept);
@@ -39,6 +45,8 @@ public class File extends AbstractFormFieldElement<File, String> {
         contextVariables.put("hasDeleteButton", this.hasDeleteButton);
         contextVariables.put("hasUpdateUrlInput", this.hasUpdateUrlInput);
         contextVariables.put("id", this.id);
+        contextVariables.put("maxUploadSizeBytes", this.maxUploadSizeBytes);
+        contextVariables.put("maxUploadSizeText", this.maxUploadSizeBytes != null ? String.format("%s Mb", Math.round(this.maxUploadSizeBytes.doubleValue() / 1024 / 1024 * 100) / 100.0) : null);
         return contextVariables;
     }
 }
