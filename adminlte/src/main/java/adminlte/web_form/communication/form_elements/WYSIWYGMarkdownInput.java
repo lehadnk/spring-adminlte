@@ -7,4 +7,9 @@ public class WYSIWYGMarkdownInput extends AbstractFormFieldElement<WYSIWYGMarkdo
     public String getTemplatePath() {
         return this.templatePath;
     }
+
+
+    public WYSIWYGMarkdownInput() {
+        id = "editor";
+    }
 }

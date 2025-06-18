@@ -1,8 +1,8 @@
 <div class="form-group">
     <label th:if="${label != null}" th:for="${name}" th:text="${label}"></label>
 
-    <div id="editor" class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}" th:text="${value}"></div>
-    <textarea style="display: none;" th:id="${name}" class="form-control" th:name="${name}" th:text="${value}"></textarea>
+    <div th:id="${id}" class="form-control" th:classappend="${#lists.size(validationErrors) > 0 ? 'is-invalid' : ''}" th:text="${value}"></div>
+    <textarea style="display: none;" th:id="${id} + '_textarea'" class="form-control" th:name="${name}" th:text="${value}"></textarea>
 
     <p>
         <th:block th:each="validationError : ${validationErrors}">
@@ -12,23 +12,46 @@
 </div>
 
 <!--/* https://www.npmjs.com/package/@jdinabox/ckeditor5-build-markdown */-->
-<script src="/js/ckeditor/ckeditor.js"></script>
+<!--<script id="ckeditor_js" src="/js/ckeditor/ckeditor.js"></script>-->
 
 <script th:inline="javascript">
     /*<![CDATA[*/
-    MarkdownEditor
-        .create( document.querySelector( '#editor' ) )
-        .then( editor => {
-            window.editor = editor;
+    {
+        function ensureScriptIncluded(src) {
+            let script = document.getElementById("script_ckeditor_js");
 
-            editor.model.document.on('change:data', (evt, data) => {
-                var name = /*[[${name}]]*/ 'default';
-                var inputElem = document.querySelector('#' + name);
-                inputElem.value = editor.getData();
-            });
-        } )
-        .catch( error => {
-            console.error( 'There was a problem initializing the editor.', error );
-        } );
+            if (script === null) {
+                script = document.createElement('script');
+                script.src = src;
+                script.id = "script_ckeditor_js"
+                document.head.appendChild(script);
+            }
+
+            script.addEventListener("load", () => {
+                renderMarkdownInput()
+            })
+        }
+
+        ensureScriptIncluded('/js/ckeditor/ckeditor.js');
+
+        function renderMarkdownInput() {
+            const editorId = /*[[${id}]]*/ 'default';
+
+            MarkdownEditor
+                .create(document.querySelector(`#${editorId}`))
+                .then(editor => {
+                    window.editor = editor;
+
+                    editor.model.document.on('change:data', (evt, data) => {
+                        var name = /*[[${name}]]*/ 'default';
+                        var inputElem = document.querySelector(`#${editorId}_textarea`);
+                        inputElem.value = editor.getData();
+                    });
+                })
+                .catch(error => {
+                    console.error('There was a problem initializing the editor.', error);
+                });
+        }
+    }
     /*]]>*/
 </script>
