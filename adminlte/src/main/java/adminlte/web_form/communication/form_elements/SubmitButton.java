@@ -7,7 +7,7 @@ import java.util.Map;
 public class SubmitButton extends AbstractFormFieldElement<SubmitButton, String> {
     private final String templatePath = "web_form/form_elements/submit_button.html";
 
-    private String cssClass = "btn-primary";
+    private String cssClass = "btn btn-primary";
     private String text = "Submit [Inline]";
     private String name = "submit";
 
