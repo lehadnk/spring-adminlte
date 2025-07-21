@@ -2,6 +2,7 @@ package adminlte.web_form.business.hydrator;
 
 import adminlte.web_form.communication.form_elements.Input;
 import adminlte.web_form.communication.form_elements.Localizable;
+import adminlte.web_form.communication.form_elements.MultipleSelect;
 import adminlte.web_form.communication.form_elements.WebFormFieldElementInterface;
 import adminlte.web_form.dto.FileData;
 import adminlte.web_form.dto.LocalizedField;
@@ -11,6 +12,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class ElementHydrator {
@@ -24,7 +27,7 @@ public class ElementHydrator {
 
     // @todo This method is total bs, marked to overhaul
     public Object hydrateFormElement(WebFormFieldElementInterface formElement, Object valueObject) {
-        String value;
+        Object value;
 
         if (valueObject == null) {
             value = null;
@@ -55,10 +58,14 @@ public class ElementHydrator {
         } else if (valueObject instanceof UUID uuid) {
             value = uuid.toString();
         } else {
-            try {
-                value = this.objectMapper.writeValueAsString(valueObject);
-            } catch (JsonProcessingException e) {
-                value = valueObject.toString();
+            if (formElement instanceof MultipleSelect && valueObject instanceof List valueList) {
+                value = valueList.stream().map(Object::toString).toList();
+            } else {
+                try {
+                    value = this.objectMapper.writeValueAsString(valueObject);
+                } catch (JsonProcessingException e) {
+                    value = valueObject.toString();
+                }
             }
         }
 
